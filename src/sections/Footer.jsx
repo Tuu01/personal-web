@@ -58,7 +58,7 @@ const Footer = () => {
             </li>
 
             <li>
-              <a href="/CV/CV_Tuu.pdf" download className="hover:underline">
+              <a href="/CV/Tuu_CV.pdf" download className="hover:underline">
                 CV
               </a>
             </li>

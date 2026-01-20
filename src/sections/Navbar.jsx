@@ -40,7 +40,7 @@ const Navbar = () => {
 
           {/* CV DOWNLOAD BUTTON */}
           <a
-            href="/CV/CV_Tuu.pdf"
+            href="/CV/Tuu_CV.pdf"
             download
             className="hover:underline underline-offset-4 transition-colors text-black/50"
           >
