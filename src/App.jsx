@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+﻿import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Nsms from "./pages/Nsms";
 import Java2DGame from "./pages/Game2D";

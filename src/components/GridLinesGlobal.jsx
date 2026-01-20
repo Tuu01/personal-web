@@ -1,4 +1,4 @@
-import clsx from "clsx";
+﻿import clsx from "clsx";
 
 const GridLinesGlobal = ({ hidden }) => {
   return (
@@ -8,10 +8,10 @@ const GridLinesGlobal = ({ hidden }) => {
         hidden ? "opacity-0" : "opacity-100"
       )}
     >
-      <div className="relative w-full h-full max-w-screen-2xl mx-auto">
-        {/* Solid grid lines at 10vw from sides */}
-        <div className="absolute top-0 bottom-0 left-[10vw] w-px bg-black/10" />
-        <div className="absolute top-0 bottom-0 right-[10vw] w-px bg-black/10" />
+      <div className="relative w-full h-full max-w-[92vw] md:max-w-[80vw] mx-auto">
+        {/* Solid grid lines aligned to content edges */}
+        <div className="absolute top-0 bottom-0 left-0 w-px bg-black/10" />
+        <div className="absolute top-0 bottom-0 right-0 w-px bg-black/10" />
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+﻿import React from "react";
 import { useGLTF, MeshTransmissionMaterial } from "@react-three/drei";
 
 export function Mac(props) {

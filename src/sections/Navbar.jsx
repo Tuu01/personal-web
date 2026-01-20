@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import { useLocation, Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -11,7 +11,7 @@ const Navbar = () => {
 
   return (
     <header className="w-full bg-white top-0 z-30 backdrop-blur-md">
-      <div className="max-w-[80vw] mx-auto px-10 py-3 flex items-center justify-between border-b border-neutral-200">
+      <div className="max-w-[92vw] md:max-w-[80vw] mx-auto px-4 sm:px-8 lg:px-10 py-3 md:py-4 flex items-center justify-between border-b border-neutral-200">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img
@@ -22,7 +22,7 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <nav className="space-x-10 text-[16px] font-medium text-black/50">
+        <nav className="flex flex-wrap items-center gap-4 sm:gap-8 text-sm sm:text-[16px] font-medium text-black/50">
           {navItems.map(({ name, path }) => {
             const isActive = location.pathname === path;
             return (

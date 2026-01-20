@@ -1,11 +1,13 @@
-import GridLinesDashed from "../components/GridLinesDashed";
-
-const CraftSection = () => {
+﻿const CraftSection = () => {
   return (
-    <section className=" relative w-full bg-[#ffffff]">
-      <GridLinesDashed />
+    <section className="relative w-full bg-[#ffffff]">
       {/* Outer wrapper to control max width and grid alignment */}
-      <div className="max-w-[80vw] mx-auto border-b border-neutral-200">
+      <div className="relative max-w-[92vw] md:max-w-[80vw] mx-auto border-b border-neutral-200">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 bottom-0 left-1/4 w-px border-l border-dashed border-black/5" />
+          <div className="absolute top-0 bottom-0 left-1/2 w-px border-l border-dashed border-black/5" />
+          <div className="absolute top-0 bottom-0 left-3/4 w-px border-l border-dashed border-black/5" />
+        </div>
         {/* Full-width top line */}
         <div className="w-full h-px bg-neutral-200" />
         {/* Centered title with padding */}
@@ -19,9 +21,6 @@ const CraftSection = () => {
             </h2>
           </div>
         </div>
-
-        {/* Full-width bottom line */}
-        {/* <div className="w-full h-px bg-neutral-200" /> */}
       </div>
     </section>
   );

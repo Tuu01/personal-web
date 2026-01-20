@@ -1,22 +1,29 @@
 import { Canvas } from "@react-three/fiber";
 import { Mac } from "../components/Mac";
-import {
-  Environment,
-  Float,
-  Text,
-  MeshDistortMaterial,
-} from "@react-three/drei";
-import GridLinesDashed from "../components/GridLinesDashed";
+import { Environment, Float } from "@react-three/drei";
 import { Link } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const Hero = () => {
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+  const isTablet = useMediaQuery({ minWidth: 641, maxWidth: 1024 });
+  const isWide = useMediaQuery({ minWidth: 1280 });
+
+  const macScale = isMobile ? 0.36 : isTablet ? 0.45 : isWide ? 0.6 : 0.5;
+  const macY = isMobile ? -0.55 : isTablet ? -0.45 : isWide ? -0.28 : -0.38;
+  const cameraPos = isMobile
+    ? [0, 0.85, 5.2]
+    : isTablet
+      ? [0, 0.95, 4.6]
+      : [0, 1, 4];
+  const cameraFov = isMobile ? 38 : isTablet ? 36 : 35;
+
   return (
-    <div className="relative h-[60vh] md:h-[80vh] w-full">
-      <GridLinesDashed />
+    <div className="relative h-[55vh] sm:h-[60vh] md:h-[80vh] 2xl:h-[85vh] w-full">
       <Canvas
         shadows
         gl={{ alpha: true }}
-        camera={{ position: [0, 1, 4], fov: 35 }}
+        camera={{ position: cameraPos, fov: cameraFov }}
         dpr={[1, 1.5]} // Slightly higher for clearer text
       >
         <Environment preset="city" background={false} />
@@ -30,46 +37,17 @@ const Hero = () => {
           shadow-mapSize-height={1024}
         />
 
-        {/* BACK TEXT — now emissive and thick for better clarity */}
-        {/* <Text
-          fontSize={0.5}
-          position={[0, 0.0, -1.5]} // Behind Mac
-          color="black"
-          anchorX="center"
-          anchorY="middle"
-          //outlineWidth={0.015}
-          outlineColor="#ffffff"
-          fillOpacity={1}
-          strokeOpacity={1}
-        >
-          Trong Tu Luu
-        </Text> */}
-        {/* ROLE TEXT */}
-        {/* <Text
-          fontSize={0.15}
-          position={[0, 0.4, -1.5]} // Slightly above the name
-          color="#bfbec1"
-          anchorX="center"
-          anchorY="middle"
-          //outlineWidth={0.01}
-          outlineColor="#bfbec1"
-          fillOpacity={1}
-          strokeOpacity={1}
-        >
-          Software Engineer
-        </Text> */}
-
         {/* FLOATING MACBOOK */}
         <Float speed={1.5} floatIntensity={1} rotationIntensity={1}>
-          <group scale={0.5} position={[0, -0.4, 0]}>
+          <group scale={macScale} position={[0, macY, 0]}>
             <Mac />
           </group>
         </Float>
       </Canvas>
 
-      <div className="absolute top-10/12 right-[19vw] -translate-y-1/2 flex items-start gap-4 translate-x-[3.5px]">
-        <div className="w-px h-[1.4rem] bg-black/30 translate-y-[1px]" />
-        <div className="text-l font-medium leading-snug text-black/50 text-left">
+      <div className="absolute bottom-6 right-4 md:right-[19vw] md:bottom-[12vh] flex items-start gap-2 md:gap-4">
+        <div className="w-px h-5 md:h-[1.4rem] bg-black/30 translate-y-[1px]" />
+        <div className="text-xs sm:text-sm md:text-base font-medium leading-snug text-black/50 text-left">
           <p>I simplify, I humanize.</p>
           <Link
             to="/about"
@@ -78,7 +56,7 @@ const Hero = () => {
             <span className="underline underline-offset-4 group-hover:text-black">
               More about me
             </span>
-            <span className="no-underline">→</span>
+            <span className="no-underline">-&gt;</span>
           </Link>
         </div>
       </div>

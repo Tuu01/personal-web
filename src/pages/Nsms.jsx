@@ -3,235 +3,204 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CraftLayout from "./CraftLayout";
 
-// --------------------------------------
-// Small shared bits
-// --------------------------------------
-const Meta = ({ label, children }) => (
-  <div className="flex flex-col gap-1">
-    <div className="text-neutral-500 uppercase tracking-wide text-xs">
+const StatCard = ({ value, label }) => (
+  <div className="rounded-2xl border border-black/10 bg-white p-4">
+    <div className="text-2xl font-semibold tracking-tight text-black">
+      {value}
+    </div>
+    <div className="text-[11px] uppercase tracking-widest text-black/50">
       {label}
     </div>
-    <div className="text-[15px] leading-6">{children}</div>
   </div>
 );
 
-const Bullets = ({ items }) => (
-  <ul className="list-disc ml-5 space-y-2 text-neutral-700">
-    {items.map((t, i) => (
-      <li key={i}>{t}</li>
-    ))}
-  </ul>
-);
-
-// --------------------------------------
-// Fancy media card with subtle “wow”
-// - object-contain to avoid awkward crops
-// - consistent aspect so layout is calm
-// - soft gradient frame + hover lift
-// --------------------------------------
-const MediaCard = ({ src, alt, caption }) => (
-  <figure className="relative group">
-    <div
-      className="
-        rounded-2xl overflow-hidden
-        bg-[radial-gradient(100%_100%_at_50%_0%,#ffffff, #f3f4f6)]
-        ring-1 ring-black/5 shadow-lg
-      "
-    >
-      <div className="aspect-[16/9] w-full overflow-hidden">
-        <img
-          src={src}
-          alt={alt}
-          className="
-            w-full h-full object-contain
-            transition-transform duration-500 ease-out
-            group-hover:scale-[1.02]
-          "
-        />
+const Panel = ({ title, text, image, alt }) => (
+  <div className="grid gap-6 md:grid-cols-[1.1fr_1fr] items-center">
+    <div className="space-y-3">
+      <div className="text-xs uppercase tracking-widest text-black/40">
+        {title}
       </div>
+      <p className="text-black/70 leading-relaxed">{text}</p>
     </div>
-    {caption && (
-      <figcaption className="mt-2 text-center text-sm text-neutral-500">
-        {caption}
-      </figcaption>
-    )}
-  </figure>
-);
-
-// --------------------------------------
-// Row that alternates text/media
-// --------------------------------------
-const ShowcaseRow = ({ title, copy, src, alt, caption, reverse = false }) => (
-  <div
-    className={`grid items-center gap-8 md:gap-12 ${
-      reverse ? "md:grid-cols-[1fr_1.2fr]" : "md:grid-cols-[1.2fr_1fr]"
-    }`}
-  >
-    {/* Text block */}
-    <div className={`${reverse ? "md:order-2" : ""}`}>
-      <h4 className="text-lg font-semibold mb-2">{title}</h4>
-      <p className="text-neutral-700 leading-relaxed">{copy}</p>
-    </div>
-
-    {/* Media */}
-    <div className={`${reverse ? "md:order-1" : ""}`}>
-      <MediaCard src={src} alt={alt} caption={caption} />
+    <div className="overflow-hidden rounded-2xl border border-black/10 bg-white">
+      <img
+        src={image}
+        alt={alt}
+        loading="lazy"
+        className="h-[220px] w-full object-cover object-top md:h-[260px]"
+      />
     </div>
   </div>
 );
 
-// --------------------------------------
-// Page
-// --------------------------------------
 export default function Nsms() {
   return (
     <CraftLayout
-      title="Nail Salon Management Software (NSMS)"
+      title="POS System (NSMS)"
       sponsor="University Final Project"
-      heroImage="/assets/projects/NSMS/NS1.png"
       meta={{
         role: "Full-stack developer (solo)",
-        team: "Owners • Front-desk • Technicians (stakeholder feedback)",
-        timeline: "≈300 hours • Feb–May 2024",
-        tools:
-          "C# (WinForms + Guna UI), SQL Server 2022, Stored Procedures, Git",
+        team: "Owners - Front-desk - Technicians (stakeholder feedback)",
+        timeline: "~300 hours - Feb-May 2024",
+        tools: "C# (WinForms + Guna UI), SQL Server 2022, Stored Procedures, Git",
       }}
     >
-      {/* Summary */}
-      <section className="space-y-4">
-        <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-          SUMMARY
-        </div>
-        <h2 className="text-3xl md:text-[34px] font-semibold leading-tight">
-          Centralized ops for a busy nail salon: appointments, POS, inventory,
-          reporting
-        </h2>
-        <p className="text-neutral-700">
-          I designed and built a Windows desktop system that replaces paper
-          ledgers and ad-hoc spreadsheets with reliable scheduling,
-          point-of-sale, inventory tracking, and dashboards. SQL stored
-          procedures drive fast reporting and conflict-free booking; the UI is
-          keyboard-friendly for staff under time pressure.
-        </p>
-      </section>
-
-      {/* At-a-glance */}
-      <section className="grid grid-cols-1 md:grid-cols-4 gap-8 pt-6 border-t">
-        <Meta label="My Role">
-          Interaction design • Architecture • Implementation • QA
-        </Meta>
-        <Meta label="Users">Owners, front-desk, and technicians</Meta>
-        <Meta label="Scope">
-          Scheduling, POS, Inventory, Dashboards/Reports, Auth
-        </Meta>
-        <Meta label="Stack">C# • SQL Server • Guna UI • Stored Procedures</Meta>
-      </section>
-
-      {/* Highlights */}
-      <section className="space-y-6">
-        <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-          HIGHLIGHTS
-        </div>
-        <div className="grid md:grid-cols-2 gap-10">
-          <div>
-            <h4 className="font-semibold mb-2">What I shipped</h4>
-            <Bullets
-              items={[
-                "Scheduling with real-time conflict checks and simple walk-in flow.",
-                "POS: quick service selection, order list, checkout, printable invoice.",
-                "Inventory with low-stock indicators and fast search.",
-                "Dashboards: day/month/year revenue, top services, service-mix chart.",
-                "Authentication and safety guards for data updates.",
-              ]}
-            />
+      {/* Hero */}
+      <section className="relative overflow-hidden rounded-3xl border border-black/10 bg-[#f4f4f2]">
+        <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#e6e6e0] blur-3xl" />
+        <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#f0eee9] blur-3xl" />
+        <div className="relative grid gap-8 p-6 md:p-10 lg:grid-cols-[1.1fr_1fr]">
+          <div className="space-y-5">
+            <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+              POS System
+            </div>
+            <h1 className="text-3xl md:text-[40px] leading-tight font-semibold">
+              A fast desktop POS that keeps appointments, sales, and inventory
+              in sync
+            </h1>
+            <p className="text-black/70 leading-relaxed">
+              Built for busy front-desk staff with keyboard-first flows, clear
+              status cues, and reliable reporting powered by stored procedures.
+            </p>
+            <div className="flex flex-wrap gap-2 text-xs uppercase tracking-widest text-black/50">
+              {[
+                "Scheduling",
+                "POS",
+                "Inventory",
+                "Reporting",
+              ].map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-black/10 bg-white px-3 py-1"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
-          <div>
-            <h4 className="font-semibold mb-2">Engineering choices</h4>
-            <Bullets
-              items={[
-                "SQL stored procedures to feed charts & KPIs (fast & predictable).",
-                "Clear ERD and modular screens to iterate feature-by-feature.",
-                "Keyboard shortcuts on desktop; thumb-reach targets where it matters.",
-              ]}
+          <div className="overflow-hidden rounded-2xl border border-black/10 bg-white">
+            <img
+              src="/assets/projects/NSMS/NS4.png"
+              alt="NSMS dashboard"
+              loading="lazy"
+              className="h-[240px] w-full object-cover object-top md:h-[300px]"
             />
           </div>
         </div>
       </section>
 
-      {/* Screens — now with polish */}
-      <section className="space-y-16">
-        <ShowcaseRow
+      {/* Stats */}
+      <section className="grid gap-4 md:grid-cols-4">
+        <StatCard value="< 3s" label="Common task time" />
+        <StatCard value="99%" label="Test case pass" />
+        <StatCard value="4" label="Core modules" />
+        <StatCard value="300+" label="Build hours" />
+      </section>
+
+      {/* Core flow */}
+      <section className="grid gap-10 md:grid-cols-2">
+        <div className="space-y-3">
+          <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+            Flow
+          </div>
+          <h2 className="text-2xl md:text-[32px] font-semibold">
+            From booking to checkout without context switching
+          </h2>
+          <p className="text-black/70 leading-relaxed">
+            Appointments, walk-ins, and checkout live in one surface. Staff stay
+            in a single mental model with fast navigation and clear validation.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-black/10 bg-white p-5">
+          <ul className="space-y-2 text-black/70">
+            <li>Service selection - staff - time - confirm</li>
+            <li>POS with quick add-ons and invoice printing</li>
+            <li>Inventory with low-stock alerts</li>
+            <li>Revenue dashboards by day/month/year</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Screens */}
+      <section className="space-y-8">
+        <Panel
           title="Appointments"
-          copy="Day/Week views; conflict checks; quick add for phone-in bookings; simple walk-in capture so front-desk stays fast."
-          src="/assets/projects/NSMS/NS2.png"
+          text="Day/Week views with conflict checks and quick add for walk-ins so front-desk stays fast."
+          image="/assets/projects/NSMS/NS2.png"
           alt="NSMS calendar"
-          caption="Scheduler with conflict checks and fast add"
         />
-
-        <ShowcaseRow
-          reverse
+        <Panel
           title="Inventory"
-          copy="Real-time item status with “available / out-of-stock” signals and image lookup — staff can answer client questions immediately."
-          src="/assets/projects/NSMS/NS3.png"
+          text="Real-time item status with images and low-stock indicators for quick answers."
+          image="/assets/projects/NSMS/NS3.png"
           alt="NSMS inventory"
-          caption="Low-stock indicators, quick search, item images"
         />
-
-        <ShowcaseRow
+        <Panel
           title="Reporting"
-          copy="Stored procedures power KPIs and charts: top services, service per category, and revenue by day/month/year for quick decisions."
-          src="/assets/projects/NSMS/NS4.png"
+          text="KPIs and charts powered by stored procedures for reliable daily decisions."
+          image="/assets/projects/NSMS/NS4.png"
           alt="NSMS reporting"
-          caption="Revenue by period, service mix, and top performers"
         />
       </section>
 
-      {/* Outcome & next */}
-      <section className="space-y-4">
-        <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-          OUTCOME
+      {/* Outcome */}
+      <section className="grid gap-8 md:grid-cols-2">
+        <div className="space-y-3">
+          <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+            Outcome
+          </div>
+          <h2 className="text-2xl md:text-[32px] font-semibold">
+            Dependable ops for a high-traffic salon
+          </h2>
+          <p className="text-black/70 leading-relaxed">
+            Stakeholders validated the workflow. The team adopted inventory
+            alerts and relied on dashboards for weekly decisions.
+          </p>
         </div>
-        <h3 className="text-2xl md:text-3xl font-semibold leading-tight">
-          From manual chaos to dependable daily ops
-        </h3>
-        <Bullets
-          items={[
-            "Prototype validated with stakeholders; near-100% pass across use-case tests.",
-            "Low-stock indicators adopted in routine; fewer last-minute supply runs.",
-            "Owners get weekly clarity via fast dashboards (day/month/year revenue & mix).",
-          ]}
-        />
-        <div className="text-[13px] font-semibold tracking-wide text-green-600">
-          NEXT
+        <div className="rounded-2xl border border-black/10 bg-white p-6">
+          <div className="text-xs uppercase tracking-widest text-black/40">
+            Next steps
+          </div>
+          <ul className="mt-3 space-y-2 text-black/70">
+            <li>Role-based access and audit logs</li>
+            <li>Deeper POS and scheduler linking</li>
+            <li>Resizable UI for varied stations</li>
+          </ul>
         </div>
-        <Bullets
-          items={[
-            "Role-based access hardening and audit logs.",
-            "Tighter POS ↔ Scheduler integration (reserve slot at checkout).",
-            "Responsive/resizable UI to support varied stations.",
-          ]}
-        />
       </section>
 
-      {/* Next project card */}
-      <section className="mt-16">
+      {/* Next project */}
+      <section className="mt-10">
         <div className="text-neutral-500 mb-2">Next project:</div>
         <Link
           to="/P3"
-          className="block rounded-2xl border border-neutral-200 p-8 hover:border-neutral-300 transition"
+          className="group block rounded-3xl border border-black/10 bg-white p-5 md:p-6 hover:border-black/20 transition"
         >
-          <div className="text-3xl font-semibold">
-            Java 2D Platformer — TFight
-          </div>
-          <div className="text-neutral-500 mt-1">
-            Pure Java engine: loop, collisions, sprite animation
-          </div>
-          <div className="mt-6 overflow-hidden rounded-xl border">
-            <img
-              src="/assets/projects/Game2D/G1.2.png"
-              alt="Project cover"
-              className="w-full h-[260px] object-cover "
-            />
+          <div className="grid gap-5 md:grid-cols-[1fr_1fr] items-center">
+            <div className="space-y-2">
+              <div className="text-xs uppercase tracking-widest text-black/40">
+                Java 2D Game
+              </div>
+              <div className="text-xl md:text-2xl font-semibold">
+                A classic side-scroller built from scratch
+              </div>
+              <div className="text-sm text-black/60">
+                Hand-rolled engine, collision system, and sprite animation.
+              </div>
+              <div className="inline-flex items-center gap-2 text-sm font-medium text-black/70 group-hover:text-black">
+                View project <span aria-hidden>&gt;</span>
+              </div>
+            </div>
+            <div className="overflow-hidden rounded-2xl border border-black/10 bg-neutral-100">
+              <div className="aspect-[16/9] w-full">
+                <img
+                  src="/assets/projects/Game2D/G1.2.png"
+                  alt="2D game"
+                  loading="lazy"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            </div>
           </div>
         </Link>
       </section>

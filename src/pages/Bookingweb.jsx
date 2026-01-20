@@ -1,300 +1,220 @@
-// src/pages/BookingWebsite.jsx
+// src/pages/Bookingweb.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import CraftLayout from "./CraftLayout";
 
-// ---------- Small helpers ----------
-const MetaItem = ({ label, children }) => (
-  <div className="flex flex-col gap-2">
-    <div className="text-neutral-500 uppercase tracking-wide text-sm">
+const StatPill = ({ value, label }) => (
+  <div className="rounded-full border border-black/10 px-4 py-2">
+    <div className="text-sm font-semibold tracking-tight text-black">{value}</div>
+    <div className="text-[11px] uppercase tracking-widest text-black/50">
       {label}
     </div>
-    <div className="text-[15px] leading-6">{children}</div>
   </div>
 );
 
-const Bullets = ({ items }) => (
-  <ul className="list-disc ml-5 space-y-2 text-neutral-700">
-    {items.map((t, i) => (
-      <li key={i}>{t}</li>
-    ))}
-  </ul>
+const SectionTitle = ({ eyebrow, title, text }) => (
+  <div className="space-y-3">
+    <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+      {eyebrow}
+    </div>
+    <h2 className="text-2xl md:text-[32px] font-semibold leading-tight">
+      {title}
+    </h2>
+    {text && <p className="text-black/70 leading-relaxed">{text}</p>}
+  </div>
 );
 
-// Balanced media + copy
-const FeatureRow = ({
-  title,
-  children,
-  mediaSrc,
-  mediaAlt,
-  reverse = false,
-}) => (
+const FeatureCard = ({ title, text, image, alt, reverse = false }) => (
   <div
-    className={`flex flex-col md:items-center gap-8 md:gap-12 ${
-      reverse ? "md:flex-row-reverse" : "md:flex-row"
+    className={`grid gap-8 md:grid-cols-2 items-center ${
+      reverse ? "md:[&>*:first-child]:order-2" : ""
     }`}
   >
-    <div className="md:w-1/2">
-      <h4 className="font-semibold mb-2">{title}</h4>
-      <p className="text-neutral-700 leading-relaxed">{children}</p>
+    <div className="space-y-3">
+      <h3 className="text-lg font-semibold">{title}</h3>
+      <p className="text-black/70 leading-relaxed">{text}</p>
     </div>
-
-    <div className="md:w-1/2">
-      <div className="rounded-2xl border border-neutral-200 bg-neutral-50 p-4 md:p-6 shadow-[0_1px_0_rgba(0,0,0,0.04)]">
-        <div className="aspect-[3/2] rounded-xl overflow-hidden bg-neutral-100">
-          <img
-            src={mediaSrc}
-            alt={mediaAlt}
-            className="w-full h-full object-cover"
-          />
-        </div>
+    <div className="rounded-2xl border border-black/10 bg-white p-3 md:p-4">
+      <div className="aspect-[3/2] overflow-hidden rounded-xl bg-neutral-100">
+        <img
+          src={image}
+          alt={alt}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
       </div>
-    </div>
-  </div>
-);
-
-// Slim stat band
-const Stat = ({ value, label }) => (
-  <div className="text-center">
-    <div className="text-2xl md:text-3xl font-semibold tracking-tight">
-      {value}
-    </div>
-    <div className="text-xs uppercase tracking-wide text-neutral-500 mt-1">
-      {label}
-    </div>
-  </div>
-);
-
-// Gradient CTA
-const CtaBanner = () => (
-  <div className="relative overflow-hidden rounded-2xl border border-neutral-200">
-    <div className="absolute inset-0 bg-gradient-to-r from-blue-50 via-indigo-50 to-purple-50" />
-    <div className="relative px-6 py-10 md:px-10 md:py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-      <div>
-        <div className="text-[13px] font-semibold tracking-wide text-[#367ff4]">
-          LIVE
-        </div>
-        <h3 className="text-2xl md:text-[28px] font-semibold mt-1">
-          See it in the wild — Nail Fairy Booking
-        </h3>
-        <p className="text-neutral-700 mt-2">
-          Mobile and desktop's booking with slot validation, confirmations, and a fast,
-          friendly flow.
-        </p>
-      </div>
-      <a
-        href="https://nailfairy.co.uk/"
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-2 rounded-xl px-4 py-3 bg-black text-white hover:bg-neutral-800 transition"
-        aria-label="Open Nail Fairy booking website in a new tab"
-      >
-        View live site <span aria-hidden>↗</span>
-      </a>
     </div>
   </div>
 );
 
 const BookingWebsite = () => (
   <CraftLayout
-    title="Nail Fairy — Online Booking Website"
-    sponsor="Nail Fairy — customer-facing project"
-    heroImage="/assets/projects/NFBooking/N1.png"
+    title="Nail Fairy - Online Booking Website"
+    sponsor="Client project"
     meta={{
-      role: "Full-stack dev (React, Tailwind, Node) • UX • Deployment",
+      role: "Full-stack dev (React, Tailwind, Node) - UX - Deployment",
       team: "Solo (feedback from salon owners & staff)",
       timeline: "2025 (live pilot)",
       tools:
         "React, Tailwind CSS, Node/Express, MongoDB, Vite, GitHub, Vercel/Render",
     }}
   >
-    {/* Intro */}
-    <section className="space-y-4">
-      <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-        PURPOSE
+    {/* Hero */}
+    <section className="relative overflow-hidden rounded-3xl border border-black/10 bg-[#f7f3ee]">
+      <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-[#f1dfd2] blur-3xl" />
+      <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#f6e7db] blur-3xl" />
+
+      <div className="relative grid gap-8 p-6 md:p-10 lg:grid-cols-[1.1fr_1fr]">
+        <div className="space-y-5">
+          <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+            Booking Website
+          </div>
+          <h1 className="text-4xl md:text-[44px] lg:text-[52px] leading-[1] font-semibold">
+            A calm, fast booking flow that turns walk-ins into self-serve
+          </h1>
+          <p className="text-black/70 leading-relaxed">
+            Built for a real salon with strict time-slot validation, return
+            visitor shortcuts, and a mobile-first flow that cuts admin work.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <StatPill value="< 60s" label="Avg booking time" />
+            <StatPill value="-40%" label="Phone calls" />
+            <StatPill value="99.9%" label="Uptime" />
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href="https://nailfairy.co.uk/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-black px-4 py-2 text-sm text-white hover:bg-black/80"
+            >
+              View live site
+            </a>
+            <span className="text-xs uppercase tracking-widest text-black/40">
+              Live
+            </span>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-black/10 bg-white p-3 md:p-4">
+          <div className="aspect-[4/3] overflow-hidden rounded-xl bg-neutral-100">
+            <img
+              src="/assets/projects/NFBooking/N2.png"
+              alt="Nail Fairy booking screen"
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </div>
-      <h2 className="text-3xl md:text-[34px] font-semibold leading-tight">
-        Turn walk-ins and phone calls into self-serve online bookings
-      </h2>
-      <p className="text-neutral-700">
-        I learned the foundations from a YouTube tutorial and then adapted the
-        architecture, UI, and flows for a real nail salon—optimizing for quick
-        booking, fewer no-shows, and mobile usability. The site lets customers
-        browse services, pick time slots, and get confirmations without calling
-        the salon.
-      </p>
     </section>
 
-    {/* Quick stat band */}
-    <section className="mt-8">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 rounded-2xl border border-neutral-200 bg-white p-6">
-        <Stat value="&lt; 60s" label="Avg booking completion time" />
-        <Stat value="99.9% uptime" label="Cloud-hosted, always available" />
-        <Stat value="- 40% calls" label="Reduced admin workload" />
-        <Stat value="Multi-device" label="Optimized for phones & desktops" />
-      </div>
-    </section>
-
-    {/* At-a-glance */}
-    <section className="grid grid-cols-1 md:grid-cols-4 gap-8 pt-10 border-t">
-      <MetaItem label="Surface">
-        Public website connected to the salon calendar
-      </MetaItem>
-      <MetaItem label="Users">
-        New & returning clients booking nail services
-      </MetaItem>
-      <MetaItem label="Primary KPI">
-        Online bookings & reduced phone volume
-      </MetaItem>
-      <MetaItem label="Result (pilot)">Fewer back-and-forth messages</MetaItem>
-    </section>
-
-    {/* Learned vs customized */}
-    <section className="space-y-6">
-      <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-        LEARNED FROM TUTORIAL
-      </div>
-      <h3 className="text-2xl md:text-[28px] font-semibold">
-        Foundations I adopted
-      </h3>
-      <Bullets
-        items={[
-          "Project structure & React component patterns.",
-          "Service listing & detail page scaffold.",
-          "Form handling & validation basics.",
-          "Vite + Tailwind workflow and deployment shape.",
-        ]}
+    {/* Problem + Approach */}
+    <section className="grid gap-10 md:grid-cols-2">
+      <SectionTitle
+        eyebrow="Problem"
+        title="Phone bookings were slow and error-prone"
+        text="The salon needed a flow that minimizes back-and-forth messages, prevents double-booking, and feels effortless on mobile."
       />
-      <p className="text-neutral-700">
-        I reused the learning patterns but reworked the data model, booking
-        flow, and UI to match a real salon’s constraints and brand.
-      </p>
+      <SectionTitle
+        eyebrow="Approach"
+        title="Design a short, guided sequence"
+        text="Service - staff (optional) - date/time - contact - confirm. The UI keeps the context visible and validates every step."
+      />
     </section>
 
-    {/* Customization */}
-    <section className="space-y-6">
-      <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-        MY CUSTOMIZATION
-      </div>
-      <h3 className="text-2xl md:text-[28px] font-semibold">
-        What I changed for a real salon
-      </h3>
-      <div className="grid md:grid-cols-2 gap-10">
-        <div>
-          <h4 className="font-semibold mb-2">Booking flow & rules</h4>
-          <Bullets
-            items={[
-              "Service → staff (optional) → date/time → contact → confirm.",
-              "Slot validation (duration & buffer) to prevent overlaps.",
-              "Return-visitor shortcut (prefills details by phone/email).",
-            ]}
-          />
-        </div>
-        <div>
-          <h4 className="font-semibold mb-2">Data model</h4>
-          <Bullets
-            items={[
-              "Collections for services, staff availability, bookings, and blackout dates.",
-              "Server validation for conflicts; consistent time-zone handling.",
-            ]}
-          />
-        </div>
-      </div>
-    </section>
-
-    {/* Screens / Media */}
-    <section className="space-y-12">
-      <FeatureRow
-        title="Service Browsing"
-        mediaSrc="/assets/projects/NFBooking/N2.png"
-        mediaAlt="NF services"
-      >
-        Services are grouped (Manicure, Pedicure, Combo). Each card shows
-        duration, price, and add-ons. Selecting a service drops you into the
-        next step with a pinned, glanceable summary.
-      </FeatureRow>
-
-      <FeatureRow
+    {/* Key flows */}
+    <section className="space-y-10">
+      <SectionTitle
+        eyebrow="Key Flows"
+        title="Moments that make the booking feel effortless"
+      />
+      <FeatureCard
+        title="Service browsing"
+        text="Clear categories, duration/price per card, and a pinned summary that stays visible while you choose."
+        image="/assets/projects/NFBooking/N3.png"
+        alt="Services grid"
+      />
+      <FeatureCard
         reverse
-        title="Pick Date & Time"
-        mediaSrc="/assets/projects/NFBooking/N3.png"
-        mediaAlt="NF booking"
-      >
-        The calendar shows only valid start times considering service duration,
-        staff availability, and buffers. If a slot becomes unavailable, server
-        guards reject and suggest alternatives.
-      </FeatureRow>
+        title="Date and time selection"
+        text="Only valid slots are shown. Conflicts are blocked server-side with fast fallback suggestions."
+        image="/assets/projects/NFBooking/N4.png"
+        alt="Calendar flow"
+      />
     </section>
 
-    {/* Architecture */}
-    <section className="space-y-6">
-      <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-        ARCHITECTURE
-      </div>
-      <div className="grid md:grid-cols-2 gap-10">
-        <div>
-          <h4 className="font-semibold mb-2">Frontend</h4>
-          <Bullets
-            items={[
-              "React + Vite + Tailwind; route-based pages (services, booking, confirm).",
-              "Local form state; server validation for availability & conflicts.",
-            ]}
-          />
-        </div>
-        <div>
-          <h4 className="font-semibold mb-2">Backend</h4>
-          <Bullets
-            items={[
-              "Node/Express API; MongoDB for services, staff, bookings, blackout dates.",
-              "Slot generator considers duration, buffers, staff schedules, and lead time.",
-            ]}
-          />
-        </div>
+    {/* Stack */}
+    <section className="rounded-2xl border border-black/10 bg-white p-6">
+      <SectionTitle
+        eyebrow="Stack"
+        title="Pragmatic tools, built for reliability"
+      />
+      <div className="mt-6 flex flex-wrap gap-2 text-xs uppercase tracking-widest text-black/50">
+        {[
+          "React",
+          "Tailwind",
+          "Node/Express",
+          "MongoDB",
+          "Vite",
+          "Vercel",
+        ].map((item) => (
+          <span key={item} className="rounded-full border border-black/10 px-3 py-1">
+            {item}
+          </span>
+        ))}
       </div>
     </section>
 
     {/* Outcome */}
-    <section className="space-y-3">
-      <div className="text-[13px] font-semibold tracking-wide text-blue-600">
-        OUTCOME
-      </div>
-      <Bullets
-        items={[
-          "Shipped a real, branded booking experience based on tutorial foundations.",
-          "Reduced back-and-forth DMs; customers complete bookings in under a minute.",
-          "Engineered robust slot validation to prevent double-booking.",
-        ]}
+    <section className="grid gap-8 md:grid-cols-2">
+      <SectionTitle
+        eyebrow="Outcome"
+        title="Faster bookings, fewer interruptions"
+        text="Customers complete bookings in under a minute. Staff spend less time on phone calls and more time on service."
       />
-      <p className="text-neutral-700">
-        Next: integrate payments, loyalty profiles, and tighter sync with the
-        in-store calendar.
-      </p>
-    </section>
-
-    {/* CTA to live site */}
-    <section className="mt-12">
-      <CtaBanner />
+      <div className="rounded-2xl border border-black/10 bg-[#f7f3ee] p-6">
+        <div className="text-sm uppercase tracking-widest text-black/50">
+          Next steps
+        </div>
+        <ul className="mt-3 space-y-2 text-black/70">
+          <li>Payments and deposits</li>
+          <li>Loyalty profiles</li>
+          <li>Calendar sync with POS</li>
+        </ul>
+      </div>
     </section>
 
     {/* Next project */}
-    <section className="mt-16">
+    <section className="mt-10">
       <div className="text-neutral-500 mb-2">Next project:</div>
       <Link
         to="/P2"
-        className="block rounded-2xl border border-neutral-200 p-8 hover:border-neutral-300 transition"
+        className="group block rounded-3xl border border-black/10 bg-white p-6 md:p-8 hover:border-black/20 transition"
       >
-        <div className="text-3xl font-semibold">
-          Nail Salon Management Software
-        </div>
-        <div className="text-neutral-500 mt-1">
-          Back-office ops that power the bookings
-        </div>
-        <div className="mt-6 overflow-hidden rounded-xl border">
-          <img
-            src="/assets/projects/NSMS/NS4.png"
-            alt="NSMS"
-            className="w-full h-[260px] object-cover object-top"
-          />
+        <div className="grid gap-6 md:grid-cols-[1fr_1.2fr] items-center">
+          <div className="space-y-2">
+            <div className="text-xs uppercase tracking-widest text-black/40">
+              POS System
+            </div>
+            <div className="text-2xl md:text-3xl font-semibold">
+              Back-office ops that power the bookings
+            </div>
+            <div className="text-sm text-black/60">
+              Inventory, reporting, and scheduling in one fast desktop app.
+            </div>
+            <div className="inline-flex items-center gap-2 text-sm font-medium text-black/70 group-hover:text-black">
+              View project <span aria-hidden>&gt;</span>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-black/10 bg-neutral-50">
+            <img
+              src="/assets/projects/NSMS/NS4.png"
+              alt="NSMS dashboard"
+              loading="lazy"
+              className="h-[220px] w-full object-cover object-top md:h-[260px]"
+            />
+          </div>
         </div>
       </Link>
     </section>

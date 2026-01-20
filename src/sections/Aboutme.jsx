@@ -8,7 +8,7 @@ const sections = [
     title: "Background",
     content: (
       <>
-        I’m Trong Tu Luu, a Computer Science graduate from City, University of
+        I'm Trong Tu Luu, a Computer Science graduate from City, University of
         London. I specialize in turning small business challenges into scalable
         tech solutions. From booking platforms for nail salons to custom
         management systems and 2D game engines, I focus on building practical,
@@ -21,9 +21,9 @@ const sections = [
     title: "Product Thinking",
     content: (
       <>
-        I approach projects with both a developer’s precision and an operator’s
+        I approach projects with both a developer's precision and an operator's
         mindset. Running multi-location nail salons has taught me that software
-        only matters if it solves real problems fast—whether that’s reducing
+        only matters if it solves real problems fast - whether that's reducing
         no-shows, cutting admin work, or helping owners make data-driven
         decisions. My goal is to design systems that are clean, intuitive, and
         practical: tools staff actually want to use, and businesses can rely on
@@ -37,8 +37,8 @@ const sections = [
       <>
         Outside of coding, I enjoy <strong>photography</strong>,{" "}
         <strong>cinematic videography</strong>, and crafting social media
-        content. You’ll often find me running, training at the gym, or playing
-        badminton. I’m also constantly learning about <strong>AI</strong> and{" "}
+        content. You'll often find me running, training at the gym, or playing
+        badminton. I'm also constantly learning about <strong>AI</strong> and{" "}
         <strong>automation</strong>, always thinking of new ways to build
         smarter solutions.
       </>
@@ -47,11 +47,11 @@ const sections = [
 ];
 
 const About = () => {
-//   const [openIndex, setOpenIndex] = useState(null);
+  //   const [openIndex, setOpenIndex] = useState(null);
 
-//   const toggleSection = (index) => {
-//     setOpenIndex(openIndex === index ? null : index);
-//   };
+  //   const toggleSection = (index) => {
+  //     setOpenIndex(openIndex === index ? null : index);
+  //   };
 
   const [openSections, setOpenSections] = useState(
     Array(sections.length).fill(false)
@@ -88,7 +88,7 @@ const About = () => {
               >
                 {sec.title}
                 <span className="text-xl">
-                  {openSections === i ? "×" : "+"}
+                  {openSections[i] ? "-" : "+"}
                 </span>
               </button>
               {openSections[i] && (

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Navbar from "../sections/Navbar";
 import Footer from "../sections/Footer";
 import GridLinesGlobal from "../components/GridLinesGlobal";
@@ -7,7 +7,7 @@ import ReactLenis from "lenis/react";
 const CraftLayout = ({ title, sponsor, meta, heroImage, children }) => (
   <ReactLenis
     root
-    className="relative w-screen min-h-screen overflow-x-auto bg-white"
+    className="relative w-screen min-h-screen overflow-x-hidden bg-white"
   >
     <GridLinesGlobal />
     <div className="relative z-20">
@@ -16,15 +16,18 @@ const CraftLayout = ({ title, sponsor, meta, heroImage, children }) => (
       {/* Hero Image */}
       {heroImage && (
         <div className="w-full max-w-[60vw] mx-auto mt-8">
-          <img
-            src={heroImage}
-            alt={title}
-            className="w-full h-[320px] md:h-[500px] object-cover rounded-2xl border border-neutral-200"
-          />
+          <div className="aspect-[16/9] overflow-hidden rounded-2xl border border-neutral-200">
+            <img
+              src={heroImage}
+              alt={title}
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
         </div>
       )}
 
-      <main className="max-w-[80vw] mx-auto px-4 py-20 space-y-16">
+      <main className="max-w-[92vw] md:max-w-[76vw] mx-auto px-4 sm:px-6 md:px-8 py-20 space-y-16">
         {/* Hero Header */}
         <div>
           {sponsor && (
@@ -34,7 +37,7 @@ const CraftLayout = ({ title, sponsor, meta, heroImage, children }) => (
         </div>
 
         {/* Metadata Block */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-neutral-700">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-neutral-600">
           {meta.role && (
             <div>
               <span className="font-semibold">Role</span>
@@ -71,9 +74,9 @@ const CraftLayout = ({ title, sponsor, meta, heroImage, children }) => (
 
         {/* Same dashed vertical lines */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 bottom-0 left-[20vw] w-px border-l border-dashed border-black/5" />
-          <div className="absolute top-0 bottom-0 left-[40vw] w-px border-l border-dashed border-black/5" />
-          <div className="absolute top-0 bottom-0 left-[60vw] w-px border-l border-dashed border-black/5" />
+          <div className="absolute top-0 bottom-0 left-1/4 w-px border-l border-dashed border-black/5" />
+          <div className="absolute top-0 bottom-0 left-1/2 w-px border-l border-dashed border-black/5" />
+          <div className="absolute top-0 bottom-0 left-3/4 w-px border-l border-dashed border-black/5" />
         </div>
       </div>
 

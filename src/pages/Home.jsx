@@ -1,4 +1,4 @@
-// Home.jsx
+﻿// Home.jsx
 import React, { useEffect, useState } from "react";
 import Navbar from "../sections/Navbar";
 import Hero from "../sections/Hero";
@@ -9,24 +9,27 @@ import GridLinesGlobal from "../components/GridLinesGlobal";
 import ReactLenis from "lenis/react";
 import { useProgress } from "@react-three/drei";
 
-
 const Home = () => {
-  const { progress } = useProgress();
+  const { active, progress, total, errors } = useProgress();
   const [isReady, setIsReady] = useState(false);
-  const [enlargedImage, setEnlargedImage] = useState(null); 
+  const [enlargedImage, setEnlargedImage] = useState(null);
 
   useEffect(() => {
-    if (progress === 100) {
+    if (total === 0 || errors.length > 0) {
+      setIsReady(true);
+      return;
+    }
+
+    if (!active && progress >= 100) {
       setIsReady(true);
     }
-  }, [progress]);
+  }, [active, errors.length, progress, total]);
 
   return (
     <ReactLenis
       root
-      className="relative w-screen min-h-screen overflow-x-auto bg-white"
+      className="relative w-screen min-h-screen overflow-x-hidden bg-white"
     >
-      {/* <GridLinesGlobal /> */}
       <GridLinesGlobal hidden={!!enlargedImage} />
       <div className="relative z-20">
         {!isReady && (
@@ -50,14 +53,11 @@ const Home = () => {
           <Navbar />
           <Hero />
           <CraftSection />
-          <Project enlargedImage={enlargedImage} setEnlargedImage={setEnlargedImage}/>
+          <Project
+            enlargedImage={enlargedImage}
+            setEnlargedImage={setEnlargedImage}
+          />
           <Footer />
-          {/* <ServiceSummary /> */}
-          {/* <Services /> */}
-          {/* <About /> */}
-          {/* <Works /> */}
-          {/* <ContactSummary /> */}
-          {/* <Contact /> */}
         </div>
       </div>
     </ReactLenis>

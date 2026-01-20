@@ -1,271 +1,220 @@
-// src/pages/Java2DGame.jsx
+// src/pages/Game2D.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import CraftLayout from "./CraftLayout";
 
-/* ---------- tiny helpers ---------- */
-const MetaItem = ({ label, children }) => (
-  <div className="flex flex-col gap-1.5">
-    <div className="text-neutral-500 uppercase tracking-wide text-sm">
+const Caption = ({ label, text }) => (
+  <div className="space-y-2">
+    <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
       {label}
     </div>
-    <div className="text-[15px] leading-6">{children}</div>
+    <div className="text-black/70 leading-relaxed">{text}</div>
   </div>
 );
 
-const Bullet = ({ items }) => (
-  <ul className="list-disc ml-5 space-y-2 text-neutral-700">
-    {items.map((t, i) => (
-      <li key={i}>{t}</li>
-    ))}
-  </ul>
-);
-
-/** Content row
- *  Props:
- *   - reverse: swap media/text on desktop
- *   - mediaType: "img" | "video"
- *   - aspect: any Tailwind aspect ratio (e.g. "3/2", "16/9")
- *   - cover: if true, crops to fill (object-cover). If false, letterboxes (object-contain).
- *   - bleed: if true, no inner padding (edge-to-edge inside card)
- */
-const ContentRow = ({
-  title,
-  children,
-  reverse = false,
-  mediaType = "img",
-  mediaSrc,
-  mediaAlt = "",
-  aspect = "3/2",
-  cover = true,
-  bleed = false,
-}) => (
-  <div
-    className={`flex flex-col md:items-center gap-8 md:gap-12 ${
-      reverse ? "md:flex-row-reverse" : "md:flex-row"
-    }`}
-  >
-    {/* Text block */}
-    <div className="md:w-1/2">
-      <h4 className="font-semibold mb-2">{title}</h4>
-      <p className="text-neutral-700 leading-relaxed">{children}</p>
-    </div>
-
-    {/* Media block (soft card, no device frame) */}
-    <div className="md:w-1/2">
-      <div
-        className={`rounded-2xl border border-neutral-200 bg-neutral-50 shadow-[0_1px_0_rgba(0,0,0,0.04)] ${
-          bleed ? "p-0" : "p-4 md:p-6"
-        }`}
-      >
-        <div
-          className={`rounded-xl overflow-hidden bg-black aspect-[${aspect}]`}
-        >
-          {mediaType === "video" ? (
-            <video
-              src={mediaSrc}
-              className={`w-full h-full ${
-                cover ? "object-cover" : "object-contain"
-              }`}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-            />
-          ) : (
-            <img
-              src={mediaSrc}
-              alt={mediaAlt}
-              className={`w-full h-full ${
-                cover ? "object-cover" : "object-contain"
-              }`}
-              loading="lazy"
-            />
-          )}
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-const Java2DGame = () => (
+const Game2D = () => (
   <CraftLayout
-    title="Java 2D Platformer — TFight"
+    title="Java 2D Platformer - TFight"
     sponsor="University First Project"
-    heroImage="/assets/projects/Game2D/G1.2.png"
     meta={{
-      role: "Solo Developer (Java, OOP, Game Loop) • Design & Programming",
+      role: "Solo Developer (Java, OOP, Game Loop) - Design & Programming",
       team: "Individual project",
-      timeline: "3 months • Sept–Dec 2023",
+      timeline: "3 months - Sept-Dec 2023",
       tools: "Java, Java Swing, AWT, Photoshop",
     }}
   >
-    {/* Intro */}
-    <section className="space-y-4">
-      <div className="text-[13px] font-semibold tracking-wide text-[#367ff4]">
-        PURPOSE
-      </div>
-      <h2 className="text-3xl md:text-[34px] font-semibold leading-tight">
-        A classic side-scroller built in Java
-      </h2>
-      <p className="text-neutral-700">
-        Treasure Forest is a 2D platformer built with city engine. It
-        demonstrates fixed-timestep game loops, OOP structure, collision
-        detection, and sprite animation using Java Swing/AWT.
-      </p>
-    </section>
-
-    {/* At-a-glance */}
-    <section className="grid grid-cols-1 md:grid-cols-4 gap-8 pt-6 border-t">
-      <MetaItem label="Core Genre">Platformer / Adventure</MetaItem>
-      <MetaItem label="Gameplay Time">5–10 min per run</MetaItem>
-      <MetaItem label="Controls">Keyboard (WASD / Arrows + Space)</MetaItem>
-      <MetaItem label="Target">Desktop</MetaItem>
-    </section>
-
-    {/* Design Decisions */}
-    <section className="space-y-5 mt-16">
-      <div className="text-[13px] font-semibold tracking-wide text-[#367ff4]">
-        DESIGN DECISIONS
-      </div>
-      <h3 className="text-2xl md:text-[28px] font-semibold">
-        Balancing scope with clarity
-      </h3>
-      <p className="text-neutral-700">
-        Each choice kept the project shippable in three months while still
-        showing strong fundamentals.
-      </p>
-    </section>
-
-    {/* Alternating rows */}
-    <section className="space-y-14 mt-10">
-      <ContentRow
-        title="From City Engine"
-        mediaSrc="/assets/projects/Game2D/G2.2.png"
-        mediaAlt="Custom loop and systems"
-        aspect="16/9"
-        cover
-        bleed
-      >
-        Rendering, physics, and input are hand-rolled in Swing/AWT for full
-        control and a clear view of performance trade-offs.
-      </ContentRow>
-
-      <ContentRow
-        reverse
-        title="Simple AI & Triggers"
-        mediaSrc="/assets/projects/Game2D/G4.2.png"
-        mediaAlt="Enemy patrols and pickups"
-        aspect="16/9"
-        cover
-        bleed
-      >
-        Enemy patrol paths and collectible triggers keep the gameplay engaging
-        without blowing scope.
-      </ContentRow>
-
-      {/* If your screenshot has built-in white margins, switch to aspect 16/9 and keep object-cover to crop them */}
-      <ContentRow
-        title="Pixel Art Style"
-        mediaSrc="/assets/projects/Game2D/G5.2.png"
-        mediaAlt="Sprites and tiles"
-        aspect="16/9"
-        cover
-        bleed
-      >
-        Assets were designed in Photoshop and exported as sprite sheets for a
-        consistent retro aesthetic.
-      </ContentRow>
-
-      <ContentRow
-        reverse
-        title="Level Design"
-        mediaSrc="/assets/projects/Game2D/G3.2.png"
-        mediaAlt="Layered tilemap"
-        aspect="16/9"
-        cover
-        bleed
-      >
-        Layered tilemaps for ground, hazards, collectibles, and background
-        scenery make adding new maps fast.
-      </ContentRow>
-    </section>
-
-    {/* Gameplay video — autoplay, muted, loop, inline */}
-    <section className="space-y-10 mt-12">
-      <ContentRow
-        reverse={false}
-        title="Gameplay"
-        mediaType="video"
-        mediaSrc="/assets/projects/Game2D/2DGame.mp4"
-        aspect="16/9"
-        cover
-        bleed
-      >
-        Navigate platforms, collect coins, avoid spikes, and reach the treasure
-        chest to win.
-      </ContentRow>
-    </section>
-
-    {/* Outcome Section */}
-    <section className="py-16">
-      {/* Title on left */}
-      <div className="text-[13px] font-semibold tracking-wide text-[#367ff4] mb-8">
-        OUTCOME
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        {/* Diagram */}
-        {/* <div className="flex justify-center">
-          <img
-            src="/assets/projects/Game2D/G2DVis.png"
-            alt="Game Development Overview"
-            className="w-full max-w-md h-auto object-contain drop-shadow-md rounded-[10px]"
-            loading="lazy"
-          />
-        </div> */}
-
-        {/* Bullets */}
-        <div className="space-y-4">
-          <ul className="list-disc list-inside space-y-3 text-sm md:text-base">
-            <li>Complete 2D game shipped without external engine</li>
-            <li>Fixed-timestep loop runs smoothly on average hardware</li>
-            <li>Solid OOP structure, collision system, and sprite animation</li>
-            <li>Positive feedback on smooth feel and retro visual style</li>
-          </ul>
-
-          <p className="mt-6 text-neutral-600 text-sm md:text-base">
-            <span className="font-medium text-neutral-800">Next:</span> more
-            levels, save/load, and richer audio.
-          </p>
+    {/* Hero */}
+    <section className="grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
+      <div className="space-y-4">
+        <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+          2D Platformer
         </div>
+        <h1 className="text-4xl md:text-[48px] leading-[1] font-semibold">
+          Retro platforming with a hand-rolled Java engine
+        </h1>
+        <p className="text-black/70 leading-relaxed">
+          Fixed-timestep game loop, collision system, and sprite animation built
+          from scratch in Swing/AWT.
+        </p>
+        <div className="flex flex-wrap gap-2 text-xs uppercase tracking-widest text-black/50">
+          {["Fixed timestep", "Collision", "Sprite sheets", "Tilemaps"].map(
+            (item) => (
+              <span
+                key={item}
+                className="rounded-full border border-black/10 px-3 py-1"
+              >
+                {item}
+              </span>
+            )
+          )}
+        </div>
+      </div>
+      <div className="rounded-3xl border border-black/10 bg-white p-4">
+        <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+          <img
+            src="/assets/projects/Game2D/G2.2.png"
+            alt="Game scene"
+            loading="lazy"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+      </div>
+    </section>
+
+    {/* Metrics */}
+    <section className="grid gap-4 md:grid-cols-4">
+      {[
+        { value: "60 FPS", label: "Target frame rate" },
+        { value: "5-10 min", label: "Avg run" },
+        { value: "3 months", label: "Build time" },
+        { value: "100%", label: "Custom engine" },
+      ].map((item) => (
+        <div
+          key={item.label}
+          className="rounded-2xl border border-black/10 bg-white p-4"
+        >
+          <div className="text-2xl font-semibold">{item.value}</div>
+          <div className="text-[11px] uppercase tracking-widest text-black/50">
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    {/* Big visuals */}
+    <section className="space-y-8">
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="rounded-3xl border border-black/10 bg-white p-4">
+          <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+            <img
+              src="/assets/projects/Game2D/G4.2.png"
+              alt="Enemy AI"
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+        </div>
+        <Caption
+          label="Enemy AI"
+          text="Patrols and triggers keep gameplay dynamic without inflating scope."
+        />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <Caption
+          label="Pixel art pipeline"
+          text="Assets created in Photoshop and exported as sprite sheets for consistent animation."
+        />
+        <div className="rounded-3xl border border-black/10 bg-white p-4">
+          <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+            <img
+              src="/assets/projects/Game2D/G5.2.png"
+              alt="Pixel art"
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        <div className="rounded-3xl border border-black/10 bg-white p-4">
+          <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-neutral-100">
+            <img
+              src="/assets/projects/Game2D/G3.2.png"
+              alt="Level design"
+              loading="lazy"
+              className="h-full w-full object-cover object-center"
+            />
+          </div>
+        </div>
+        <Caption
+          label="Level design"
+          text="Layered tilemaps for ground, hazards, and background scenery."
+        />
+      </div>
+    </section>
+
+    {/* Gameplay */}
+    <section className="rounded-3xl border border-black/10 bg-white p-4">
+      <div className="text-[11px] uppercase tracking-[0.35em] text-black/50 mb-3">
+        Gameplay
+      </div>
+      <div className="aspect-[16/9] overflow-hidden rounded-2xl bg-black">
+        <video
+          src="/assets/projects/Game2D/2DGame.mp4"
+          className="h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      </div>
+    </section>
+
+    {/* Outcome */}
+    <section className="grid gap-8 md:grid-cols-2">
+      <div className="space-y-3">
+        <div className="text-[11px] uppercase tracking-[0.35em] text-black/50">
+          Outcome
+        </div>
+        <h2 className="text-2xl md:text-[32px] font-semibold">
+          A playable, polished student game
+        </h2>
+        <p className="text-black/70 leading-relaxed">
+          Shipped a complete 2D platformer without an external engine, with
+          smooth controls and clear visual feedback.
+        </p>
+      </div>
+      <div className="rounded-2xl border border-black/10 bg-white p-6">
+        <div className="text-xs uppercase tracking-widest text-black/40">
+          Next steps
+        </div>
+        <ul className="mt-3 space-y-2 text-black/70">
+          <li>More levels and enemies</li>
+          <li>Save/load system</li>
+          <li>Richer audio and effects</li>
+        </ul>
       </div>
     </section>
 
     {/* Next project */}
-    <section className="mt-16">
+    <section className="mt-10">
       <div className="text-neutral-500 mb-2">Next project:</div>
       <Link
         to="/P1"
-        className="block rounded-2xl border border-neutral-200 p-8 hover:border-neutral-300 transition"
+        className="group block rounded-3xl border border-black/10 bg-white p-6 md:p-8 hover:border-black/20 transition"
       >
-        <div className="text-3xl font-semibold">
-          Nail Fairy — Online Booking Website
-        </div>
-        <div className="text-neutral-500 mt-1">
-          Centralized booking, inventory, and reporting
-        </div>
-        <div className="mt-6 overflow-hidden rounded-xl border">
-          <img
-            src="/assets/projects/NFBooking/N1.png"
-            alt="NSMS cover"
-            className="w-full h-[260px] object-cover object-top"
-          />
+        <div className="grid gap-6 md:grid-cols-[1fr_1fr] items-center">
+          <div className="space-y-2">
+            <div className="text-xs uppercase tracking-widest text-black/40">
+              Booking Website
+            </div>
+            <div className="text-2xl md:text-3xl font-semibold">
+              A calm, fast booking flow for salons
+            </div>
+            <div className="text-sm text-black/60">
+              Mobile-first flow with strict slot validation.
+            </div>
+            <div className="inline-flex items-center gap-2 text-sm font-medium text-black/70 group-hover:text-black">
+              View project <span aria-hidden>&gt;</span>
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-black/10 bg-neutral-100">
+            <div className="aspect-[16/9] w-full">
+              <img
+                src="/assets/projects/NFBooking/N1.png"
+                alt="Booking website"
+                loading="lazy"
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+          </div>
         </div>
       </Link>
     </section>
   </CraftLayout>
 );
 
-export default Java2DGame;
+export default Game2D;
