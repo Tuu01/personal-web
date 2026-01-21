@@ -5,30 +5,30 @@ const Footer = () => {
     <footer className="w-full bg-white">
       {/* CONTAINED HORIZONTAL LINE */}
       <div className="w-full flex justify-center">
-        <div className="w-full max-w-[92vw] md:max-w-[80vw]" />
+        <div className="w-full max-w-[92vw] md:max-w-[80vw] border-t border-black/10" />
       </div>
 
       {/* FOOTER CONTENT */}
-      <div className="relative w-full max-w-[92vw] md:max-w-[80vw] mx-auto px-4 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 text-sm text-neutral-800">
+      <div className="relative w-full max-w-[92vw] md:max-w-[80vw] mx-auto px-4 py-8 md:py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-xs sm:text-sm text-neutral-800 text-center">
         {/* DASHED GRID LINES */}
-        <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 pointer-events-none z-0 hidden md:block">
           <div className="absolute top-0 bottom-0 left-1/4 w-px border-l border-dashed border-black/10" />
           <div className="absolute top-0 bottom-0 left-1/2 w-px border-l border-dashed border-black/10" />
           <div className="absolute top-0 bottom-0 left-3/4 w-px border-l border-dashed border-black/10" />
         </div>
 
         {/* COLUMN 1: Logo */}
-        <Link to="/" className="z-10 flex items-start justify-start">
+        <Link to="/" className="z-10 flex items-center justify-center">
           <img
             src="/logo/tuuhyped_logo.png"
             alt="Tuuhyped Logo"
-            className="h-[25px] w-auto"
+            className="h-[22px] w-auto"
           />
         </Link>
 
         {/* COLUMN 2: Projects */}
-        <div className="flex flex-col space-y-2">
-          <span className="font-medium text-neutral-400 uppercase">
+        <div className="flex flex-col space-y-1.5">
+          <span className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
             Project
           </span>
           <a href="/P1" className="hover:underline">
@@ -44,7 +44,7 @@ const Footer = () => {
 
         {/* COLUMN 3: Contact */}
         <div className="z-10">
-          <h4 className="font-medium text-neutral-400 uppercase mb-3 tracking-wide">
+          <h4 className="text-xs font-medium text-neutral-400 uppercase mb-3 tracking-wider">
             Contact
           </h4>
           <ul className="space-y-2">
@@ -66,9 +66,12 @@ const Footer = () => {
         </div>
 
         {/* COLUMN 4: Details */}
-        <div className="z-10 text-sm text-neutral-600 flex flex-col gap-3">
+        <div className="z-10 text-xs sm:text-sm text-neutral-600 flex flex-col items-center gap-2 md:col-span-1">
           {/* <div className="flex gap-3 text-lg">xo xo</div> */}
-          <p>(c) 2025 Trong Tu Luu. All Rights Reserved.</p>
+          <p className="text-[11px] uppercase tracking-[0.2em] text-neutral-400">
+            Copyright 2025
+          </p>
+          <p className="text-xs text-neutral-600">Trong Tu Luu. All Rights Reserved.</p>
           {/* <p className="text-xs">
             Made with <3 and Strawberry Matcha Lattes
             <br />

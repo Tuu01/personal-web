@@ -71,9 +71,11 @@ const About = () => {
       {/* Page Content */}
       <div className="relative z-20">
         <Navbar />
-        <main className="max-w-3xl mx-auto px-6 py-30">
-          <h1 className="text-4xl font-bold mb-4">Trong Tu Luu</h1>
-          <p className="text-lg font-light mb-12 text-black/60">
+        <main className="max-w-3xl mx-auto px-8 sm:px-10 md:px-12 py-20 sm:py-28">
+          <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4">
+            Trong Tu Luu
+          </h1>
+          <p className="text-sm sm:text-lg font-light mb-8 sm:mb-12 text-black/60">
             Computer Science graduate & full-stack developer. Passionate about
             building real-world systems, scaling small businesses with tech, and
             blending design with automation. Currently helping local brands
@@ -84,7 +86,7 @@ const About = () => {
             <div key={i} className="border-b border-black/10 py-6">
               <button
                 onClick={() => toggleSection(i)}
-                className="w-full flex justify-between items-center text-left text-lg font-medium"
+                className="w-full flex justify-between items-center text-left text-sm sm:text-lg font-medium"
               >
                 {sec.title}
                 <span className="text-xl">
@@ -92,7 +94,7 @@ const About = () => {
                 </span>
               </button>
               {openSections[i] && (
-                <div className="mt-4 text-black/60 leading-relaxed text-base">
+                <div className="mt-4 text-black/60 leading-relaxed text-sm sm:text-base">
                   {sec.content}
                 </div>
               )}
@@ -102,15 +104,15 @@ const About = () => {
 
         <div className="py-2 px-4"></div>
 
-        <div className="relative max-w-[80vw] mx-auto border-b border-neutral-200">
+        <div className="relative max-w-[92vw] md:max-w-[80vw] mx-auto border-b border-neutral-200">
           <div className="w-full h-px bg-neutral-200" />
           <div className="py-10 px-4"></div>
 
           {/* Same dashed vertical lines */}
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 bottom-0 left-[20vw] w-px border-l border-dashed border-black/5" />
-            <div className="absolute top-0 bottom-0 left-[40vw] w-px border-l border-dashed border-black/5" />
-            <div className="absolute top-0 bottom-0 left-[60vw] w-px border-l border-dashed border-black/5" />
+            <div className="absolute top-0 bottom-0 left-1/4 w-px border-l border-dashed border-black/5" />
+            <div className="absolute top-0 bottom-0 left-1/2 w-px border-l border-dashed border-black/5" />
+            <div className="absolute top-0 bottom-0 left-3/4 w-px border-l border-dashed border-black/5" />
           </div>
         </div>
         <Footer />

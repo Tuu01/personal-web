@@ -9,8 +9,8 @@ const Hero = () => {
   const isTablet = useMediaQuery({ minWidth: 641, maxWidth: 1024 });
   const isWide = useMediaQuery({ minWidth: 1280 });
 
-  const macScale = isMobile ? 0.36 : isTablet ? 0.45 : isWide ? 0.6 : 0.5;
-  const macY = isMobile ? -0.55 : isTablet ? -0.45 : isWide ? -0.28 : -0.38;
+  const macScale = isMobile ? 0.42 : isTablet ? 0.45 : isWide ? 0.6 : 0.5;
+  const macY = isMobile ? -0.5 : isTablet ? -0.4 : isWide ? -0.37 : -0.33;
   const cameraPos = isMobile
     ? [0, 0.85, 5.2]
     : isTablet
@@ -45,18 +45,34 @@ const Hero = () => {
         </Float>
       </Canvas>
 
-      <div className="absolute bottom-6 right-4 md:right-[19vw] md:bottom-[12vh] flex items-start gap-2 md:gap-4">
-        <div className="w-px h-5 md:h-[1.4rem] bg-black/30 translate-y-[1px]" />
-        <div className="text-xs sm:text-sm md:text-base font-medium leading-snug text-black/50 text-left">
+      <div className="absolute bottom-10 right-8 md:right-[24vw] md:bottom-[14vh] flex items-start gap-2 md:gap-4">
+        <div className="hidden md:block w-px h-[1.4rem] bg-black/30 translate-y-[1px]" />
+        <div className="text-[11px] sm:text-xs md:text-base font-medium leading-snug text-black/50 text-left">
           <p>I simplify, I humanize.</p>
           <Link
             to="/about"
-            className="inline-flex items-center gap-1 group text-black/50 hover:text-black transition-colors duration-300"
+            className="inline-flex items-center gap-2 group text-black/50 hover:text-black transition-colors duration-300"
           >
             <span className="underline underline-offset-4 group-hover:text-black">
               More about me
             </span>
-            <span className="no-underline">-&gt;</span>
+            <span
+              className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-black/20 group-hover:border-black/60 transition-colors"
+              aria-hidden="true"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                className="w-3 h-3 text-black/60 group-hover:text-black"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 8h6" />
+                <path d="M9 5l3 3-3 3" />
+              </svg>
+            </span>
           </Link>
         </div>
       </div>
