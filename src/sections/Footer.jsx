@@ -31,6 +31,9 @@ const Footer = () => {
           <span className="text-xs font-medium text-neutral-400 uppercase tracking-wider">
             Project
           </span>
+          <a href="/P4" className="hover:underline">
+            AI Video Platform
+          </a>
           <a href="/P1" className="hover:underline">
             Booking Website
           </a>

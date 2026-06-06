@@ -2,30 +2,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import clsx from "clsx"; // Utility to conditionally join classNames
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Link } from "react-router-dom";
 
 // Sample project data (title, description, role, year, images)
 const projects = [
   {
-    title: "AI Video Platform",
-    to: "/P4",
-    description:
-      "User-centred design for a mobile-first platform delivering AI-generated promo videos to restaurants. MSc group project with Splento.",
-    role: "UX Research | Interaction Design | Figma",
-    year: "2026",
-    images: [
-      "/assets/projects/AIPlatform/aip1.png",
-      "/assets/projects/AIPlatform/aip2.png",
-      "/assets/projects/AIPlatform/aip3.png",
-      "/assets/projects/AIPlatform/aip4.png",
-      "/assets/projects/AIPlatform/aip5.png",
-      "/assets/projects/AIPlatform/aip6.png",
-      "/assets/projects/AIPlatform/aip0.png",
-    ],
-  },
-  {
     title: "Booking Website",
-    to: "/P1",
     description: "Developed and deployed a fully functional booking system.",
     role: "React.js | MongoDB | Tailwind CSS",
     year: "2025",
@@ -46,7 +27,6 @@ const projects = [
   },
   {
     title: "POS System",
-    to: "/P2",
     description:
       "Built a desktop application to manage bookings, sales, staff, inventory, and reporting.",
     role: "C# | SQL Server | Guna UI Framework",
@@ -62,7 +42,6 @@ const projects = [
   },
   {
     title: "2D Game",
-    to: "/P3",
     description:
       "Developed a desktop 2D action-platformer with a main character and multiple enemies, levels.",
     role: "Java | City Engine",
@@ -130,31 +109,21 @@ const ProjectItem = ({ project, size, setSize, setEnlargedImage }) => {
 
         {/* Mobile header: title + toggle on one row */}
         <div className="flex items-start justify-between gap-4 px-4 sm:px-6 pt-6 md:hidden">
-          <Link to={project.to} className="group block cursor-pointer w-fit">
-            <h2 className="text-3xl sm:text-4xl leading-[0.95] font-bold tracking-tight break-words transition-colors duration-300 group-hover:text-gold">
-              {project.title.split(" ").map((word, i) => (
-                <div key={i}>{word}</div>
-              ))}
-            </h2>
-            <span className="mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-SageGray opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              View project &rarr;
-            </span>
-          </Link>
+          <h2 className="text-3xl sm:text-4xl leading-[0.95] font-bold tracking-tight break-words">
+            {project.title.split(" ").map((word, i) => (
+              <div key={i}>{word}</div>
+            ))}
+          </h2>
           <SMLToggle size={size} setSize={setSize} />
         </div>
 
         {/* Sticky Title */}
         <div className="hidden md:block md:sticky md:top-0 px-4 sm:px-6 md:px-[clamp(32px,6vw,48px)] pt-6 md:pt-[4vh] z-20 bg-[#ffffff] max-w-none md:max-w-[26rem]">
-          <Link to={project.to} className="group block cursor-pointer w-fit">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl leading-[0.95] font-bold tracking-tight break-words transition-colors duration-300 group-hover:text-gold">
-              {project.title.split(" ").map((word, i) => (
-                <div key={i}>{word}</div>
-              ))}
-            </h2>
-            <span className="mt-3 inline-flex items-center gap-1 text-xs uppercase tracking-[0.2em] text-SageGray opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              View project &rarr;
-            </span>
-          </Link>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-6xl 2xl:text-7xl leading-[0.95] font-bold tracking-tight break-words">
+            {project.title.split(" ").map((word, i) => (
+              <div key={i}>{word}</div>
+            ))}
+          </h2>
         </div>
 
         {/* Sticky Toggle */}
