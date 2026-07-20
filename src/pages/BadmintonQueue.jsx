@@ -13,13 +13,13 @@ import {
 } from "../components/CaseStudy";
 
 const galleryImages = [
-  { src: "/assets/projects/BadmintonQueue/bq1.png", alt: "Home screen and the live session" },
-  { src: "/assets/projects/BadmintonQueue/bq2.png", alt: "Courts in play and the live queue" },
-  { src: "/assets/projects/BadmintonQueue/bq3.png", alt: "Your rating and the club’s skill bands" },
-  { src: "/assets/projects/BadmintonQueue/bq4.png", alt: "The mixing and attendance boards" },
-  { src: "/assets/projects/BadmintonQueue/bq5.png", alt: "Check-in and creating a session" },
-  { src: "/assets/projects/BadmintonQueue/bq6.png", alt: "Player roster and the organiser hub" },
-  { src: "/assets/projects/BadmintonQueue/bq7.png", alt: "Past sessions and match history" },
+  { src: "/assets/projects/BadmintonQueue/bq1.webp", alt: "Home screen and the live session" },
+  { src: "/assets/projects/BadmintonQueue/bq2.webp", alt: "Courts in play and the live queue" },
+  { src: "/assets/projects/BadmintonQueue/bq3.webp", alt: "Your rating and the club’s skill bands" },
+  { src: "/assets/projects/BadmintonQueue/bq4.webp", alt: "The mixing and attendance boards" },
+  { src: "/assets/projects/BadmintonQueue/bq5.webp", alt: "Check-in and creating a session" },
+  { src: "/assets/projects/BadmintonQueue/bq6.webp", alt: "Player roster and the organiser hub" },
+  { src: "/assets/projects/BadmintonQueue/bq7.webp", alt: "Past sessions and match history" },
 ];
 
 const BadmintonQueue = () => (
@@ -30,7 +30,7 @@ const BadmintonQueue = () => (
     sponsor="Live product, a badminton club of ~30 players"
     tags={["Product Design", "UX Audit", "Algorithm Design", "Next.js"]}
     lead="A match-running app for a Saturday badminton club: it decides who plays next, builds even teams, and settles the argument that used to happen every week."
-    heroImage="/assets/projects/BadmintonQueue/bq0.png"
+    heroImage="/assets/projects/BadmintonQueue/bq0.webp"
     heroAlt="Badminton Queue: personal page, live session, and home screen"
     meta={{
       role: "Sole designer & developer",
@@ -98,7 +98,7 @@ const BadmintonQueue = () => (
         </p>
       </Prose>
       <FullImage
-        src="/assets/projects/BadmintonQueue/bq1.png"
+        src="/assets/projects/BadmintonQueue/bq1.webp"
         alt="Home screen and the live session"
         caption="Home and the live session: the two screens almost everyone sees"
       />
@@ -133,12 +133,12 @@ const BadmintonQueue = () => (
       <TwoUp
         items={[
           {
-            src: "/assets/projects/BadmintonQueue/bq5.png",
+            src: "/assets/projects/BadmintonQueue/bq5.webp",
             alt: "Check-in and creating a session",
             caption: "Organiser: check people in, set a session up",
           },
           {
-            src: "/assets/projects/BadmintonQueue/bq7.png",
+            src: "/assets/projects/BadmintonQueue/bq7.webp",
             alt: "Past sessions and match history",
             caption: "Past sessions: what filled the empty mid-week screen",
           },
@@ -172,7 +172,7 @@ const BadmintonQueue = () => (
         </p>
       </Prose>
       <FullImage
-        src="/assets/projects/BadmintonQueue/bq2.png"
+        src="/assets/projects/BadmintonQueue/bq2.webp"
         alt="Courts in play and the live queue with a suggested match"
         caption="A suggested match, and the queue it came from"
       />
@@ -240,7 +240,7 @@ const BadmintonQueue = () => (
       label="AI Video Platform"
       title="AI-generated video for restaurants"
       text="A user-centred design study with Splento."
-      image="/assets/projects/AIPlatform/aip0.png"
+      image="/assets/projects/AIPlatform/aip0.webp"
       alt="AI video platform"
     />
   </CraftLayout>

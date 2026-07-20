@@ -12,8 +12,8 @@ import {
 } from "../components/CaseStudy";
 
 const galleryImages = [
-  { src: "/assets/projects/Game2D/G1.2.png", alt: "Game scene" },
-  { src: "/assets/projects/Game2D/G6.2.png", alt: "Game scene" },
+  { src: "/assets/projects/Game2D/G1.2.webp", alt: "Game scene" },
+  { src: "/assets/projects/Game2D/G6.2.webp", alt: "Game scene" },
 ];
 
 const Game2D = () => (
@@ -24,7 +24,7 @@ const Game2D = () => (
     sponsor="University first project"
     tags={["Fixed timestep", "Collision", "Sprite sheets", "Tilemaps"]}
     lead="A retro side-scroller with a hand-rolled Java engine: a fixed-timestep game loop, collision system, and sprite animation built from scratch in Swing/AWT."
-    heroImage="/assets/projects/Game2D/G2.2.png"
+    heroImage="/assets/projects/Game2D/G2.2.webp"
     heroAlt="Game scene"
     meta={{
       role: "Solo developer: design & programming",
@@ -50,19 +50,19 @@ const Game2D = () => (
       <TwoUp
         items={[
           {
-            src: "/assets/projects/Game2D/G4.2.png",
+            src: "/assets/projects/Game2D/G4.2.webp",
             alt: "Enemy AI",
             caption: "Enemy AI: patrols & triggers",
           },
           {
-            src: "/assets/projects/Game2D/G5.2.png",
+            src: "/assets/projects/Game2D/G5.2.webp",
             alt: "Pixel art",
             caption: "Pixel-art pipeline: Photoshop sprite sheets",
           },
         ]}
       />
       <FullImage
-        src="/assets/projects/Game2D/G3.2.png"
+        src="/assets/projects/Game2D/G3.2.webp"
         alt="Level design"
         caption="Level design: layered tilemaps for ground, hazards, scenery"
       />
@@ -117,7 +117,7 @@ const Game2D = () => (
       label="POS System"
       title="Back-office ops that power the bookings"
       text="Inventory, reporting, and scheduling in one fast desktop app."
-      image="/assets/projects/NSMS/NS4.png"
+      image="/assets/projects/NSMS/NS4.webp"
       alt="NSMS dashboard"
     />
   </CraftLayout>

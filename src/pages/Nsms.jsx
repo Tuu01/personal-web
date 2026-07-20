@@ -19,9 +19,9 @@ const stats = [
 ];
 
 const galleryImages = [
-  { src: "/assets/projects/NSMS/NS1.png", alt: "NSMS screen" },
-  { src: "/assets/projects/NSMS/NS5.png", alt: "NSMS screen" },
-  { src: "/assets/projects/NSMS/NS6.png", alt: "NSMS screen" },
+  { src: "/assets/projects/NSMS/NS1.webp", alt: "NSMS screen" },
+  { src: "/assets/projects/NSMS/NS5.webp", alt: "NSMS screen" },
+  { src: "/assets/projects/NSMS/NS6.webp", alt: "NSMS screen" },
 ];
 
 export default function Nsms() {
@@ -33,7 +33,7 @@ export default function Nsms() {
       sponsor="University final project"
       tags={["Scheduling", "POS", "Inventory", "Reporting"]}
       lead="A fast desktop point-of-sale that keeps appointments, sales, and inventory in sync, with keyboard-first flows for busy front-desk staff."
-      heroImage="/assets/projects/NSMS/NS4.png"
+      heroImage="/assets/projects/NSMS/NS4.webp"
       heroAlt="NSMS dashboard"
       meta={{
         role: "Full-stack developer (solo)",
@@ -84,19 +84,19 @@ export default function Nsms() {
         <TwoUp
           items={[
             {
-              src: "/assets/projects/NSMS/NS2.png",
+              src: "/assets/projects/NSMS/NS2.webp",
               alt: "NSMS calendar",
               caption: "Appointments: day/week with conflict checks",
             },
             {
-              src: "/assets/projects/NSMS/NS3.png",
+              src: "/assets/projects/NSMS/NS3.webp",
               alt: "NSMS inventory",
               caption: "Inventory: real-time status & low-stock",
             },
           ]}
         />
         <FullImage
-          src="/assets/projects/NSMS/NS4.png"
+          src="/assets/projects/NSMS/NS4.webp"
           alt="NSMS reporting"
           caption="Reporting: KPIs powered by stored procedures"
         />
@@ -135,7 +135,7 @@ export default function Nsms() {
         label="Booking Website"
         title="A calm, fast booking flow for salons"
         text="Mobile-first flow with strict slot validation."
-        image="/assets/projects/NFBooking/N1.png"
+        image="/assets/projects/NFBooking/N1.webp"
         alt="Booking website"
       />
     </CraftLayout>

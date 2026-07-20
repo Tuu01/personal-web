@@ -14,12 +14,12 @@ import {
 } from "../components/CaseStudy";
 
 const galleryImages = [
-  { src: "/assets/projects/AIPlatform/aip1.png"},
-  { src: "/assets/projects/AIPlatform/aip2.png"},
-  { src: "/assets/projects/AIPlatform/aip3.png"},
-  { src: "/assets/projects/AIPlatform/aip4.png"},
-  { src: "/assets/projects/AIPlatform/aip5.png"},
-  { src: "/assets/projects/AIPlatform/aip6.png"},
+  { src: "/assets/projects/AIPlatform/aip1.webp"},
+  { src: "/assets/projects/AIPlatform/aip2.webp"},
+  { src: "/assets/projects/AIPlatform/aip3.webp"},
+  { src: "/assets/projects/AIPlatform/aip4.webp"},
+  { src: "/assets/projects/AIPlatform/aip5.webp"},
+  { src: "/assets/projects/AIPlatform/aip6.webp"},
 ];
 
 const Splento = () => (
@@ -30,7 +30,7 @@ const Splento = () => (
     sponsor="MSc group project (ECS733), in collaboration with Splento"
     tags={["UX Research", "Interaction Design", "Usability Testing"]}
     lead="A user-centred design study for a mobile-first platform that helps time-poor restaurant managers discover, lightly adapt, and license AI-generated promotional videos."
-    heroImage="/assets/projects/AIPlatform/aip0.png"
+    heroImage="/assets/projects/AIPlatform/aip0.webp"
     heroAlt="Final prototype: discovery feed"
     meta={{
       role: "Prototype design · User research",
@@ -106,7 +106,7 @@ const Splento = () => (
         </p>
       </Prose>
       <FullImage
-        src="/assets/projects/AIPlatform/aip6.png"
+        src="/assets/projects/AIPlatform/aip6.webp"
         alt="Persona and research synthesis"
         caption="From research synthesis to persona"
       />
@@ -133,12 +133,12 @@ const Splento = () => (
       <TwoUp
         items={[
           {
-            src: "/assets/projects/AIPlatform/aip1.png",
+            src: "/assets/projects/AIPlatform/aip1.webp",
             alt: "Discovery and filtering",
             caption: "Discovery & filtering",
           },
           {
-            src: "/assets/projects/AIPlatform/aip2.png",
+            src: "/assets/projects/AIPlatform/aip2.webp",
             alt: "Versioning and licensing",
             caption: "Versioning & licensing",
           },
@@ -193,7 +193,7 @@ const Splento = () => (
       label="Java 2D Game"
       title="A classic side-scroller built from scratch"
       text="Hand-rolled engine, collision system, and sprite animation."
-      image="/assets/projects/Game2D/G1.2.png"
+      image="/assets/projects/Game2D/G1.2.webp"
       alt="2D game"
     />
   </CraftLayout>

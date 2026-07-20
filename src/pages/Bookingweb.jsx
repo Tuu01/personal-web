@@ -12,15 +12,15 @@ import {
 } from "../components/CaseStudy";
 
 const galleryImages = [
-  { src: "/assets/projects/NFBooking/N1.png", alt: "Booking: home" },
-  { src: "/assets/projects/NFBooking/N5.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N6.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N7.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N8.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N9.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N10.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N11.png", alt: "Booking screen" },
-  { src: "/assets/projects/NFBooking/N12.png", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N1.webp", alt: "Booking: home" },
+  { src: "/assets/projects/NFBooking/N5.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N6.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N7.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N8.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N9.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N10.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N11.webp", alt: "Booking screen" },
+  { src: "/assets/projects/NFBooking/N12.webp", alt: "Booking screen" },
 ];
 
 const BookingWebsite = () => (
@@ -31,7 +31,7 @@ const BookingWebsite = () => (
     sponsor="Live client project"
     tags={["React", "Node / Express", "MongoDB", "UX"]}
     lead="A calm, fast booking flow that turns phone-and-message bookings into self-serve, with strict slot validation and a mobile-first sequence."
-    heroImage="/assets/projects/NFBooking/N2.png"
+    heroImage="/assets/projects/NFBooking/N2.webp"
     heroAlt="Nail Fairy booking screen"
     meta={{
       role: "Full-stack dev (React, Tailwind, Node) · UX · Deployment",
@@ -81,12 +81,12 @@ const BookingWebsite = () => (
       <TwoUp
         items={[
           {
-            src: "/assets/projects/NFBooking/N3.png",
+            src: "/assets/projects/NFBooking/N3.webp",
             alt: "Services grid",
             caption: "Service browsing",
           },
           {
-            src: "/assets/projects/NFBooking/N4.png",
+            src: "/assets/projects/NFBooking/N4.webp",
             alt: "Calendar flow",
             caption: "Date & time selection",
           },
@@ -160,7 +160,7 @@ const BookingWebsite = () => (
       label="AI Video Platform"
       title="UX for AI-generated restaurant promos"
       text="Mobile-first discovery, lightweight editing, clear licensing."
-      image="/assets/projects/AIPlatform/aip0.png"
+      image="/assets/projects/AIPlatform/aip0.webp"
       alt="AI video platform"
     />
   </CraftLayout>
