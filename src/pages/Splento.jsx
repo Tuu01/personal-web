@@ -27,23 +27,22 @@ const Splento = () => (
     index="P · 04"
     area="UX · Interaction Design"
     title="AI-Generated Video Platform for Restaurants"
-    sponsor="MSc group project (ECS733) — in collaboration with Splento"
+    sponsor="MSc group project (ECS733), in collaboration with Splento"
     tags={["UX Research", "Interaction Design", "Usability Testing"]}
     lead="A user-centred design study for a mobile-first platform that helps time-poor restaurant managers discover, lightly adapt, and license AI-generated promotional videos."
     heroImage="/assets/projects/AIPlatform/aip0.png"
-    heroAlt="Final prototype — discovery feed"
+    heroAlt="Final prototype: discovery feed"
     meta={{
       role: "Prototype design · User research",
-      team: "Team of 5 — MSc group project",
+      team: "Team of 5, MSc group project",
       timeline: "2026",
       tools: "Figma · User research · Usability testing · Heuristic evaluation",
     }}
   >
-    {/* 01 — Context */}
+    {/* 01 Context */}
     <Chapter
       index="01"
-      kicker="Context"
-      title="Promo video that fits a restaurant's real pace"
+      title="Promo video that fits a restaurant’s real pace"
     >
       <Prose>
         <p>
@@ -55,24 +54,23 @@ const Splento = () => (
         <p>
           Managers work mainly on mobile, in short fragments between operational
           tasks. Research showed the hardest part is not editing but finding
-          relevant, authentic, legally safe content quickly — so discovery,
+          relevant, authentic, legally safe content quickly, so discovery,
           lightweight adaptation, and clear licensing became the core of the
           design.
         </p>
       </Prose>
     </Chapter>
 
-    {/* 02 — My contribution (FILL IN) */}
+    {/* 02 My contribution (FILL IN) */}
     <Chapter
       index="02"
-      kicker="My Contribution"
       title="What I personally owned"
     >
       <Reveal>
         <ul className="font-amiamie font-light text-base md:text-lg leading-[1.7] text-DarkLava/90 max-w-[60ch] space-y-3 list-disc pl-5 marker:text-gold">
           <li>
             Designed the final high-fidelity prototype, which shaped the
-            project's final design direction
+            project&rsquo;s final design direction
           </li>
           <li>
             Contributed to user research: survey, interviews, and synthesis into
@@ -91,8 +89,8 @@ const Splento = () => (
       </Prose>
     </Chapter>
 
-    {/* 03 — Research */}
-    <Chapter index="03" kicker="Research" title="Grounded in real workflows">
+    {/* 03 Research */}
+    <Chapter index="03" title="Grounded in real workflows">
       <Prose>
         <p>
           A survey (15 responses), three semi-structured interviews, a
@@ -110,7 +108,7 @@ const Splento = () => (
       <FullImage
         src="/assets/projects/AIPlatform/aip6.png"
         alt="Persona and research synthesis"
-        caption="Research synthesis → persona"
+        caption="From research synthesis to persona"
       />
     </Chapter>
 
@@ -119,10 +117,9 @@ const Splento = () => (
       role="Interview participant, on why authentic content outperforms polished content"
     />
 
-    {/* 04 — Design & iteration */}
+    {/* 04 Design & iteration */}
     <Chapter
       index="04"
-      kicker="Design & Iteration"
       title="Four rounds, paper to high fidelity"
     >
       <Prose>
@@ -130,7 +127,7 @@ const Splento = () => (
           Paper sketches tested core navigation (Quick &amp; Dirty evaluation);
           a mid-fidelity prototype was checked with task-based usability
           testing; a high-fidelity prototype was assessed with heuristic
-          evaluation against Nielsen's heuristics and Norman's principles.
+          evaluation against Nielsen&rsquo;s heuristics and Norman&rsquo;s principles.
         </p>
       </Prose>
       <TwoUp
@@ -149,17 +146,16 @@ const Splento = () => (
       />
       <Prose>
         <p>
-          Iteration resolved recurring confusion: an ambiguous "revert" became a
-          clear "save as a copy" model, and licensing was surfaced into the main
+          Iteration resolved recurring confusion: an ambiguous &ldquo;revert&rdquo; became a
+          clear &ldquo;save as a copy&rdquo; model, and licensing was surfaced into the main
           flow rather than hidden, to build publishing confidence.
         </p>
       </Prose>
     </Chapter>
 
-    {/* 05 — Outcome */}
+    {/* 05 Outcome */}
     <Chapter
       index="05"
-      kicker="Outcome"
       title="A streamlined direction, chosen on evidence"
     >
       <Prose>
@@ -188,7 +184,7 @@ const Splento = () => (
     </Chapter>
 
     {/* Gallery */}
-    <Chapter index="06" kicker="Gallery" title="Selected screens">
+    <Chapter index="06" title="Selected screens">
       <Gallery images={galleryImages} />
     </Chapter>
 

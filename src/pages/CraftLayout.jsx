@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Navbar from "../sections/Navbar";
 import Footer from "../sections/Footer";
 import GridLinesGlobal from "../components/GridLinesGlobal";
@@ -19,20 +19,34 @@ const CraftLayout = ({
   tags = [],
   lead,
   children,
-}) => (
-  <ReactLenis root className="relative w-screen min-h-screen overflow-x-hidden bg-white">
+}) => {
+  const reduceMotion = useReducedMotion();
+  // Skip the entrance offset entirely when the visitor asked for less motion.
+  const enter = (y, delay = 0) =>
+    reduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: y > 15 ? 0.7 : 0.6, ease: EASE, delay },
+        };
+
+  return (
+  <ReactLenis
+    root
+    options={{ smoothWheel: !reduceMotion }}
+    className="relative w-full min-h-dvh bg-paper"
+  >
     <GridLinesGlobal />
     <div className="relative z-20">
       <Navbar />
 
       <div className="mx-auto max-w-[92vw] md:max-w-[80vw] px-4 sm:px-6 md:px-8">
-        {/* Header — two columns, aligned to the grid */}
+        {/* Header: two columns, aligned to the grid */}
         <header className="grid gap-6 md:grid-cols-[1.1fr_1fr] md:gap-12 items-end pt-10 md:pt-16 pb-8 md:pb-10">
           <div>
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: EASE }}
+              {...enter(12)}
               className="font-amiamie-round text-gold text-sm tracking-[0.3em]"
             >
               {index}
@@ -40,9 +54,7 @@ const CraftLayout = ({
               {area}
             </motion.div>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.05 }}
+              {...enter(20, 0.05)}
               className="mt-3 font-amiamie font-black text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-[-0.02em] max-w-[15ch]"
             >
               {title}
@@ -68,7 +80,9 @@ const CraftLayout = ({
               </p>
             )}
             {sponsor && <p className="mt-4 text-sm text-SageGray">{sponsor}</p>}
-            <div className="mt-5 grid grid-cols-2 gap-x-6 gap-y-4">
+            {/* One column on phones: "C# (WinForms + Guna UI), SQL Server
+                2022, Stored Procedures, Git" is unreadable in a 140px cell. */}
+            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
               {[
                 ["Role", meta.role],
                 ["Team", meta.team],
@@ -86,27 +100,31 @@ const CraftLayout = ({
           </div>
         </header>
 
-        {/* Hero — full grid width, sharp rectangle */}
+        {/* Hero: full grid width, sharp rectangle */}
         {heroImage && (
           <Reveal>
             <div className="overflow-hidden border border-black/10 bg-neutral-100">
+              {/* LCP element on every case-study page. Never lazy. */}
               <img
                 src={heroImage}
                 alt={heroAlt || title}
-                loading="lazy"
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="block h-auto w-full"
               />
             </div>
           </Reveal>
         )}
 
-        {/* Body — chapters carry their own top rules */}
+        {/* Body: chapters carry their own top rules */}
         <main className="py-12 md:py-16 space-y-12 md:space-y-16">{children}</main>
       </div>
 
       <Footer />
     </div>
   </ReactLenis>
-);
+  );
+};
 
 export default CraftLayout;

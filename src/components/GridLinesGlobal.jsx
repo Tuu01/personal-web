@@ -1,10 +1,12 @@
-﻿import clsx from "clsx";
+import clsx from "clsx";
 
 const GridLinesGlobal = ({ hidden }) => {
   return (
     <div
       className={clsx(
-        "fixed inset-0 z-[9999] pointer-events-none transition-opacity duration-300",
+        // Above page content (z-20), below any lightbox overlay (z-50).
+        // z-[9999] used to draw these rules on top of the lightbox.
+        "fixed inset-0 z-30 pointer-events-none transition-opacity duration-300",
         hidden ? "opacity-0" : "opacity-100"
       )}
     >

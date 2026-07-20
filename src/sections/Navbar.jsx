@@ -10,10 +10,13 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="w-full bg-white top-0 z-30 backdrop-blur-md">
+    <header className="w-full bg-paper">
       <div className="max-w-[92vw] md:max-w-[80vw] mx-auto px-4 sm:px-8 lg:px-10 py-3 md:py-4 flex items-center justify-between border-b border-neutral-200">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link
+          to="/"
+          className="flex items-center rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+        >
           <img
             src="/logo/tuuhyped_logo.png"
             alt="Tuuhyped Logo"
@@ -29,7 +32,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={path}
-                className={`hover:underline underline-offset-4 transition-colors ${
+                className={`whitespace-nowrap rounded-sm hover:underline underline-offset-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 ${
                   isActive ? "text-black underline" : "text-black/50"
                 }`}
               >
@@ -42,7 +45,7 @@ const Navbar = () => {
           <a
             href="/CV/Tuu_CV.pdf"
             download
-            className="hover:underline underline-offset-4 transition-colors text-black/50"
+            className="whitespace-nowrap rounded-sm hover:underline underline-offset-4 transition-colors text-black/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
           >
             CV
           </a>

@@ -11,9 +11,9 @@ import {
   Reveal,
 } from "../components/CaseStudy";
 
+// Only figures the page can actually stand behind. The task-time and
+// test-pass numbers that used to sit here weren't measured anywhere.
 const stats = [
-  { value: "< 3s", label: "Common task time" },
-  { value: "99%", label: "Test case pass" },
   { value: "4", label: "Core modules" },
   { value: "300+", label: "Build hours" },
 ];
@@ -29,7 +29,7 @@ export default function Nsms() {
     <CraftLayout
       index="P · 02"
       area="Full-Stack · Desktop"
-      title="POS System - NSMS"
+      title="POS System: NSMS"
       sponsor="University final project"
       tags={["Scheduling", "POS", "Inventory", "Reporting"]}
       lead="A fast desktop point-of-sale that keeps appointments, sales, and inventory in sync, with keyboard-first flows for busy front-desk staff."
@@ -38,14 +38,13 @@ export default function Nsms() {
       meta={{
         role: "Full-stack developer (solo)",
         team: "Owners · Front-desk · Technicians (stakeholder feedback)",
-        timeline: "~300 hours · Feb–May 2024",
+        timeline: "~300 hours · Feb-May 2024",
         tools:
           "C# (WinForms + Guna UI), SQL Server 2022, Stored Procedures, Git",
       }}
     >
       <Chapter
         index="01"
-        kicker="Flow"
         title="From booking to checkout without context switching"
       >
         <Prose>
@@ -56,14 +55,14 @@ export default function Nsms() {
         </Prose>
         <Reveal>
           <ul className="font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold space-y-2 max-w-[60ch]">
-            <li>Service selection → staff → time → confirm</li>
+            <li>Service selection · staff · time · confirm</li>
             <li>POS with quick add-ons and invoice printing</li>
             <li>Inventory with low-stock alerts</li>
             <li>Revenue dashboards by day / month / year</li>
           </ul>
         </Reveal>
         <Reveal>
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4">
             {stats.map((s) => (
               <div
                 key={s.label}
@@ -81,31 +80,30 @@ export default function Nsms() {
         </Reveal>
       </Chapter>
 
-      <Chapter index="02" kicker="Screens" title="The day-to-day surfaces">
+      <Chapter index="02" title="The day-to-day surfaces">
         <TwoUp
           items={[
             {
               src: "/assets/projects/NSMS/NS2.png",
               alt: "NSMS calendar",
-              caption: "Appointments — day/week with conflict checks",
+              caption: "Appointments: day/week with conflict checks",
             },
             {
               src: "/assets/projects/NSMS/NS3.png",
               alt: "NSMS inventory",
-              caption: "Inventory — real-time status & low-stock",
+              caption: "Inventory: real-time status & low-stock",
             },
           ]}
         />
         <FullImage
           src="/assets/projects/NSMS/NS4.png"
           alt="NSMS reporting"
-          caption="Reporting — KPIs powered by stored procedures"
+          caption="Reporting: KPIs powered by stored procedures"
         />
       </Chapter>
 
       <Chapter
         index="03"
-        kicker="Outcome"
         title="Dependable ops for a high-traffic salon"
       >
         <Prose>
@@ -128,7 +126,7 @@ export default function Nsms() {
         </Reveal>
       </Chapter>
 
-      <Chapter index="04" kicker="Gallery" title="Selected screens">
+      <Chapter index="04" title="Selected screens">
         <Gallery images={galleryImages} />
       </Chapter>
 

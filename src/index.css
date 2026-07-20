@@ -92,6 +92,15 @@
   --color-DarkLava: #393632;
   --color-SageGray: #8b8b73;
   --color-gold: #cfa355;
+
+  /* Paper and ink are tinted toward the sage/gold anchor rather than
+     pure #fff / #000. Tailwind's own white and black are aliased to the
+     same values so existing bg-white / text-black pick up the warmth. */
+  --color-paper: oklch(99% 0.004 95);
+  --color-ink: oklch(22% 0.012 75);
+  --color-white: oklch(99% 0.004 95);
+  --color-black: oklch(22% 0.012 75);
+
   --font-amiamie: "Amiamie", sans-serif;
   --font-amiamie-round: "Amiamie-Round", sans-serif;
 
@@ -106,12 +115,32 @@
   }
 }
 
+/* clip, not hidden: hidden makes the root a scroll container and breaks
+   position: sticky in descendants (the project titles rely on it). */
+html,
 body {
-  background: #ffffff;
-  color: black;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-amiamie);
+  /* Zero in portrait; keeps content clear of the notch in landscape. */
+  padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+}
+
+/* Lenis drives scrolling; CSS smooth scroll would fight it. */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 

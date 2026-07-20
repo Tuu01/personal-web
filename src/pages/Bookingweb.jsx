@@ -12,7 +12,7 @@ import {
 } from "../components/CaseStudy";
 
 const galleryImages = [
-  { src: "/assets/projects/NFBooking/N1.png", alt: "Booking — home" },
+  { src: "/assets/projects/NFBooking/N1.png", alt: "Booking: home" },
   { src: "/assets/projects/NFBooking/N5.png", alt: "Booking screen" },
   { src: "/assets/projects/NFBooking/N6.png", alt: "Booking screen" },
   { src: "/assets/projects/NFBooking/N7.png", alt: "Booking screen" },
@@ -27,8 +27,8 @@ const BookingWebsite = () => (
   <CraftLayout
     index="P · 03"
     area="Full-Stack · UX"
-    title="Nail Fairy - Online Booking Website"
-    sponsor="Client project - live"
+    title="Nail Fairy: Online Booking Website"
+    sponsor="Live client project"
     tags={["React", "Node / Express", "MongoDB", "UX"]}
     lead="A calm, fast booking flow that turns phone-and-message bookings into self-serve, with strict slot validation and a mobile-first sequence."
     heroImage="/assets/projects/NFBooking/N2.png"
@@ -45,30 +45,29 @@ const BookingWebsite = () => (
         href="https://nailfairy.co.uk/"
         target="_blank"
         rel="noreferrer"
-        className="inline-flex items-center gap-2 rounded-full bg-black px-5 py-2 text-sm text-white transition hover:bg-black/80"
+        className="inline-flex items-center whitespace-nowrap rounded-full bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
       >
-        View live site &rarr;
+        View live site
       </a>
     </Reveal>
 
     <Chapter
       index="01"
-      kicker="Problem"
       title="Phone bookings were slow and error-prone"
     >
       <Prose>
         <p>
           The salon needed a flow that minimises back-and-forth messages,
-          prevents double-booking, and feels effortless on mobile — where most
+          prevents double-booking, and feels effortless on mobile, where most
           customers book.
         </p>
       </Prose>
     </Chapter>
 
-    <Chapter index="02" kicker="Approach" title="A short, guided sequence">
+    <Chapter index="02" title="A short, guided sequence">
       <Prose>
         <p>
-          Service → staff (optional) → date/time → contact → confirm. The
+          Service, staff (optional), date/time, contact, confirm. The
           interface keeps context visible and validates every step, so customers
           always know where they are and what is left.
         </p>
@@ -77,7 +76,6 @@ const BookingWebsite = () => (
 
     <Chapter
       index="03"
-      kicker="Key Flows"
       title="Moments that make it feel effortless"
     >
       <TwoUp
@@ -98,7 +96,7 @@ const BookingWebsite = () => (
         <p>
           Clear categories with duration and price per card, a pinned summary
           that stays visible while choosing, and a calendar that shows only
-          valid slots — conflicts are blocked server-side with fast fallback
+          valid slots. Conflicts are blocked server-side with fast fallback
           suggestions.
         </p>
       </Prose>
@@ -106,7 +104,6 @@ const BookingWebsite = () => (
 
     <Chapter
       index="04"
-      kicker="Stack"
       title="Pragmatic tools, built for reliability"
     >
       <Reveal>
@@ -132,7 +129,6 @@ const BookingWebsite = () => (
 
     <Chapter
       index="05"
-      kicker="Outcome"
       title="Faster bookings, fewer interruptions"
     >
       <Prose>
@@ -155,7 +151,7 @@ const BookingWebsite = () => (
       </Reveal>
     </Chapter>
 
-    <Chapter index="06" kicker="Gallery" title="Selected screens">
+    <Chapter index="06" title="Selected screens">
       <Gallery images={galleryImages} />
     </Chapter>
 

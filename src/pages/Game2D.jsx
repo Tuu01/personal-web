@@ -11,13 +11,6 @@ import {
   Reveal,
 } from "../components/CaseStudy";
 
-const metrics = [
-  { value: "60 FPS", label: "Target frame rate" },
-  { value: "5–10 min", label: "Avg run" },
-  { value: "3 months", label: "Build time" },
-  { value: "100%", label: "Custom engine" },
-];
-
 const galleryImages = [
   { src: "/assets/projects/Game2D/G1.2.png", alt: "Game scene" },
   { src: "/assets/projects/Game2D/G6.2.png", alt: "Game scene" },
@@ -27,73 +20,55 @@ const Game2D = () => (
   <CraftLayout
     index="P · 01"
     area="Game Dev · Java"
-    title="Java 2D Platformer - TFight"
+    title="Java 2D Platformer: TFight"
     sponsor="University first project"
     tags={["Fixed timestep", "Collision", "Sprite sheets", "Tilemaps"]}
-    lead="A retro side-scroller with a hand-rolled Java engine - fixed-timestep game loop, collision system, and sprite animation built from scratch in Swing/AWT."
+    lead="A retro side-scroller with a hand-rolled Java engine: a fixed-timestep game loop, collision system, and sprite animation built from scratch in Swing/AWT."
     heroImage="/assets/projects/Game2D/G2.2.png"
     heroAlt="Game scene"
     meta={{
-      role: "Solo developer — design & programming",
+      role: "Solo developer: design & programming",
       team: "Individual project",
-      timeline: "3 months · Sept–Dec 2023",
+      timeline: "3 months · Sept-Dec 2023",
       tools: "Java, Java Swing, AWT, Photoshop",
     }}
   >
     <Chapter
       index="01"
-      kicker="Engine"
       title="Built without an external engine"
     >
       <Prose>
         <p>
           The game loop, collision handling, and sprite animation were all
-          written from scratch — a deliberate exercise in understanding what a
+          written from scratch, a deliberate exercise in understanding what a
           game engine actually does under the hood.
         </p>
       </Prose>
-      <Reveal>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {metrics.map((m) => (
-            <div
-              key={m.label}
-              className="rounded-2xl border border-black/10 p-4"
-            >
-              <div className="font-amiamie font-black text-2xl text-black">
-                {m.value}
-              </div>
-              <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-SageGray">
-                {m.label}
-              </div>
-            </div>
-          ))}
-        </div>
-      </Reveal>
     </Chapter>
 
-    <Chapter index="02" kicker="Systems" title="The pieces that make it play">
+    <Chapter index="02" title="The pieces that make it play">
       <TwoUp
         items={[
           {
             src: "/assets/projects/Game2D/G4.2.png",
             alt: "Enemy AI",
-            caption: "Enemy AI — patrols & triggers",
+            caption: "Enemy AI: patrols & triggers",
           },
           {
             src: "/assets/projects/Game2D/G5.2.png",
             alt: "Pixel art",
-            caption: "Pixel-art pipeline — Photoshop sprite sheets",
+            caption: "Pixel-art pipeline: Photoshop sprite sheets",
           },
         ]}
       />
       <FullImage
         src="/assets/projects/Game2D/G3.2.png"
         alt="Level design"
-        caption="Level design — layered tilemaps for ground, hazards, scenery"
+        caption="Level design: layered tilemaps for ground, hazards, scenery"
       />
     </Chapter>
 
-    <Chapter index="03" kicker="Gameplay" title="In motion">
+    <Chapter index="03" title="In motion">
       <Reveal className="not-prose">
         <div className="aspect-[16/9] overflow-hidden rounded-2xl border border-black/10 bg-black">
           <video
@@ -111,7 +86,6 @@ const Game2D = () => (
 
     <Chapter
       index="04"
-      kicker="Outcome"
       title="A playable, polished student game"
     >
       <Prose>
@@ -134,7 +108,7 @@ const Game2D = () => (
       </Reveal>
     </Chapter>
 
-    <Chapter index="05" kicker="Gallery" title="Selected scenes">
+    <Chapter index="05" title="Selected scenes">
       <Gallery images={galleryImages} />
     </Chapter>
 

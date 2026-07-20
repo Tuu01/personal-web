@@ -1,5 +1,6 @@
-﻿// Home.jsx
-import React, { useEffect, useState } from "react";
+// Home.jsx
+import React, { useState } from "react";
+import { useReducedMotion } from "framer-motion";
 import Navbar from "../sections/Navbar";
 import Hero from "../sections/Hero";
 import Project from "../sections/Project";
@@ -7,58 +8,29 @@ import CraftSection from "../sections/Craft";
 import Footer from "../sections/Footer";
 import GridLinesGlobal from "../components/GridLinesGlobal";
 import ReactLenis from "lenis/react";
-import { useProgress } from "@react-three/drei";
 
 const Home = () => {
-  const { active, progress, total, errors } = useProgress();
-  const [isReady, setIsReady] = useState(false);
   const [enlargedImage, setEnlargedImage] = useState(null);
-
-  useEffect(() => {
-    if (total === 0 || errors.length > 0) {
-      setIsReady(true);
-      return;
-    }
-
-    if (!active && progress >= 100) {
-      setIsReady(true);
-    }
-  }, [active, errors.length, progress, total]);
+  const reduceMotion = useReducedMotion();
 
   return (
     <ReactLenis
       root
-      className="relative w-screen min-h-screen overflow-x-hidden bg-white"
+      options={{ smoothWheel: !reduceMotion }}
+      className="relative w-full min-h-dvh bg-paper"
     >
       <GridLinesGlobal hidden={!!enlargedImage} />
+      {/* The page paints immediately; the 3D hero fades itself in once its
+          assets land, rather than holding the whole document behind a gate. */}
       <div className="relative z-20">
-        {!isReady && (
-          <div className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-black text-white transition-opacity duration-700 font-light">
-            <p className="mb-4 text-xl tracking-widest animate-pulse">
-              Loading {Math.floor(progress)}%
-            </p>
-            <div className="relative h-1 overflow-hidden rounded w-60 bg-white/20">
-              <div
-                className="absolute top-0 left-0 h-full transition-all duration-300 bg-white"
-                style={{ width: `${progress}%` }}
-              ></div>
-            </div>
-          </div>
-        )}
-        <div
-          className={`${
-            isReady ? "opacity-100" : "opacity-0"
-          } transition-opacity duration-1000`}
-        >
-          <Navbar />
-          <Hero />
-          <CraftSection />
-          <Project
-            enlargedImage={enlargedImage}
-            setEnlargedImage={setEnlargedImage}
-          />
-          <Footer />
-        </div>
+        <Navbar />
+        <Hero />
+        <CraftSection />
+        <Project
+          enlargedImage={enlargedImage}
+          setEnlargedImage={setEnlargedImage}
+        />
+        <Footer />
       </div>
     </ReactLenis>
   );
