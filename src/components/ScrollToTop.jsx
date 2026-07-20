@@ -8,7 +8,9 @@ export default function ScrollToTop({ children }) {
     // Don't let the browser restore previous scroll positions
     try {
       window.history.scrollRestoration = "manual";
-    } catch {}
+    } catch {
+      // Safari in private mode throws on this; the default is fine.
+    }
 
     // If navigating to a hash (#section), scroll to that element
     if (hash) {

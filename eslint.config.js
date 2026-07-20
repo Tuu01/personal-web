@@ -23,7 +23,10 @@ export default defineConfig([
       },
     },
     rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      // No jsx-uses-vars here, so ESLint can't see identifiers used in JSX.
+      // The convention is that components are capitalised; `motion` is the
+      // one lowercase exception (framer-motion's namespace, `<motion.div>`).
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]|^motion$' }],
     },
   },
 ])
