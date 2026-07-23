@@ -6,7 +6,7 @@ import About from "../sections/Aboutme";
 
 vi.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, className, style, ...rest }) => (
+    div: ({ children, className, style }) => (
       <div className={className} style={style}>{children}</div>
     ),
   },
