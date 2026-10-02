@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
 
-// Link targets are unchanged from the previous footer.
 const projects = [
   { name: "Badminton Queue", path: "/P5" },
   { name: "AI Video Platform", path: "/P4" },
-  { name: "Booking Website", path: "/P1" },
+  { name: "Booking Website", path: "/P3" },
   { name: "POS System", path: "/P2" },
-  { name: "2D Game", path: "/P3" },
+  { name: "2D Game", path: "/P1" },
 ];
 
 const linkClass =

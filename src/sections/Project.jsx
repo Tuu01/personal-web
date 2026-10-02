@@ -47,7 +47,7 @@ const projects = [
   },
   {
     title: "Booking Website",
-    to: "/P1",
+    to: "/P3",
     description: "Developed and deployed a fully functional booking system.",
     role: "React.js | MongoDB | Tailwind CSS",
     year: "2025",
@@ -84,7 +84,7 @@ const projects = [
   },
   {
     title: "2D Game",
-    to: "/P3",
+    to: "/P1",
     description:
       "Developed a desktop 2D action-platformer with a main character and multiple enemies, levels.",
     role: "Java | City Engine",
