@@ -3,8 +3,12 @@ import Footer from "../sections/Footer";
 
 // Header, content, footer. Every route but the case studies uses this
 // directly; CraftLayout wraps it for the case-study header.
-const PageShell = ({ children, footerPrompt = true }) => (
+const SITE = "Trong Tu Luu (Tuu)";
+
+const PageShell = ({ children, title, footerPrompt = true }) => (
   <div className="flex min-h-dvh flex-col bg-paper text-ink">
+    {/* React 19 hoists this into <head>. */}
+    <title>{title ? `${title} · ${SITE}` : `${SITE} · Software engineer and product designer`}</title>
     <a
       href="#main"
       className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"

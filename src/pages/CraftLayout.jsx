@@ -18,7 +18,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, are
         };
 
   return (
-    <PageShell>
+    <PageShell title={title}>
       <div className="shell">
         <header className="grid items-end gap-8 pt-10 pb-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pt-16 md:pb-10">
           <div>

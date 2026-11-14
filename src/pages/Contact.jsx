@@ -6,7 +6,7 @@ const row =
   "group flex items-center justify-between gap-4 border-t border-line py-4 text-lg font-semibold hover:text-cobalt";
 
 const Contact = () => (
-  <PageShell footerPrompt={false}>
+  <PageShell title="CV and contact" footerPrompt={false}>
     <div className="shell grid gap-12 py-12 md:grid-cols-[1.3fr_1fr] md:gap-16 md:py-20">
       <div className="flex flex-col gap-6">
         <p className="eyebrow">CV and contact</p>

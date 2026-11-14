@@ -18,7 +18,7 @@ const Figure = ({ children, title, text }) => (
 );
 
 const Visual = () => (
-  <PageShell>
+  <PageShell title="Visual work">
     <div className="shell py-12 md:py-20">
       <header className="flex max-w-[60ch] flex-col gap-4">
         <p className="eyebrow">Visual work</p>

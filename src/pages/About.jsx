@@ -26,7 +26,7 @@ const Soon = ({ children }) => (
 );
 
 const About = () => (
-  <PageShell>
+  <PageShell title="About">
     <div className="shell py-12 md:py-20">
       <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-16">
         <Reveal>
