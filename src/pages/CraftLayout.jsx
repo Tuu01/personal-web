@@ -1,88 +1,55 @@
-import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import Navbar from "../sections/Navbar";
-import Footer from "../sections/Footer";
-import GridLinesGlobal from "../components/GridLinesGlobal";
+import { Link } from "react-router-dom";
+import PageShell from "../components/PageShell";
 import { Reveal } from "../components/CaseStudy";
-import ReactLenis from "lenis/react";
 
 const EASE = [0.22, 1, 0.36, 1];
 
-const CraftLayout = ({
-  title,
-  sponsor,
-  meta = {},
-  heroImage,
-  heroAlt,
-  index,
-  area,
-  tags = [],
-  lead,
-  children,
-}) => {
+// Case-study frame: breadcrumb, title, lead and facts, hero image, chapters.
+const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, area, tags = [], lead, children }) => {
   const reduceMotion = useReducedMotion();
-  // Skip the entrance offset entirely when the visitor asked for less motion.
   const enter = (y, delay = 0) =>
     reduceMotion
       ? {}
       : {
           initial: { opacity: 0, y },
           animate: { opacity: 1, y: 0 },
-          transition: { duration: y > 15 ? 0.7 : 0.6, ease: EASE, delay },
+          transition: { duration: 0.6, ease: EASE, delay },
         };
 
   return (
-  <ReactLenis
-    root
-    options={{ smoothWheel: !reduceMotion }}
-    className="relative w-full min-h-dvh bg-paper"
-  >
-    <GridLinesGlobal />
-    <div className="relative z-20">
-      <Navbar />
-
-      <div className="mx-auto max-w-[92vw] md:max-w-[80vw] px-4 sm:px-6 md:px-8">
-        {/* Header: two columns, aligned to the grid */}
-        <header className="grid gap-6 md:grid-cols-[1.1fr_1fr] md:gap-12 items-end pt-10 md:pt-16 pb-8 md:pb-10">
+    <PageShell>
+      <div className="shell">
+        <header className="grid items-end gap-8 pt-10 pb-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pt-16 md:pb-10">
           <div>
-            <motion.div
-              {...enter(12)}
-              className="font-amiamie-round text-gold text-sm tracking-[0.3em]"
-            >
-              {index}
-              {index && area && <span className="text-SageGray"> / </span>}
-              {area}
-            </motion.div>
+            <motion.p {...enter(8)} className="eyebrow">
+              <Link to="/#work" className="hover:text-cobalt">
+                Work
+              </Link>
+              {index && <span> / {index}</span>}
+              {area && <span className="text-cobalt"> / {area}</span>}
+            </motion.p>
             <motion.h1
-              {...enter(20, 0.05)}
-              className="mt-3 font-amiamie font-black text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-[-0.02em] max-w-[15ch]"
+              {...enter(16, 0.05)}
+              className="mt-4 max-w-[16ch] text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[56px]"
             >
               {title}
             </motion.h1>
             {tags.length > 0 && (
-              <div className="mt-5 flex flex-wrap gap-2">
+              <ul className="mt-6 flex flex-wrap gap-2">
                 {tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-black/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-DarkLava/70"
-                  >
+                  <li key={t} className="rounded border border-line px-2 py-0.5 font-mono text-xs text-muted">
                     {t}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
           </div>
 
           <div className="md:pb-1">
-            {lead && (
-              <p className="font-amiamie font-light text-lg md:text-xl leading-[1.5] text-DarkLava max-w-[44ch]">
-                {lead}
-              </p>
-            )}
-            {sponsor && <p className="mt-4 text-sm text-SageGray">{sponsor}</p>}
-            {/* One column on phones: "C# (WinForms + Guna UI), SQL Server
-                2022, Stored Procedures, Git" is unreadable in a 140px cell. */}
-            <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+            {lead && <p className="max-w-[44ch] text-lg leading-[1.55] text-ink md:text-xl">{lead}</p>}
+            {sponsor && <p className="mt-4 text-sm text-muted">{sponsor}</p>}
+            <dl className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
               {[
                 ["Role", meta.role],
                 ["Team", meta.team],
@@ -91,19 +58,18 @@ const CraftLayout = ({
               ]
                 .filter(([, v]) => v)
                 .map(([k, v]) => (
-                  <div key={k}>
-                    <div className="text-[10px] uppercase tracking-[0.25em] text-SageGray">{k}</div>
-                    <p className="mt-1 text-[13px] leading-snug text-DarkLava">{v}</p>
+                  <div key={k} className="border-t border-line pt-2">
+                    <dt className="eyebrow">{k}</dt>
+                    <dd className="mt-1 text-sm leading-snug">{v}</dd>
                   </div>
                 ))}
-            </div>
+            </dl>
           </div>
         </header>
 
-        {/* Hero: full grid width, sharp rectangle */}
         {heroImage && (
           <Reveal>
-            <div className="overflow-hidden border border-black/10 bg-neutral-100">
+            <div className="overflow-hidden rounded-xl border border-line bg-surface">
               {/* LCP element on every case-study page. Never lazy. */}
               <img
                 src={heroImage}
@@ -117,13 +83,9 @@ const CraftLayout = ({
           </Reveal>
         )}
 
-        {/* Body: chapters carry their own top rules */}
-        <main className="py-12 md:py-16 space-y-12 md:space-y-16">{children}</main>
+        <div className="space-y-12 py-12 md:space-y-16 md:py-16">{children}</div>
       </div>
-
-      <Footer />
-    </div>
-  </ReactLenis>
+    </PageShell>
   );
 };
 

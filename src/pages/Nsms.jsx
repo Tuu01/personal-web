@@ -27,7 +27,7 @@ const galleryImages = [
 export default function Nsms() {
   return (
     <CraftLayout
-      index="P · 02"
+      index="Engineering"
       area="Full-Stack · Desktop"
       title="POS System: NSMS"
       sponsor="University final project"
@@ -54,7 +54,7 @@ export default function Nsms() {
           </p>
         </Prose>
         <Reveal>
-          <ul className="font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold space-y-2 max-w-[60ch]">
+          <ul className="font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold space-y-2 max-w-[60ch]">
             <li>Service selection · staff · time · confirm</li>
             <li>POS with quick add-ons and invoice printing</li>
             <li>Inventory with low-stock alerts</li>
@@ -68,7 +68,7 @@ export default function Nsms() {
                 key={s.label}
                 className="rounded-2xl border border-black/10 p-4"
               >
-                <div className="font-amiamie font-black text-2xl text-black">
+                <div className="font-amiamie font-semibold text-2xl text-black">
                   {s.value}
                 </div>
                 <div className="mt-1 text-[11px] uppercase tracking-[0.2em] text-SageGray">
@@ -117,7 +117,7 @@ export default function Nsms() {
             <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
               Next steps
             </div>
-            <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+            <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
               <li>Role-based access and audit logs</li>
               <li>Deeper POS and scheduler linking</li>
               <li>Resizable UI for varied stations</li>
@@ -131,7 +131,7 @@ export default function Nsms() {
       </Chapter>
 
       <RelatedProject
-        to="/P3"
+        to="/work/nail-fairy"
         label="Booking Website"
         title="A calm, fast booking flow for salons"
         text="Mobile-first flow with strict slot validation."

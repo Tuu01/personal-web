@@ -1,70 +1,72 @@
 import { Link } from "react-router-dom";
+import { Wordmark } from "../brand/Wordmark";
+import { EMAIL, GITHUB, LINKEDIN, CV_URL } from "../lib/site";
 
-const projects = [
-  { name: "Badminton Queue", path: "/P5" },
-  { name: "AI Video Platform", path: "/P4" },
-  { name: "Booking Website", path: "/P3" },
-  { name: "POS System", path: "/P2" },
-  { name: "2D Game", path: "/P1" },
+const work = [
+  { name: "Badminton Queue", to: "/work/badminton-queue" },
+  { name: "The Nail Fairy", to: "/work/nail-fairy" },
+  { name: "AI video platform", to: "/work/splento" },
+  { name: "NSMS", to: "/work/nsms" },
+  { name: "2D game", to: "/work/2d-game" },
 ];
 
 const linkClass =
-  "whitespace-nowrap rounded-sm hover:underline underline-offset-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2";
+  "underline-offset-4 decoration-cobalt hover:underline hover:text-ink";
 
-const Footer = () => {
-  return (
-    <footer className="w-full bg-paper">
-      {/* CONTAINED HORIZONTAL LINE */}
-      <div className="w-full flex justify-center">
-        <div className="w-full max-w-[92vw] md:max-w-[80vw] border-t border-black/10" />
-      </div>
-
-      <div className="w-full max-w-[92vw] md:max-w-[80vw] mx-auto px-4 py-10 md:py-14">
-        {/* Colophon: mark and statement on the left, the work inline on the
-            right. No column headers; five links don't need a taxonomy. */}
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <div className="flex flex-col gap-3">
-            <Link
-              to="/"
-              className="w-fit rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-            >
-              <img
-                src="/logo/tuuhyped_logo.png"
-                alt="Tuuhyped Logo"
-                className="h-[22px] w-auto"
-              />
-            </Link>
-            <p className="max-w-[24ch] text-sm leading-snug text-black/50">
-              I simplify, I humanize.
-            </p>
-          </div>
-
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm md:justify-end">
-            {projects.map(({ name, path }) => (
-              <Link key={path} to={path} className={linkClass}>
-                {name}
-              </Link>
-            ))}
-          </nav>
-        </div>
-
-        {/* Baseline row */}
-        <div className="mt-10 flex flex-col gap-3 border-t border-black/10 pt-4 text-xs text-black/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            &copy; {new Date().getFullYear()} Trong Tu Luu. All rights reserved.
+const Footer = ({ prompt = true }) => (
+  <footer className="mt-auto border-t border-line bg-paper">
+    <div className="shell py-12 md:py-16">
+      {prompt && (
+        <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
+          <p className="max-w-[18ch] text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[40px]">
+            Have a product to design and build?
           </p>
-          <div className="flex gap-6">
-            <a href="mailto:work.tuuhard@gmail.com" className={linkClass}>
-              Mail
-            </a>
-            <a href="/CV/Tuu_CV.pdf" download className={linkClass}>
-              CV
-            </a>
-          </div>
+          <a
+            href={`mailto:${EMAIL}`}
+            className="text-lg font-semibold text-cobalt underline decoration-2 underline-offset-[6px] hover:text-ink md:text-xl"
+          >
+            {EMAIL}
+          </a>
         </div>
+      )}
+
+      <div className="grid gap-8 border-t border-line pt-8 text-sm text-muted sm:grid-cols-[1fr_auto_auto] sm:gap-16">
+        <div className="flex flex-col gap-3">
+          <Link to="/" aria-label="Home" className="w-fit text-[22px]">
+            <Wordmark full />
+          </Link>
+          <p>Designs it, builds it, ships it.</p>
+        </div>
+        <nav aria-label="Work" className="flex flex-col gap-2">
+          <span className="eyebrow">Work</span>
+          {work.map(({ name, to }) => (
+            <Link key={to} to={to} className={linkClass}>
+              {name}
+            </Link>
+          ))}
+        </nav>
+        <nav aria-label="Elsewhere" className="flex flex-col gap-2">
+          <span className="eyebrow">Elsewhere</span>
+          <a href={GITHUB} className={linkClass} rel="noreferrer" target="_blank">
+            GitHub
+          </a>
+          <a href={LINKEDIN} className={linkClass} rel="noreferrer" target="_blank">
+            LinkedIn
+          </a>
+          <a href={CV_URL} className={linkClass} download>
+            CV (PDF)
+          </a>
+          <Link to="/contact" className={linkClass}>
+            Contact
+          </Link>
+        </nav>
       </div>
-    </footer>
-  );
-};
+
+      <p className="mt-10 font-mono text-xs text-muted">
+        &copy; {new Date().getFullYear()} Trong Tu Luu
+      </p>
+    </div>
+  </footer>
+);
 
 export default Footer;

@@ -25,7 +25,7 @@ const galleryImages = [
 
 const BookingWebsite = () => (
   <CraftLayout
-    index="P · 03"
+    index="Engineering · Design"
     area="Full-Stack · UX"
     title="Nail Fairy: Online Booking Website"
     sponsor="Live client project"
@@ -52,6 +52,7 @@ const BookingWebsite = () => (
     </Reveal>
 
     <Chapter
+      id="engineering"
       index="01"
       title="Phone bookings were slow and error-prone"
     >
@@ -142,7 +143,7 @@ const BookingWebsite = () => (
           <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
             Next steps
           </div>
-          <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+          <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
             <li>Payments and deposits</li>
             <li>Loyalty profiles</li>
             <li>Calendar sync with the POS</li>
@@ -155,8 +156,37 @@ const BookingWebsite = () => (
       <Gallery images={galleryImages} />
     </Chapter>
 
+    <Chapter id="penny-hill" index="07" title="Penny Hill: the same platform, a second business">
+      <Prose>
+        <p>
+          Penny Hill Nail &amp; Spa runs on a separate build of the Nail Fairy platform, live at{" "}
+          <a
+            href="https://pennyhillbooking.tuuhyped.co.uk"
+            target="_blank"
+            rel="noreferrer"
+            className="text-cobalt underline underline-offset-4"
+          >
+            pennyhillbooking.tuuhyped.co.uk
+          </a>
+          .
+        </p>
+        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Screenshots and write-up coming soon</p>
+      </Prose>
+    </Chapter>
+
+    <Chapter id="design" index="08" title="The Nail Fairy brand">
+      <Prose>
+        <p>
+          The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
+          first logo in 2024, then the full identity, finished in 2026. Nothing has been printed yet; the next
+          Nail Fairy build will use it.
+        </p>
+        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Brand case study coming soon</p>
+      </Prose>
+    </Chapter>
+
     <RelatedProject
-      to="/P4"
+      to="/work/splento"
       label="AI Video Platform"
       title="UX for AI-generated restaurant promos"
       text="Mobile-first discovery, lightweight editing, clear licensing."

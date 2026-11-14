@@ -24,7 +24,7 @@ const galleryImages = [
 
 const Splento = () => (
   <CraftLayout
-    index="P · 04"
+    index="Design & visual"
     area="UX · Interaction Design"
     title="AI-Generated Video Platform for Restaurants"
     sponsor="MSc group project (ECS733), in collaboration with Splento"
@@ -67,7 +67,7 @@ const Splento = () => (
       title="What I personally owned"
     >
       <Reveal>
-        <ul className="font-amiamie font-light text-base md:text-lg leading-[1.7] text-DarkLava/90 max-w-[60ch] space-y-3 list-disc pl-5 marker:text-gold">
+        <ul className="font-amiamie font-normal text-base md:text-lg leading-[1.7] text-DarkLava/90 max-w-[60ch] space-y-3 list-disc pl-5 marker:text-gold">
           <li>
             Designed the final high-fidelity prototype, which shaped the
             project&rsquo;s final design direction
@@ -171,7 +171,7 @@ const Splento = () => (
           <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
             Honest limitations
           </div>
-          <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+          <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
             <li>
               Small samples (15 survey, 3 interviews); indicative, not
               conclusive
@@ -189,7 +189,7 @@ const Splento = () => (
     </Chapter>
 
     <RelatedProject
-      to="/P1"
+      to="/work/2d-game"
       label="Java 2D Game"
       title="A classic side-scroller built from scratch"
       text="Hand-rolled engine, collision system, and sprite animation."

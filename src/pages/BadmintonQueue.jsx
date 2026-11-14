@@ -24,7 +24,7 @@ const galleryImages = [
 
 const BadmintonQueue = () => (
   <CraftLayout
-    index="P · 05"
+    index="Engineering · Design"
     area="Product Design · Full-stack"
     title="A fair game, every Saturday"
     sponsor="Live product, a badminton club of ~30 players"
@@ -58,7 +58,7 @@ const BadmintonQueue = () => (
     {/* 02 Contribution */}
     <Chapter index="02" title="What I owned">
       <Reveal>
-        <ul className="font-amiamie font-light text-base md:text-lg leading-[1.7] text-DarkLava/90 max-w-[60ch] space-y-3 list-disc pl-5 marker:text-gold">
+        <ul className="font-amiamie font-normal text-base md:text-lg leading-[1.7] text-DarkLava/90 max-w-[60ch] space-y-3 list-disc pl-5 marker:text-gold">
           <li>
             Built the entire product from scratch: interface, data model, permissions and the
             matchmaking engine
@@ -77,7 +77,7 @@ const BadmintonQueue = () => (
     </Chapter>
 
     {/* 03 The problem behind the brief */}
-    <Chapter index="03" title="I shipped it. Then they told me they didn’t get it.">
+    <Chapter id="design" index="03" title="I shipped it. Then they told me they didn’t get it.">
       <Prose>
         <p>
           Version one worked: it ran real sessions, picked fair matches, tracked real ratings. But
@@ -147,7 +147,7 @@ const BadmintonQueue = () => (
     </Chapter>
 
     {/* 05 The engine */}
-    <Chapter index="05" title="It scores all 210 possible games, then picks one">
+    <Chapter id="engineering" index="05" title="It scores all 210 possible games, then picks one">
       <Prose>
         <p>
           Eight people waiting means 70 possible foursomes, each splittable three ways. Rather than a
@@ -181,7 +181,7 @@ const BadmintonQueue = () => (
           <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
             Decisions I&rsquo;d defend
           </div>
-          <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+          <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
             <li>
               <strong>No public win-rates.</strong> A rival club app ranked everyone by win rate; on a
               handful of games that&rsquo;s noise shown as a public verdict, among friends. Broad bands
@@ -215,7 +215,7 @@ const BadmintonQueue = () => (
           <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
             Honest limitations
           </div>
-          <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+          <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
             <li>Diagnosis came from a screen-by-screen audit and secondhand feedback, not observed sessions</li>
             <li>Ratings need months of play before they mean much; the app deliberately hides them until then</li>
             <li>One club, one context: nothing here is validated at other clubs</li>
@@ -236,7 +236,7 @@ const BadmintonQueue = () => (
     </Chapter>
 
     <RelatedProject
-      to="/P4"
+      to="/work/splento"
       label="AI Video Platform"
       title="AI-generated video for restaurants"
       text="A user-centred design study with Splento."

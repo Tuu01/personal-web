@@ -1,0 +1,644 @@
+{
+ "units": "metres, glTF / three.js space (Y up); overview_tag_xy = fraction of the 1200x900 overview render, from top left",
+ "zones": [
+  {
+   "id": "zone_about",
+   "label": "About",
+   "slug": "about",
+   "opened_by": [
+    "trig_sidetable"
+   ],
+   "fades_out": [
+    "decor_chair"
+   ]
+  },
+  {
+   "id": "zone_design",
+   "label": "Design & visual",
+   "slug": "design",
+   "opened_by": [
+    "obj_pinboard",
+    "obj_laptop"
+   ],
+   "fades_out": [
+    "decor_chair"
+   ]
+  },
+  {
+   "id": "zone_engineering",
+   "label": "Engineering",
+   "slug": "engineering",
+   "opened_by": [
+    "obj_monitors",
+    "trig_pc"
+   ],
+   "fades_out": [
+    "decor_chair"
+   ]
+  },
+  {
+   "id": "zone_lab",
+   "label": "Lab",
+   "slug": "lab",
+   "opened_by": [
+    "trig_lab",
+    "obj_printer"
+   ],
+   "fades_out": []
+  }
+ ],
+ "objects": [
+  {
+   "id": "obj_about",
+   "kind": "item",
+   "bbox_min": [
+    1.1184,
+    0.6306,
+    -1.9806
+   ],
+   "bbox_max": [
+    1.3216,
+    0.8894,
+    -2.0994
+   ],
+   "tag_anchor": [
+    1.22,
+    0.8894,
+    -2.04
+   ],
+   "overview_tag_xy": [
+    0.7454,
+    0.5483
+   ],
+   "label": "About me",
+   "zone": "about",
+   "projects": [
+    {
+     "title": "About me",
+     "href": "/about"
+    },
+    {
+     "title": "Education",
+     "href": "/about#education"
+    }
+   ],
+   "count": 2,
+   "href": "/about",
+   "click": "open href"
+  },
+  {
+   "id": "obj_badminton",
+   "kind": "item",
+   "bbox_min": [
+    1.3354,
+    1.131,
+    -2.0925
+   ],
+   "bbox_max": [
+    1.8446,
+    2.1807,
+    -2.2
+   ],
+   "tag_anchor": [
+    1.59,
+    2.1807,
+    -2.1463
+   ],
+   "overview_tag_xy": [
+    0.7862,
+    0.3832
+   ],
+   "label": "Outside work",
+   "zone": "about",
+   "projects": [
+    {
+     "title": "Badminton",
+     "href": "/about#badminton"
+    },
+    {
+     "title": "Photography",
+     "href": "/about#photography"
+    }
+   ],
+   "count": 2,
+   "href": "/about#badminton",
+   "click": "open href"
+  },
+  {
+   "id": "obj_camera",
+   "kind": "item",
+   "bbox_min": [
+    0.6447,
+    0.622,
+    -1.6358
+   ],
+   "bbox_max": [
+    1.078,
+    0.7932,
+    -1.9637
+   ],
+   "tag_anchor": [
+    0.8614,
+    0.7932,
+    -1.7998
+   ],
+   "overview_tag_xy": [
+    0.6941,
+    0.5549
+   ],
+   "label": "Outside work",
+   "zone": "about",
+   "projects": [
+    {
+     "title": "Badminton",
+     "href": "/about#badminton"
+    },
+    {
+     "title": "Photography",
+     "href": "/about#photography"
+    }
+   ],
+   "count": 2,
+   "href": "/about#photography",
+   "click": "open href"
+  },
+  {
+   "id": "obj_cv",
+   "kind": "item",
+   "bbox_min": [
+    1.1371,
+    0.623,
+    -1.6763
+   ],
+   "bbox_max": [
+    1.4029,
+    0.6305,
+    -2.0037
+   ],
+   "tag_anchor": [
+    1.27,
+    0.6305,
+    -1.84
+   ],
+   "overview_tag_xy": [
+    0.7326,
+    0.5989
+   ],
+   "label": "CV and contact",
+   "zone": "about",
+   "projects": [
+    {
+     "title": "CV and contact",
+     "href": "/contact"
+    }
+   ],
+   "count": 1,
+   "href": "/contact",
+   "click": "open href"
+  },
+  {
+   "id": "obj_degree",
+   "kind": "item",
+   "bbox_min": [
+    0.78,
+    1.29,
+    -2.161
+   ],
+   "bbox_max": [
+    1.12,
+    1.75,
+    -2.2
+   ],
+   "tag_anchor": [
+    0.95,
+    1.75,
+    -2.1805
+   ],
+   "overview_tag_xy": [
+    0.7343,
+    0.4045
+   ],
+   "label": "About me",
+   "zone": "about",
+   "projects": [
+    {
+     "title": "About me",
+     "href": "/about"
+    },
+    {
+     "title": "Education",
+     "href": "/about#education"
+    }
+   ],
+   "count": 2,
+   "href": "/about#education",
+   "click": "open href"
+  },
+  {
+   "id": "obj_laptop",
+   "kind": "item",
+   "bbox_min": [
+    -1.9605,
+    0.79,
+    -1.4457
+   ],
+   "bbox_max": [
+    -1.3057,
+    1.1298,
+    -2.1005
+   ],
+   "tag_anchor": [
+    -1.6331,
+    1.1298,
+    -1.7731
+   ],
+   "overview_tag_xy": [
+    0.478,
+    0.3658
+   ],
+   "label": "UI / product design",
+   "zone": "design",
+   "projects": [
+    {
+     "title": "Badminton Queue",
+     "href": "/work/badminton-queue#design"
+    }
+   ],
+   "count": 1,
+   "href": "/work/badminton-queue#design",
+   "click": "open href"
+  },
+  {
+   "id": "obj_notebook",
+   "kind": "item",
+   "bbox_min": [
+    -1.2495,
+    0.79,
+    -1.503
+   ],
+   "bbox_max": [
+    -0.7505,
+    0.8245,
+    -1.9099
+   ],
+   "tag_anchor": [
+    -1.0,
+    0.8245,
+    -1.7064
+   ],
+   "overview_tag_xy": [
+    0.5265,
+    0.4487
+   ],
+   "label": "Research",
+   "zone": "design",
+   "projects": [
+    {
+     "title": "AI video platform (Splento)",
+     "href": "/work/splento"
+    }
+   ],
+   "count": 1,
+   "href": "/work/splento",
+   "click": "open href"
+  },
+  {
+   "id": "obj_pinboard",
+   "kind": "item",
+   "bbox_min": [
+    -1.7,
+    1.31,
+    -2.131
+   ],
+   "bbox_max": [
+    -0.7,
+    2.09,
+    -2.2
+   ],
+   "tag_anchor": [
+    -1.2,
+    2.09,
+    -2.1655
+   ],
+   "overview_tag_xy": [
+    0.5488,
+    0.2341
+   ],
+   "label": "Brands & visual",
+   "zone": "design",
+   "projects": [
+    {
+     "title": "The Nail Fairy brand",
+     "href": "/work/nail-fairy#design"
+    },
+    {
+     "title": "Visual work",
+     "href": "/visual"
+    }
+   ],
+   "count": 2,
+   "href": "",
+   "click": "list projects in the panel"
+  },
+  {
+   "id": "obj_archive",
+   "kind": "item",
+   "bbox_min": [
+    -2.116,
+    0.79,
+    0.306
+   ],
+   "bbox_max": [
+    -1.885,
+    1.129,
+    0.094
+   ],
+   "tag_anchor": [
+    -2.0005,
+    1.129,
+    0.2
+   ],
+   "overview_tag_xy": [
+    0.2774,
+    0.4584
+   ],
+   "label": "Earlier work",
+   "zone": "engineering",
+   "projects": [
+    {
+     "title": "NSMS",
+     "href": "/work/nsms"
+    }
+   ],
+   "count": 1,
+   "href": "/work/nsms",
+   "click": "open href"
+  },
+  {
+   "id": "obj_monitors",
+   "kind": "item",
+   "bbox_min": [
+    -2.2,
+    0.79,
+    0.0524
+   ],
+   "bbox_max": [
+    -1.8818,
+    1.67,
+    -1.25
+   ],
+   "tag_anchor": [
+    -2.0409,
+    1.67,
+    -0.5988
+   ],
+   "overview_tag_xy": [
+    0.3424,
+    0.3346
+   ],
+   "label": "Web apps",
+   "zone": "engineering",
+   "projects": [
+    {
+     "title": "The Nail Fairy",
+     "href": "/work/nail-fairy#engineering"
+    },
+    {
+     "title": "Penny Hill",
+     "href": "/work/nail-fairy#penny-hill"
+    }
+   ],
+   "count": 2,
+   "href": "",
+   "click": "list projects in the panel"
+  },
+  {
+   "id": "obj_phone",
+   "kind": "item",
+   "bbox_min": [
+    -1.939,
+    0.7905,
+    -1.121
+   ],
+   "bbox_max": [
+    -1.781,
+    0.801,
+    -1.199
+   ],
+   "tag_anchor": [
+    -1.86,
+    0.801,
+    -1.16
+   ],
+   "overview_tag_xy": [
+    0.406,
+    0.434
+   ],
+   "label": "Mobile apps",
+   "zone": "engineering",
+   "projects": [
+    {
+     "title": "Badminton Queue",
+     "href": "/work/badminton-queue#engineering"
+    }
+   ],
+   "count": 1,
+   "href": "/work/badminton-queue#engineering",
+   "click": "open href"
+  },
+  {
+   "id": "obj_controller",
+   "kind": "item",
+   "bbox_min": [
+    -1.9,
+    1.971,
+    -0.335
+   ],
+   "bbox_max": [
+    -1.772,
+    2.027,
+    -0.565
+   ],
+   "tag_anchor": [
+    -1.836,
+    2.027,
+    -0.45
+   ],
+   "overview_tag_xy": [
+    0.3472,
+    0.3051
+   ],
+   "label": "Games",
+   "zone": "lab",
+   "projects": [
+    {
+     "title": "2D game",
+     "href": "/work/2d-game"
+    }
+   ],
+   "count": 1,
+   "href": "/work/2d-game",
+   "click": "open href"
+  },
+  {
+   "id": "obj_printer",
+   "kind": "item",
+   "bbox_min": [
+    -2.15,
+    1.975,
+    -0.74
+   ],
+   "bbox_max": [
+    -1.63,
+    2.535,
+    -1.26
+   ],
+   "tag_anchor": [
+    -1.89,
+    2.535,
+    -1.0
+   ],
+   "overview_tag_xy": [
+    0.3897,
+    0.1994
+   ],
+   "label": "Made by hand",
+   "zone": "lab",
+   "projects": [
+    {
+     "title": "Badminton clicker",
+     "href": "/work/badminton-clicker"
+    }
+   ],
+   "count": 1,
+   "href": "/work/badminton-clicker",
+   "click": "open href"
+  }
+ ],
+ "extras": [
+  {
+   "id": "obj_lamp",
+   "kind": "extra",
+   "bbox_min": [
+    -0.175,
+    0.7895,
+    -1.675
+   ],
+   "bbox_max": [
+    0.175,
+    1.31,
+    -2.025
+   ],
+   "tag_anchor": [
+    0.0,
+    1.31,
+    -1.85
+   ],
+   "overview_tag_xy": [
+    0.6246,
+    0.4303
+   ],
+   "label": "Switch day / night",
+   "action": "toggle-theme"
+  },
+  {
+   "id": "obj_speaker",
+   "kind": "extra",
+   "bbox_min": [
+    -1.9775,
+    0.79,
+    -0.595
+   ],
+   "bbox_max": [
+    -1.881,
+    0.8945,
+    -0.805
+   ],
+   "tag_anchor": [
+    -1.9293,
+    0.8945,
+    -0.7
+   ],
+   "overview_tag_xy": [
+    0.3606,
+    0.4434
+   ],
+   "label": "Sound on / off",
+   "action": "toggle-sound"
+  }
+ ],
+ "triggers": [
+  {
+   "id": "trig_lab",
+   "kind": "trigger",
+   "bbox_min": [
+    -2.2,
+    1.73,
+    0.62
+   ],
+   "bbox_max": [
+    -1.6,
+    2.35,
+    -1.5
+   ],
+   "tag_anchor": [
+    -1.9,
+    2.35,
+    -0.44
+   ],
+   "overview_tag_xy": [
+    0.3409,
+    0.2569
+   ],
+   "opens": "lab"
+  },
+  {
+   "id": "trig_pc",
+   "kind": "trigger",
+   "bbox_min": [
+    -1.69,
+    0.02,
+    0.2645
+   ],
+   "bbox_max": [
+    -1.4655,
+    0.64,
+    -0.14
+   ],
+   "tag_anchor": [
+    -1.5777,
+    0.64,
+    0.0622
+   ],
+   "overview_tag_xy": [
+    0.3254,
+    0.5431
+   ],
+   "opens": "engineering"
+  },
+  {
+   "id": "trig_sidetable",
+   "kind": "trigger",
+   "bbox_min": [
+    0.75,
+    0.01,
+    -1.67
+   ],
+   "bbox_max": [
+    1.45,
+    0.62,
+    -2.17
+   ],
+   "tag_anchor": [
+    1.1,
+    0.62,
+    -1.92
+   ],
+   "overview_tag_xy": [
+    0.7248,
+    0.5859
+   ],
+   "opens": "about"
+  }
+ ]
+}

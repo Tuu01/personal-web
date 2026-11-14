@@ -18,7 +18,7 @@ const galleryImages = [
 
 const Game2D = () => (
   <CraftLayout
-    index="P · 01"
+    index="Lab"
     area="Game Dev · Java"
     title="Java 2D Platformer: TFight"
     sponsor="University first project"
@@ -99,7 +99,7 @@ const Game2D = () => (
           <div className="text-[11px] uppercase tracking-[0.25em] text-SageGray">
             Next steps
           </div>
-          <ul className="mt-3 space-y-2 font-amiamie font-light text-DarkLava/90 list-disc pl-5 marker:text-gold">
+          <ul className="mt-3 space-y-2 font-amiamie font-normal text-DarkLava/90 list-disc pl-5 marker:text-gold">
             <li>More levels and enemies</li>
             <li>Save/load system</li>
             <li>Richer audio and effects</li>
@@ -113,7 +113,7 @@ const Game2D = () => (
     </Chapter>
 
     <RelatedProject
-      to="/P2"
+      to="/work/nsms"
       label="POS System"
       title="Back-office ops that power the bookings"
       text="Inventory, reporting, and scheduling in one fast desktop app."

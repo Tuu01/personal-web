@@ -1,5 +1,5 @@
 // src/components/CaseStudy.jsx
-// Editorial case-study primitives: denser, grid-aligned, Amiamie throughout.
+// Editorial case-study primitives, styled with the brand tokens.
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -30,7 +30,7 @@ export const Reveal = ({ children, className = "", delay = 0, y = 20 }) => {
 
 export const Lead = ({ children, className = "" }) => (
   <p
-    className={`font-amiamie font-light text-lg md:text-xl leading-[1.5] text-DarkLava max-w-[46ch] ${className}`}
+    className={`font-amiamie font-normal text-lg md:text-xl leading-[1.5] text-DarkLava max-w-[46ch] ${className}`}
   >
     {children}
   </p>
@@ -39,8 +39,8 @@ export const Lead = ({ children, className = "" }) => (
 /* Numbered chapter: the index sits directly above the heading in a single
    column. The old tag-left / heading-right split is the templated-editorial
    tell and is not used here. */
-export const Chapter = ({ index, title, children }) => (
-  <section className="border-t border-black/10 pt-8 md:pt-10">
+export const Chapter = ({ id, index, title, children }) => (
+  <section id={id} className="border-t border-black/10 pt-8 md:pt-10">
     <Reveal>
       {index && (
         <span className="font-amiamie-round text-gold text-sm tracking-[0.3em]">
@@ -48,7 +48,7 @@ export const Chapter = ({ index, title, children }) => (
         </span>
       )}
       {title && (
-        <h2 className="mt-2 font-amiamie font-black text-2xl md:text-3xl leading-[1.05] tracking-[-0.02em]">
+        <h2 className="mt-2 font-amiamie font-semibold text-2xl md:text-3xl leading-[1.05] tracking-[-0.02em]">
           {title}
         </h2>
       )}
@@ -59,7 +59,7 @@ export const Chapter = ({ index, title, children }) => (
 
 export const Prose = ({ children, className = "" }) => (
   <div
-    className={`font-amiamie font-light text-base leading-[1.6] text-DarkLava/90 max-w-[60ch] space-y-3 ${className}`}
+    className={`font-amiamie font-normal text-base leading-[1.6] text-DarkLava/90 max-w-[60ch] space-y-3 ${className}`}
   >
     {children}
   </div>
@@ -110,11 +110,11 @@ export const PullQuote = ({ quote, name, role }) => (
   <figure className="relative py-2">
     <div
       aria-hidden
-      className="font-amiamie font-black text-gold/30 text-6xl leading-none select-none"
+      className="font-amiamie font-semibold text-gold/30 text-6xl leading-none select-none"
     >
       &ldquo;
     </div>
-    <blockquote className="-mt-5 font-amiamie font-light text-xl md:text-2xl leading-[1.25] tracking-tight text-black max-w-[26ch]">
+    <blockquote className="-mt-5 font-amiamie font-normal text-xl md:text-2xl leading-[1.25] tracking-tight text-black max-w-[26ch]">
       {quote}
     </blockquote>
     {(name || role) && (
@@ -233,7 +233,7 @@ export const RelatedProject = ({ to, label, title, text, image, alt }) => (
             {label}
           </div>
         )}
-        <div className="font-amiamie font-black text-xl md:text-2xl leading-tight tracking-[-0.02em]">
+        <div className="font-amiamie font-semibold text-xl md:text-2xl leading-tight tracking-[-0.02em]">
           {title}
         </div>
         {text && <p className="text-sm text-DarkLava/70">{text}</p>}

@@ -1,0 +1,844 @@
+{
+ "units": "metres, glTF / three.js space (Y up)",
+ "overview": {
+  "type": "orthographic",
+  "position": [
+   7.85,
+   7.6,
+   7.5
+  ],
+  "target": [
+   -0.15,
+   1.0,
+   -0.5
+  ],
+  "ortho_scale": 8.25,
+  "ortho_scale_note": "visible width of the larger image side, in metres",
+  "shift_x": 0.004000000189989805,
+  "shift_y": 0.03200000151991844,
+  "render_size": [
+   1200,
+   900
+  ],
+  "perspective_equivalent": {
+   "position": [
+    24.281,
+    21.1556,
+    23.931
+   ],
+   "target": [
+    -0.15,
+    1.0,
+    -0.5
+   ],
+   "fov_h_deg": 11.776,
+   "fov_v_deg_4x3": 8.845,
+   "note": "apply shift_x / shift_y as a view offset (three.js setViewOffset) to match the render"
+  }
+ },
+ "zones": {
+  "about": {
+   "label": "About",
+   "fades_out": "decor_chair",
+   "rest_of_room_opacity": 0.25,
+   "desktop": {
+    "position": [
+     2.0026,
+     1.7689,
+     1.0568
+    ],
+    "target": [
+     0.3226,
+     1.3489,
+     -1.9882
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "fov_h_deg": 58.716,
+    "frame": [
+     1280,
+     800
+    ]
+   },
+   "mobile": {
+    "position": [
+     2.8914,
+     1.1043,
+     1.4257
+    ],
+    "target": [
+     0.8914,
+     0.6043,
+     -2.1993
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "fov_h_deg": 29.14,
+    "frame": [
+     780,
+     1688
+    ]
+   }
+  },
+  "design": {
+   "label": "Design & visual",
+   "fades_out": "decor_chair",
+   "rest_of_room_opacity": 0.25,
+   "desktop": {
+    "position": [
+     0.0463,
+     2.0785,
+     0.7033
+    ],
+    "target": [
+     -1.7137,
+     1.3985,
+     -1.3367
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "fov_h_deg": 58.716,
+    "frame": [
+     1280,
+     800
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.9063,
+     1.5502,
+     0.7052
+    ],
+    "target": [
+     -1.1177,
+     0.7682,
+     -1.6408
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "fov_h_deg": 29.14,
+    "frame": [
+     780,
+     1688
+    ]
+   }
+  },
+  "engineering": {
+   "label": "Engineering",
+   "fades_out": "decor_chair",
+   "rest_of_room_opacity": 0.25,
+   "desktop": {
+    "position": [
+     0.3858,
+     2.103,
+     -0.0958
+    ],
+    "target": [
+     -2.0842,
+     1.438,
+     -0.0483
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "fov_h_deg": 58.716,
+    "frame": [
+     1280,
+     800
+    ]
+   },
+   "mobile": {
+    "position": [
+     1.665,
+     1.4656,
+     -0.5205
+    ],
+    "target": [
+     -1.845,
+     0.5206,
+     -0.453
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "fov_h_deg": 29.14,
+    "frame": [
+     780,
+     1688
+    ]
+   }
+  },
+  "lab": {
+   "label": "Lab",
+   "fades_out": "",
+   "rest_of_room_opacity": 0.25,
+   "desktop": {
+    "position": [
+     -0.535,
+     2.3994,
+     0.0285
+    ],
+    "target": [
+     -2.033,
+     2.1544,
+     -0.6015
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "fov_h_deg": 58.716,
+    "frame": [
+     1280,
+     800
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.2989,
+     1.9606,
+     0.0537
+    ],
+    "target": [
+     -1.8411,
+     1.6106,
+     -0.8463
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "fov_h_deg": 29.14,
+    "frame": [
+     780,
+     1688
+    ]
+   }
+  }
+ },
+ "objects": {
+  "obj_about": {
+   "zone": "about",
+   "desktop": {
+    "position": [
+     2.0514,
+     1.1025,
+     0.4764
+    ],
+    "target": [
+     0.7914,
+     0.7875,
+     -1.8073
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.625,
+     0.706,
+     0.406,
+     0.559
+    ]
+   },
+   "mobile": {
+    "position": [
+     2.7577,
+     0.4888,
+     0.7471
+    ],
+    "target": [
+     1.2577,
+     0.1138,
+     -1.9717
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.427,
+     0.573,
+     0.647,
+     0.726
+    ]
+   }
+  },
+  "obj_badminton": {
+   "zone": "about",
+   "desktop": {
+    "position": [
+     2.4214,
+     1.9984,
+     0.3702
+    ],
+    "target": [
+     1.1614,
+     1.6834,
+     -1.9136
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.586,
+     0.758,
+     0.193,
+     0.78
+    ]
+   },
+   "mobile": {
+    "position": [
+     3.1277,
+     1.3846,
+     0.6408
+    ],
+    "target": [
+     1.6277,
+     1.0096,
+     -2.0779
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.367,
+     0.644,
+     0.534,
+     0.852
+    ]
+   }
+  },
+  "obj_camera": {
+   "zone": "about",
+   "desktop": {
+    "position": [
+     1.6927,
+     1.0501,
+     0.7167
+    ],
+    "target": [
+     0.4327,
+     0.7351,
+     -1.5671
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.6,
+     0.739,
+     0.423,
+     0.531
+    ]
+   },
+   "mobile": {
+    "position": [
+     2.3991,
+     0.4364,
+     0.9873
+    ],
+    "target": [
+     0.8991,
+     0.0614,
+     -1.7314
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.396,
+     0.619,
+     0.658,
+     0.713
+    ]
+   }
+  },
+  "obj_cv": {
+   "zone": "about",
+   "desktop": {
+    "position": [
+     2.1014,
+     0.9693,
+     0.6764
+    ],
+    "target": [
+     0.8414,
+     0.6543,
+     -1.6073
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.602,
+     0.724,
+     0.467,
+     0.499
+    ]
+   },
+   "mobile": {
+    "position": [
+     2.8077,
+     0.3555,
+     0.9471
+    ],
+    "target": [
+     1.3077,
+     -0.0195,
+     -1.7717
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.377,
+     0.617,
+     0.679,
+     0.691
+    ]
+   }
+  },
+  "obj_degree": {
+   "zone": "about",
+   "desktop": {
+    "position": [
+     1.7814,
+     1.8625,
+     0.3359
+    ],
+    "target": [
+     0.5214,
+     1.5475,
+     -1.9478
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.609,
+     0.726,
+     0.352,
+     0.612
+    ]
+   },
+   "mobile": {
+    "position": [
+     2.4877,
+     1.2488,
+     0.6066
+    ],
+    "target": [
+     0.9877,
+     0.8738,
+     -2.1122
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.407,
+     0.6,
+     0.619,
+     0.756
+    ]
+   }
+  },
+  "obj_laptop": {
+   "zone": "design",
+   "desktop": {
+    "position": [
+     -0.6095,
+     1.4912,
+     0.0055
+    ],
+    "target": [
+     -1.9295,
+     0.9812,
+     -1.5245
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.489,
+     0.84,
+     0.246,
+     0.646
+    ]
+   },
+   "mobile": {
+    "position": [
+     -0.0354,
+     1.0627,
+     0.0788
+    ],
+    "target": [
+     -1.5534,
+     0.4762,
+     -1.6807
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.164,
+     0.833,
+     0.599,
+     0.752
+    ]
+   }
+  },
+  "obj_notebook": {
+   "zone": "design",
+   "desktop": {
+    "position": [
+     0.0236,
+     1.3386,
+     0.0722
+    ],
+    "target": [
+     -1.2964,
+     0.8286,
+     -1.4578
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.535,
+     0.803,
+     0.412,
+     0.534
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.5977,
+     0.9101,
+     0.1455
+    ],
+    "target": [
+     -0.9203,
+     0.3236,
+     -1.614
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.259,
+     0.759,
+     0.672,
+     0.693
+    ]
+   }
+  },
+  "obj_pinboard": {
+   "zone": "design",
+   "desktop": {
+    "position": [
+     -0.1764,
+     2.2313,
+     -0.3869
+    ],
+    "target": [
+     -1.4964,
+     1.7213,
+     -1.9169
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.502,
+     0.913,
+     0.132,
+     0.77
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.3977,
+     1.8029,
+     -0.3136
+    ],
+    "target": [
+     -1.1203,
+     1.2164,
+     -2.0731
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.219,
+     0.884,
+     0.516,
+     0.857
+    ]
+   }
+  },
+  "obj_archive": {
+   "zone": "engineering",
+   "desktop": {
+    "position": [
+     -0.1464,
+     1.4778,
+     0.5206
+    ],
+    "target": [
+     -1.9989,
+     0.979,
+     0.5562
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.608,
+     0.729,
+     0.335,
+     0.618
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.7795,
+     1.1203,
+     0.1465
+    ],
+    "target": [
+     -1.853,
+     0.4115,
+     0.1972
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.42,
+     0.577,
+     0.625,
+     0.742
+    ]
+   }
+  },
+  "obj_monitors": {
+   "zone": "engineering",
+   "desktop": {
+    "position": [
+     0.184,
+     1.8519,
+     -0.2141
+    ],
+    "target": [
+     -2.039,
+     1.2535,
+     -0.1713
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.9,
+    "object_in_frame": [
+     0.402,
+     0.952,
+     0.225,
+     0.761
+    ]
+   },
+   "mobile": {
+    "position": [
+     1.1098,
+     1.4122,
+     -0.6594
+    ],
+    "target": [
+     -1.8737,
+     0.6089,
+     -0.602
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.85,
+    "object_in_frame": [
+     0.056,
+     0.93,
+     0.558,
+     0.823
+    ]
+   }
+  },
+  "obj_phone": {
+   "zone": "engineering",
+   "desktop": {
+    "position": [
+     -0.0059,
+     1.314,
+     -0.8394
+    ],
+    "target": [
+     -1.8584,
+     0.8153,
+     -0.8038
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.642,
+     0.69,
+     0.464,
+     0.503
+    ]
+   },
+   "mobile": {
+    "position": [
+     0.92,
+     0.9565,
+     -1.2135
+    ],
+    "target": [
+     -1.7125,
+     0.2478,
+     -1.1628
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.471,
+     0.528,
+     0.682,
+     0.688
+    ]
+   }
+  },
+  "obj_controller": {
+   "zone": "lab",
+   "desktop": {
+    "position": [
+     -0.803,
+     2.1956,
+     0.2327
+    ],
+    "target": [
+     -1.9265,
+     2.0119,
+     -0.2398
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.579,
+     0.763,
+     0.43,
+     0.519
+    ]
+   },
+   "mobile": {
+    "position": [
+     -0.1806,
+     1.8991,
+     0.2462
+    ],
+    "target": [
+     -1.7856,
+     1.6366,
+     -0.4288
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.369,
+     0.644,
+     0.669,
+     0.7
+    ]
+   }
+  },
+  "obj_printer": {
+   "zone": "lab",
+   "desktop": {
+    "position": [
+     -0.6504,
+     2.4909,
+     -0.1808
+    ],
+    "target": [
+     -1.9986,
+     2.2704,
+     -0.7478
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 38.74,
+    "distance_factor": 0.9,
+    "object_in_frame": [
+     0.463,
+     0.909,
+     0.097,
+     0.771
+    ]
+   },
+   "mobile": {
+    "position": [
+     -0.2346,
+     2.1551,
+     -0.3038
+    ],
+    "target": [
+     -1.8396,
+     1.8926,
+     -0.9788
+    ],
+    "lens_mm": 32.0,
+    "fov_v_deg": 58.716,
+    "distance_factor": 0.75,
+    "object_in_frame": [
+     0.147,
+     0.9,
+     0.525,
+     0.877
+    ]
+   }
+  }
+ },
+ "motion": {
+  "status": "proposed values, not yet tested in the browser",
+  "room_to_zone": {
+   "duration_ms": 1000,
+   "easing": "easeInOutCubic",
+   "fade_rest_to": 0.25,
+   "fade_delay_ms": 0,
+   "fade_ms": 400,
+   "hidden_groups_fade_ms": 300
+  },
+  "zone_to_room": {
+   "duration_ms": 800,
+   "easing": "easeInOutCubic",
+   "fade_back_ms": 400
+  },
+  "zone_to_zone": {
+   "duration_ms": 1000,
+   "easing": "easeInOutCubic"
+  },
+  "zone_to_object": {
+   "duration_ms": 600,
+   "easing": "easeOutCubic",
+   "panel_swap_ms": 250
+  },
+  "object_to_zone": {
+   "duration_ms": 500,
+   "easing": "easeInOutCubic"
+  },
+  "interpolation": "lerp the target; slerp the view direction; interpolate distance and field of view in log space",
+  "reduced_motion": {
+   "camera": "cut, no glide",
+   "crossfade_ms": 200
+  },
+  "intro_tour": {
+   "per_zone_ms": 1000,
+   "order": [
+    "engineering",
+    "design",
+    "lab",
+    "about"
+   ],
+   "camera_moves": false
+  }
+ }
+}

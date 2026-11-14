@@ -1,136 +1,101 @@
 @import "tailwindcss";
 
-/* Amiamie Regular */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-Regular.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+/* [tuu]¹⁰|1024 brand tokens. Values come from the design system
+   (tuu-portfolio-handoff/canvas/project/ds/tuu/tokens.json). Light is the
+   default; [data-theme="dark"] on <html> swaps every token at once, so
+   components only ever name the token, never the hex. */
+:root {
+  --paper: #fafaf7;
+  --surface: #f1f0ec;
+  --ink: #141413;
+  --muted: #5e5d59;
+  --line: #deddd7;
+  --stone: #b9b6ac;
+  --cobalt: #1f3fd1;
+  --cobalt-tint: #e4e8fb;
+  --on-cobalt: #ffffff;
+  color-scheme: light;
 }
 
-/* Amiamie Regular Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-Italic.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
+:root[data-theme="dark"] {
+  --paper: #111110;
+  --surface: #1c1c1a;
+  --ink: #f2f1ec;
+  --muted: #a3a29c;
+  --line: #2e2d2a;
+  --stone: #4a4944;
+  --cobalt: #8a9dff;
+  --cobalt-tint: #1c2340;
+  --on-cobalt: #0b0b0a;
+  color-scheme: dark;
 }
 
-/* Amiamie Light */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-Light.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-Light.ttf") format("truetype");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-/* Amiamie Light Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-LightItalic.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Amiamie Black */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-Black.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-Black.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Amiamie Black Italic */
-@font-face {
-  font-family: "Amiamie";
-  src: url("/fonts/otf/Amiamie-BlackItalic.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Amiamie-Round Variants (if needed separately) */
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/otf/Amiamie-RegularRound.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-RegularRound.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/otf/Amiamie-BlackRound.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-BlackRound.ttf") format("truetype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Amiamie-Round";
-  src: url("/fonts/otf/Amiamie-BlackItalicRound.otf") format("opentype"),
-    url("/fonts/ttf/Amiamie-BlackItalicRound.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
 @theme {
-  --color-primary: #e5e5e0;
-  --color-DarkLava: #393632;
-  --color-SageGray: #8b8b73;
-  --color-gold: #cfa355;
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-stone: var(--stone);
+  --color-cobalt: var(--cobalt);
+  --color-cobalt-tint: var(--cobalt-tint);
+  --color-on-cobalt: var(--on-cobalt);
 
-  /* Paper and ink are tinted toward the sage/gold anchor rather than
-     pure #fff / #000. Tailwind's own white and black are aliased to the
-     same values so existing bg-white / text-black pick up the warmth. */
-  --color-paper: oklch(99% 0.004 95);
-  --color-ink: oklch(22% 0.012 75);
-  --color-white: oklch(99% 0.004 95);
-  --color-black: oklch(22% 0.012 75);
+  /* The case-study pages were written against the previous palette. These
+     aliases map those names onto the new tokens so the pages follow the
+     brand (and the night theme) without rewriting every class. */
+  --color-white: var(--paper);
+  --color-black: var(--ink);
+  --color-DarkLava: var(--ink);
+  --color-SageGray: var(--muted);
+  --color-gold: var(--cobalt);
+  --color-primary: var(--surface);
+  --color-neutral-100: var(--surface);
+  --color-neutral-200: var(--line);
 
-  --font-amiamie: "Amiamie", sans-serif;
-  --font-amiamie-round: "Amiamie-Round", sans-serif;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  /* Old names, same mapping as above. */
+  --font-amiamie: var(--font-sans);
+  --font-amiamie-round: var(--font-mono);
 
-  --animate-marquee: marquee 40s infinite linear;
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* clip, not hidden: hidden makes the root a scroll container and breaks
-   position: sticky in descendants (the project titles rely on it). */
+   position: sticky in descendants. */
 html,
 body {
   overflow-x: clip;
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-amiamie);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
   /* Zero in portrait; keeps content clear of the notch in landscape. */
   padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
-/* Lenis drives scrolling; CSS smooth scroll would fight it. */
+::selection {
+  background: var(--cobalt-tint);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+/* Anchored sections land below the sticky header. */
+[id] {
+  scroll-margin-top: 88px;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -143,24 +108,72 @@ body {
   }
 }
 
-
-@utility clip-path {
-  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-@utility banner-text-responsive {
-  @apply text-[68px] sm:text-[118px] md:text-[126px] lg:text-[152px] leading-9 sm:leading-16 lg:leading-20;
+@utility shell {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 16px;
+  @media (width >= 40rem) {
+    padding-inline: 32px;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 48px;
+  }
 }
 
-@utility value-text-responsive {
-  @apply text-2xl md:text-[26px] lg:text-[32px];
+/* Tags floating over the 3D room ("Kind · N"). Positioned by drei's Html at
+   the object's tag anchor: the tag sits above the point, centred. */
+.room-tag {
+  pointer-events: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, calc(-100% - 8px));
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  box-shadow: 0 1px 0 rgb(20 20 19 / 0.06);
+  cursor: pointer;
+  transition: opacity 200ms ease, background-color 150ms ease, color 150ms ease, border-color 150ms ease;
 }
-
-@utility marquee-text-responsive {
-  @apply text-[28px] sm:text-[36px] lg:text-[42px];
+.room-tag.is-active {
+  background: var(--cobalt);
+  border-color: var(--cobalt);
+  color: var(--on-cobalt);
 }
-
-@utility contact-text-responsive {
-  @apply text-[42px] sm:text-[52px] md:text-[62px] lg:text-[100px];
+.room-tag.is-active .text-cobalt {
+  color: inherit;
 }
-
+.room-tag.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Small objects (phone, controller): a 44px touch target around the tag. */
+@media (pointer: coarse) {
+  .room-tag::after {
+    content: "";
+    position: absolute;
+    inset: -8px -4px;
+  }
+}
