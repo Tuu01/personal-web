@@ -152,11 +152,12 @@ function Lights({ night }) {
         castShadow
         position={[4.5, 7, 5.5]}
         intensity={night ? 0.12 : 1.7}
-        shadow-mapSize={[2048, 2048]}
+        shadow-mapSize={[4096, 4096]}
         shadow-bias={-0.0004}
         shadow-normalBias={0.02}
       >
-        <orthographicCamera attach="shadow-camera" args={[-4.5, 4.5, 4.5, -4.5, 0.5, 25]} />
+        {/* Fitted to the room (~4.4 m square) so each shadow texel stays small. */}
+        <orthographicCamera attach="shadow-camera" args={[-3.6, 3.6, 3.6, -3.6, 4, 16]} />
       </directionalLight>
       {/* Lamp on the desk and the glow of the monitors, night only. */}
       <pointLight
@@ -166,7 +167,7 @@ function Lights({ night }) {
         distance={5}
         decay={1.6}
         castShadow={night}
-        shadow-mapSize={[1024, 1024]}
+        shadow-mapSize={[2048, 2048]}
         shadow-bias={-0.002}
       />
       <pointLight
@@ -433,7 +434,7 @@ export default function RoomCanvas(props) {
     <Canvas
       frameloop="demand"
       dpr={[1, 2]}
-      shadows="soft"
+      shadows="percentage"
       camera={{ manual: true, position: positionOf(OVERVIEW_SHOT.pose), near: 1, far: 200 }}
       gl={{ antialias: true, alpha: true, toneMapping: THREE.NeutralToneMapping }}
       style={{ touchAction: "pan-y" }}
