@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { existsSync } from "node:fs";
 import camerasData from "../room/data/cameras.json";
 import {
   OBJECTS,
@@ -8,6 +9,7 @@ import {
   moveFor,
   opensDirectly,
   parentView,
+  posterFor,
   shotFor,
   tagText,
   viewFromHash,
@@ -101,5 +103,20 @@ describe("views", () => {
       }
     }
     expect(shotFor({ zone: null, object: null }, "desktop").pose.dist).toBe(80);
+  });
+});
+
+describe("stills", () => {
+  it("has a 1x / 2x image for the room and every zone, day and night", () => {
+    const files = [];
+    for (const theme of ["light", "dark"]) {
+      for (const view of [{ zone: null }, ...ZONE_ORDER.map((zone) => ({ zone }))]) {
+        for (const device of ["desktop", "mobile"]) {
+          const { src, srcSet } = posterFor(view, device, theme);
+          files.push(src, ...(srcSet || "").split(", ").filter(Boolean).map((e) => e.split(" ")[0]));
+        }
+      }
+    }
+    for (const f of new Set(files)) expect(existsSync(`public${f}`), f).toBe(true);
   });
 });

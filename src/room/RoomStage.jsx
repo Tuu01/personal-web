@@ -18,7 +18,9 @@ import {
   deviceFor,
   opensDirectly,
   parentView,
-  posterUrl,
+  posterFor,
+  shotFor,
+  zoneFrameWindow,
   tagText,
   viewFromHash,
 } from "./model";
@@ -26,6 +28,15 @@ import {
 const RoomCanvas = lazy(() => import("./RoomCanvas"));
 
 const TOUR_KEY = "tuu-room-intro-seen";
+// Zone stills are the camera's whole frame, which can stop short of the
+// canvas (and some have a solid background): fade their edges into the page.
+const EDGE = "linear-gradient(to right, transparent, #000 8%, #000 92%, transparent)";
+const STILL_EDGE = {
+  maskImage: `${EDGE}, ${EDGE.replace("to right", "to bottom")}`,
+  maskComposite: "intersect",
+  WebkitMaskImage: `${EDGE}, ${EDGE.replace("to right", "to bottom")}`,
+  WebkitMaskComposite: "source-in",
+};
 const SOON = new Set(["/work/badminton-clicker"]);
 
 function webglAvailable() {
@@ -414,12 +425,13 @@ export default function RoomStage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
-  /* ---- poster lined up with the live room's overview */
+  /* ---- still lined up with the live room: the overview, or the zone's frame */
   const poster = useMemo(() => {
-    const f = frustum(OVERVIEW_SHOT.win, box.canvas, box.free);
-    return rectOnCanvas(POSTER_WINDOW, f);
-  }, [box]);
-  const showPoster = !view.zone && (!live || !ready);
+    const shot = view.zone ? shotFor({ zone: view.zone, object: null }, device) : OVERVIEW_SHOT;
+    const still = view.zone ? zoneFrameWindow(view.zone, device) : POSTER_WINDOW;
+    return rectOnCanvas(still, frustum(shot.win, box.canvas, box.free));
+  }, [box, view.zone, device]);
+  const showPoster = !live || !ready;
 
   const hint = view.zone
     ? view.object
@@ -456,19 +468,20 @@ export default function RoomStage() {
     >
       {showPoster && (
         <img
-          src={posterUrl(theme)}
+          key={view.zone || "room"}
+          {...posterFor(view, device, theme)}
           alt=""
           aria-hidden="true"
           fetchPriority="high"
           className="pointer-events-none absolute max-w-none select-none"
-          style={{ left: poster.x, top: poster.y, width: poster.w, height: poster.h }}
+          style={{ left: poster.x, top: poster.y, width: poster.w, height: poster.h, ...(view.zone ? STILL_EDGE : null) }}
         />
       )}
       {live && (
         <div
           ref={fadeRef}
           className="absolute inset-0 transition-opacity duration-500"
-          style={{ opacity: ready || view.zone ? 1 : 0 }}
+          style={{ opacity: ready ? 1 : 0 }}
         >
           <CanvasBoundary onError={() => setFailed(true)}>
             <Suspense fallback={null}>
@@ -487,9 +500,6 @@ export default function RoomStage() {
             </Suspense>
           </CanvasBoundary>
         </div>
-      )}
-      {live && !ready && view.zone && (
-        <p className="absolute inset-0 flex items-center justify-center font-mono text-xs text-muted">Loading the room…</p>
       )}
     </div>
   );

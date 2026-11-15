@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Design handoff and asset packs (source files, 60–130 MB zips). The site
+# uses copies in public/room and src/room/data.
+assets/
+tuu-portfolio-handoff/

@@ -5,7 +5,19 @@ import camerasData from "./data/cameras.json";
 import { deg, frameWindow, metricWindow, poseFrom } from "./cameraMath";
 
 export const MODEL_URL = "/room/tuu-room.glb";
-export const posterUrl = (theme) => `/room/overview-${theme === "dark" ? "night" : "day"}.webp`;
+const tod = (theme) => (theme === "dark" ? "night" : "day");
+
+// Pre-rendered stills (Cycles): shown while the live room loads, and instead
+// of it without WebGL. Desktop files come 1x and @2x; phone frames are @2x only.
+export function posterFor(view, device, theme) {
+  if (!view.zone) {
+    const base = `/room/room-${tod(theme)}`;
+    return { src: `${base}.webp`, srcSet: `${base}.webp 1x, ${base}@2x.webp 2x` };
+  }
+  const base = `/room/zone-${view.zone}-${device}-${tod(theme)}`;
+  if (device === "mobile") return { src: `${base}@2x.webp` };
+  return { src: `${base}.webp`, srcSet: `${base}.webp 1x, ${base}@2x.webp 2x` };
+}
 
 /* ----------------------------------------------------------------- zones -- */
 
@@ -178,6 +190,11 @@ function presetShot(preset, device) {
     pose: poseFrom(preset.position, preset.target),
     win: frameWindow(deg(preset.fov_v_deg), ref.aspect, ref.free),
   };
+}
+
+/** The whole zone still (its full reference frame) as a window, to line it up with the live view. */
+export function zoneFrameWindow(slug, device) {
+  return frameWindow(deg(camerasData.zones[slug][device].fov_v_deg), REFERENCE[device].aspect);
 }
 
 /** Shot for a view: { zone, object } with either or both null. */
