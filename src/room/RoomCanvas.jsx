@@ -335,17 +335,31 @@ function OutlineOn({ mesh, color }) {
   return createPortal(<Edges threshold={25} lineWidth={2} color={color} />, mesh);
 }
 
-function Pin({ position, mark, label, active, onClick, onHover, onLeave, hidden }) {
+const _v = new THREE.Vector3();
+
+function Pin({ position, mark, label, active, named, onClick, onHover, onLeave, hidden }) {
+  const ref = useRef(null);
+  const camera = useThree((s) => s.camera);
+  // Near the left or right edge the name grows inwards, so it never runs off
+  // the canvas (the phone sits at the far right of the Engineering view).
+  useFrame(() => {
+    const el = ref.current;
+    if (!el) return;
+    const x = (_v.set(position[0], position[1], position[2]).project(camera).x + 1) / 2;
+    const side = x > 0.66 ? "end" : x < 0.34 ? "start" : "mid";
+    if (el.dataset.side !== side) el.dataset.side = side;
+  });
   return (
     <Html position={position} zIndexRange={[12, 10]} style={{ pointerEvents: "none" }}>
       <button
+        ref={ref}
         type="button"
         tabIndex={-1}
         aria-hidden="true"
         onClick={onClick}
         onPointerEnter={onHover}
         onPointerLeave={onLeave}
-        className={`room-pin ${mark ? "" : "is-dot"} ${active ? "is-active" : ""} ${hidden ? "is-hidden" : ""}`}
+        className={`room-pin ${mark ? "" : "is-dot"} ${active ? "is-active" : ""} ${named ? "is-named" : ""} ${hidden ? "is-hidden" : ""}`}
       >
         <span className="room-pin-mark">{mark}</span>
         <span className="room-pin-label">{label}</span>
@@ -459,6 +473,7 @@ function Room({ view, device, freeRect, hover, tourZone, theme, instant, onHover
               key={id}
               position={obj.tag_anchor}
               label={tagText(obj)}
+              named
               hidden={view.zone !== slug || (view.object && !sameLabel(view.object))}
               active={isActive}
               onHover={() => pinEnter({ type: "item", id })}

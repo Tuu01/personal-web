@@ -207,12 +207,40 @@ body {
   opacity: 0;
   pointer-events: none;
 }
-/* Touch: no hover, so names only appear when a pin is active (intro tour);
-   the zone tabs and the panel carry the names. 44px touch target. */
+/* Near an edge the pin keeps its mark on the anchor and the name grows
+   inwards (data-side is set per frame from the pin's screen position). */
+.room-pin[data-side="end"] {
+  transform: translate(calc(-100% + 10px), -50%);
+  flex-direction: row-reverse;
+}
+.room-pin[data-side="end"] .room-pin-label {
+  margin-left: 0;
+}
+.room-pin[data-side="end"].is-active .room-pin-label {
+  margin-right: 6px;
+}
+.room-pin[data-side="start"] {
+  transform: translate(-10px, -50%);
+}
+/* Touch: no hover. Zone pins in the room view stay numbers (the tabs carry
+   the names); inside a zone, where there is room, objects show their names. */
 @media (pointer: coarse) {
   .room-pin::after {
     content: "";
     position: absolute;
     inset: -10px -8px;
+  }
+  .room-pin.is-named .room-pin-label {
+    max-width: 220px;
+    opacity: 1;
+    margin-left: 6px;
+  }
+  .room-pin.is-named.is-dot {
+    height: 26px;
+    padding: 0 10px 0 9px;
+  }
+  .room-pin[data-side="end"].is-named .room-pin-label {
+    margin-left: 0;
+    margin-right: 6px;
   }
 }
