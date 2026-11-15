@@ -127,7 +127,15 @@ function applyNight(meshes, night) {
 
 /* ----------------------------------------------------------------- scene -- */
 
+// Tuned against the Cycles renders (public/room/room-*.webp) with palette D:
+// the live room and the still are pixel-aligned, so matching spots compare.
+const LIGHT = {
+  day: { env: 0.28, hemi: 0.42, sky: "#ffffff", ground: "#b9b6ac", sun: 1.05, sunColor: "#ffffff", sunPos: [7, 4, 3], lamp: 0, glow: 0 },
+  night: { env: 0.09, hemi: 0.26, sky: "#4a5272", ground: "#0b0b0a", sun: 0.14, sunColor: "#8a9dff", sunPos: [7, 4, 3], lamp: 0.8, glow: 0.6 },
+};
+
 function Lights({ night }) {
+  const L = night ? LIGHT.night : LIGHT.day;
   const gl = useThree((s) => s.gl);
   const scene = useThree((s) => s.scene);
   const invalidate = useThree((s) => s.invalidate);
@@ -145,19 +153,20 @@ function Lights({ night }) {
   }, [gl, scene, invalidate]);
 
   useEffect(() => {
-    scene.environmentIntensity = night ? 0.1 : 0.5;
+    scene.environmentIntensity = L.env;
     invalidate();
-  }, [night, scene, invalidate]);
+  }, [L.env, scene, invalidate]);
 
   return (
     <>
       <hemisphereLight
-        args={[night ? "#4a5380" : "#ffffff", night ? "#0b0b0a" : "#b9b6ac", night ? 0.35 : 1.05]}
+        args={[L.sky, L.ground, L.hemi]}
       />
       <directionalLight
         castShadow
-        position={[4.5, 7, 5.5]}
-        intensity={night ? 0.12 : 1.7}
+        position={L.sunPos}
+        color={L.sunColor}
+        intensity={L.sun}
         shadow-mapSize={[4096, 4096]}
         shadow-bias={-0.0004}
         shadow-normalBias={0.02}
@@ -169,7 +178,7 @@ function Lights({ night }) {
       <pointLight
         position={[0, 1.12, -1.85]}
         color="#ffcf9e"
-        intensity={night ? 3.2 : 0}
+        intensity={L.lamp}
         distance={5}
         decay={1.6}
         castShadow={night}
@@ -179,7 +188,7 @@ function Lights({ night }) {
       <pointLight
         position={[-1.55, 1.3, -0.6]}
         color="#d6defc"
-        intensity={night ? 1.1 : 0}
+        intensity={L.glow}
         distance={2.6}
         decay={1.6}
       />
