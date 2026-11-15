@@ -36,6 +36,7 @@ const BookingWebsite = () => (
     area="Full-Stack · UX"
     title="Nail Fairy: Online Booking Website"
     sponsor="Live client project"
+    live="https://www.nailfairy.co.uk/"
     tags={["React", "Node / Express", "MongoDB", "UX"]}
     lead="A calm, fast booking flow that turns phone-and-message bookings into self-serve, with strict slot validation and a mobile-first sequence."
     heroImage="/assets/projects/NFBooking/N2.webp"
@@ -48,17 +49,6 @@ const BookingWebsite = () => (
     }}
   >
     <PartSwitch parts={PARTS} />
-
-    <Reveal>
-      <a
-        href="https://nailfairy.co.uk/"
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center whitespace-nowrap rounded-full bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-black/80 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
-      >
-        View live site
-      </a>
-    </Reveal>
 
     <Chapter
       index="01"

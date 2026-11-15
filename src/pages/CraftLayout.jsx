@@ -6,7 +6,7 @@ import { Reveal } from "../components/CaseStudy";
 const EASE = [0.22, 1, 0.36, 1];
 
 // Case-study frame: breadcrumb, title, lead and facts, hero image, chapters.
-const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, area, tags = [], lead, children }) => {
+const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, area, tags = [], lead, live, children }) => {
   const reduceMotion = useReducedMotion();
   const enter = (y, delay = 0) =>
     reduceMotion
@@ -49,6 +49,18 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, are
           <div className="md:pb-1">
             {lead && <p className="max-w-[44ch] text-lg leading-[1.55] text-ink md:text-xl">{lead}</p>}
             {sponsor && <p className="mt-4 text-sm text-muted">{sponsor}</p>}
+            {live && (
+              <a
+                href={live}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-[15px] font-semibold text-paper transition-colors hover:bg-cobalt hover:text-on-cobalt"
+              >
+                Visit the live site
+                <span className="font-mono text-xs font-medium opacity-70">{new URL(live).hostname.replace(/^www\./, "")}</span>
+                <span aria-hidden="true">↗</span>
+              </a>
+            )}
             <dl className="mt-6 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
               {[
                 ["Role", meta.role],
