@@ -104,16 +104,16 @@
     0.7862,
     0.3832
    ],
-   "label": "Badminton",
+   "label": "About me",
    "zone": "about",
    "projects": [
     {
-     "title": "Badminton",
-     "href": "/about#badminton"
+     "title": "About me",
+     "href": "/about"
     }
    ],
    "count": 1,
-   "href": "/about#badminton",
+   "href": "/about",
    "click": "open href"
   },
   {
@@ -138,16 +138,16 @@
     0.6941,
     0.5549
    ],
-   "label": "Photography",
+   "label": "About me",
    "zone": "about",
    "projects": [
     {
-     "title": "Photography",
-     "href": "/about#photography"
+     "title": "About me",
+     "href": "/about"
     }
    ],
    "count": 1,
-   "href": "/about#photography",
+   "href": "/about",
    "click": "open href"
   },
   {
@@ -206,16 +206,16 @@
     0.7343,
     0.4045
    ],
-   "label": "Education",
+   "label": "About me",
    "zone": "about",
    "projects": [
     {
-     "title": "Education",
-     "href": "/about#education"
+     "title": "About me",
+     "href": "/about"
     }
    ],
    "count": 1,
-   "href": "/about#education",
+   "href": "/about",
    "click": "open href"
   },
   {

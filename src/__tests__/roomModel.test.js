@@ -57,13 +57,13 @@ describe("room data", () => {
     }
   });
 
-  it("lists About as two rows, but tags and opens each object on its own", () => {
+  it("treats the frame, certificate, rackets and camera as one About me object", () => {
     expect(ZONES.about.kinds.map((k) => k.label)).toEqual(["About me", "CV and contact"]);
-    expect(ZONES.about.tagObjectIds.map((id) => OBJECTS[id].label).sort()).toEqual(
-      ["About me", "Badminton", "CV and contact", "Education", "Photography"],
-    );
-    expect(OBJECTS.obj_camera.href).toBe("/about#photography");
-    expect(opensDirectly(OBJECTS.obj_degree)).toBe(true);
+    expect(ZONES.about.tagObjectIds.map((id) => OBJECTS[id].label)).toEqual(["About me", "CV and contact"]);
+    for (const id of ["obj_about", "obj_degree", "obj_badminton", "obj_camera"]) {
+      expect(OBJECTS[id].href, id).toBe("/about");
+      expect(opensDirectly(OBJECTS[id]), id).toBe(true);
+    }
   });
 
   it("shows the count on tags only when there is more than one project", () => {

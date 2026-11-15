@@ -72,8 +72,6 @@ const ZONE_COPY = {
       "CV and contact": "CV sheet · Download the CV or get in touch",
     },
     order: ["About me", "CV and contact"],
-    // One panel row for the whole page; each object still opens its own section.
-    groups: { "About me": ["About me", "Education", "Badminton", "Photography"] },
   },
 };
 
@@ -92,8 +90,7 @@ export const ZONES = Object.fromEntries(
     // One row per kind of work; About has two objects per kind (frame and
     // certificate, rackets and camera), the first one stands for the row.
     const kinds = copy.order.map((label) => {
-      const labels = copy.groups?.[label] || [label];
-      const members = objects.filter((o) => labels.includes(o.label));
+      const members = objects.filter((o) => o.label === label);
       return {
         label,
         description: copy.items[label],

@@ -307,14 +307,13 @@ function outlined(meshes, view, hover, tourZone) {
     return o ? `${o.zone}/${o.label}` : null;
   };
   const kinds = new Set();
-  const ids = new Set(hover?.type === "item" ? hover.ids || [] : []);
-  if (hover?.type === "item" && !hover.ids) kinds.add(kindOf(hover.id));
+  if (hover?.type === "item") kinds.add(kindOf(hover.id));
   if (view.object) kinds.add(kindOf(view.object));
   for (const m of meshes) {
     const info = m.userData.room;
     if (!m.visible) continue;
     if (zone && !view.zone && info.zone === zone) out.add(m);
-    if (info.item && (ids.has(info.item) || kinds.has(kindOf(info.item)))) out.add(m);
+    if (info.item && kinds.has(kindOf(info.item))) out.add(m);
     if (hover?.type === "extra" && info.extra === hover.id) out.add(m);
   }
   return [...out];
@@ -418,7 +417,7 @@ function Room({ view, device, freeRect, hover, tourZone, theme, instant, onHover
           const obj = OBJECTS[id];
           const sameLabel = (other) => OBJECTS[other]?.label === obj.label && OBJECTS[other]?.zone === slug;
           const isActive =
-            (hover?.type === "item" && (hover.ids ? hover.ids.includes(id) : sameLabel(hover.id))) ||
+            (hover?.type === "item" && sameLabel(hover.id)) ||
             sameLabel(view.object);
           return (
             <Tag
