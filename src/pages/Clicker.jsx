@@ -5,6 +5,7 @@ import { useReducedMotion } from "framer-motion";
 import CraftLayout from "./CraftLayout";
 import { Chapter, Prose, RelatedProject } from "../components/CaseStudy";
 import { FACES } from "./clicker/faces";
+import { useTheme } from "../lib/theme";
 
 const ClickerViewer = lazy(() => import("./clicker/ClickerViewer"));
 
@@ -25,10 +26,14 @@ const measured = [
 
 const Viewer = () => {
   const reduced = useReducedMotion();
+  const theme = useTheme();
   const [face, setFace] = useState("happy");
   return (
     <figure className="flex flex-col gap-3">
-      <div className="relative h-[420px] w-full overflow-hidden rounded-xl border border-line bg-surface sm:h-[520px]">
+      <div
+        className="relative h-[420px] w-full overflow-hidden rounded-xl border border-line sm:h-[520px]"
+        style={{ background: "radial-gradient(ellipse 60% 70% at 50% 45%, var(--paper), var(--surface))" }}
+      >
         <Suspense
           fallback={
             <p className="absolute inset-0 flex items-center justify-center font-mono text-xs text-muted">
@@ -36,7 +41,7 @@ const Viewer = () => {
             </p>
           }
         >
-          <ClickerViewer face={face} reduced={!!reduced} />
+          <ClickerViewer face={face} reduced={!!reduced} dark={theme === "dark"} />
         </Suspense>
       </div>
       <div className="flex flex-wrap items-center justify-center gap-2" role="group" aria-label="Face">
@@ -55,7 +60,7 @@ const Viewer = () => {
           ))}
       </div>
       <figcaption className="font-mono text-xs leading-relaxed text-muted">
-        Interactive 3D model from the CAD files, not a photo. Drag to turn it; swap the face below. Photos of the
+        Interactive 3D model from the CAD files, not a photo. Drag to turn it; swap the face above. Photos of the
         printed clicker are coming soon.
       </figcaption>
     </figure>
