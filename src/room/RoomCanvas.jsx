@@ -34,6 +34,12 @@ function indexScene(scene) {
   const meshes = [];
   scene.traverse((o) => {
     if (!o.isMesh) return;
+    // useGLTF caches the scene across visits, still faded from the last view:
+    // index once, or the faded opacity would be recorded as the base.
+    if (o.userData.room) {
+      meshes.push(o);
+      return;
+    }
     o.material = o.material.clone();
     let zone = null;
     let item = null;

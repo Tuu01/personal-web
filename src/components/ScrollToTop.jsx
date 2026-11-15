@@ -30,7 +30,9 @@ export default function ScrollToTop({ children }) {
     if (!hash) return;
 
     // The page transition mounts the new page only after the old one has
-    // faded out, so its #section may not exist yet: keep looking briefly.
+    // faded out (App.jsx, 180 ms). Until then a #section could match the old
+    // page (case studies and the room both use #engineering / #design), so on
+    // a new page wait for the swap, then keep looking briefly.
     let tries = 0;
     let timer;
     const go = () => {
@@ -38,7 +40,8 @@ export default function ScrollToTop({ children }) {
       if (el) el.scrollIntoView({ behavior: samePage ? "smooth" : "auto", block: "start" });
       else if (tries++ < 20) timer = setTimeout(go, 50);
     };
-    go();
+    if (samePage) go();
+    else timer = setTimeout(go, 250);
     return () => clearTimeout(timer);
   }, [pathname, hash]);
 
