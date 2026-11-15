@@ -124,12 +124,12 @@ export const tagText = (obj) => (obj.count > 1 ? `${obj.label} · ${obj.count}` 
 /** True when clicking the object should open a page rather than list projects. */
 export const opensDirectly = (obj) => obj.click === "open href" && !!obj.href;
 
-// Where the zone's tag sits in the room view: on the object that most clearly
-// reads as that zone.
+// Where the zone's pin sits in the room view: on an object that reads as that
+// zone, spread out so the pins never stack (the PC opens Engineering).
 const ZONE_TAG_ANCHOR = {
-  engineering: OBJECTS.obj_monitors.tag_anchor,
+  engineering: objectsData.triggers.find((t) => t.id === "trig_pc").tag_anchor,
   design: OBJECTS.obj_pinboard.tag_anchor,
-  lab: objectsData.triggers.find((t) => t.id === "trig_lab").tag_anchor,
+  lab: OBJECTS.obj_printer.tag_anchor,
   about: objectsData.triggers.find((t) => t.id === "trig_sidetable").tag_anchor,
 };
 export const zoneTagAnchor = (slug) => ZONE_TAG_ANCHOR[slug];

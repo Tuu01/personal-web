@@ -142,16 +142,17 @@ function KindRow({ zoneSlug, kind, onSelectObject, onHover }) {
   );
 }
 
-function ZoneList({ onSelectZone, onHover, compact = false }) {
+function ZoneList({ onSelectZone, onHover, hover, tourZone, compact = false }) {
   return (
     <nav aria-label="Room zones" className="flex flex-col border-b border-line">
       {ZONE_ORDER.map((slug) => {
         const z = ZONES[slug];
+        const lit = (hover?.type === "zone" && hover.id === slug) || tourZone === slug;
         return (
           <button
             key={slug}
             type="button"
-            className={`${rowClass} ${compact ? "py-3" : ""}`}
+            className={`${rowClass} ${compact ? "py-3" : ""} ${lit ? "text-cobalt" : ""}`}
             onClick={() => onSelectZone(slug)}
             onMouseEnter={() => onHover({ type: "zone", id: slug })}
             onMouseLeave={() => onHover(null)}
@@ -565,7 +566,7 @@ export default function RoomStage() {
               ) : (
                 <div className="flex flex-col gap-7 [@media(max-height:820px)]:gap-5">
                   <Intro />
-                  <ZoneList onSelectZone={goZone} onHover={setHover} />
+                  <ZoneList onSelectZone={goZone} onHover={setHover} hover={hover} tourZone={tourZone} />
                   <Ctas />
                 </div>
               )}

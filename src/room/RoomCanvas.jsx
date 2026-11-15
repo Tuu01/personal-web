@@ -75,8 +75,13 @@ function indexScene(scene) {
   return meshes;
 }
 
-function targetOpacity(info, view) {
-  if (!view.zone || info.structural || info.zone === view.zone) return 1;
+// In the room view, the zone under the pointer (or in the intro tour) stays
+// solid and the rest steps back, like the handoff's hover images.
+const HOVER_REST = 0.45;
+
+function targetOpacity(info, view, spot) {
+  if (!view.zone) return !spot || info.structural || info.zone === spot ? 1 : HOVER_REST;
+  if (info.structural || info.zone === view.zone) return 1;
   if (ZONES[view.zone].fadesOut.includes(info.top)) return 0;
   return FADE_TO;
 }
@@ -266,25 +271,29 @@ function CameraRig({ view, device, freeRect, instant }) {
 
 // Fades the rest of the room when a zone is open, and hides the chair where
 // it would block the view.
-function Fader({ meshes, view, instant }) {
+function Fader({ meshes, view, spot, instant }) {
   const invalidate = useThree((s) => s.invalidate);
   const viewRef = useRef(view);
+  const spotRef = useRef(spot);
 
   useEffect(() => {
     viewRef.current = view;
-    if (instant) for (const m of meshes) setOpacity(m, targetOpacity(m.userData.room, view));
+    spotRef.current = spot;
+    if (instant) for (const m of meshes) setOpacity(m, targetOpacity(m.userData.room, view, spot));
     invalidate();
-  }, [view, meshes, instant, invalidate]);
+  }, [view, spot, meshes, instant, invalidate]);
 
   useFrame((_, dt) => {
     const v = viewRef.current;
     // Fading in back to the room uses fade_back_ms; both are 400 ms today.
-    const ms = v.zone ? MOTION.room_to_zone.fade_ms : MOTION.zone_to_room.fade_back_ms;
+    const sp = spotRef.current;
+    // Hover fades are quicker than the zone fade so the room keeps up with the pointer.
+    const ms = v.zone ? MOTION.room_to_zone.fade_ms : sp ? 200 : MOTION.zone_to_room.fade_back_ms;
     const step = Math.min(dt, 0.05) / (ms / 1000);
     let moving = false;
     for (const m of meshes) {
       const info = m.userData.room;
-      const target = targetOpacity(info, v);
+      const target = targetOpacity(info, v, sp);
       if (info.op === target) continue;
       // The chair fades faster than the rest (hidden_groups_fade_ms).
       const k = target === 0 ? (ms / MOTION.room_to_zone.hidden_groups_fade_ms) * step : step;
@@ -326,7 +335,7 @@ function OutlineOn({ mesh, color }) {
   return createPortal(<Edges threshold={25} lineWidth={2} color={color} />, mesh);
 }
 
-function Tag({ position, active, onClick, onHover, children, hidden }) {
+function Pin({ position, mark, label, active, onClick, onHover, onLeave, hidden }) {
   return (
     <Html position={position} zIndexRange={[12, 10]} style={{ pointerEvents: "none" }}>
       <button
@@ -335,9 +344,11 @@ function Tag({ position, active, onClick, onHover, children, hidden }) {
         aria-hidden="true"
         onClick={onClick}
         onPointerEnter={onHover}
-        className={`room-tag ${active ? "is-active" : ""} ${hidden ? "is-hidden" : ""}`}
+        onPointerLeave={onLeave}
+        className={`room-pin ${mark ? "" : "is-dot"} ${active ? "is-active" : ""} ${hidden ? "is-hidden" : ""}`}
       >
-        {children}
+        <span className="room-pin-mark">{mark}</span>
+        <span className="room-pin-label">{label}</span>
       </button>
     </Html>
   );
@@ -372,14 +383,33 @@ function Room({ view, device, freeRect, hover, tourZone, theme, instant, onHover
     return null;
   };
 
+  // Pins live in the same container R3F listens on, so the room behind a pin
+  // also sees the pointer (and sends a bare "leave" as it moves onto the pin).
+  // While the pointer is on a pin, the pin owns hover and clicks.
+  const overPin = useRef(false);
+  // A pin hidden by a view change may never send its pointerleave.
+  useEffect(() => {
+    overPin.current = false;
+  }, [view.zone, view.object]);
+  const pinEnter = (h) => {
+    overPin.current = true;
+    onHover(h);
+  };
+  const pinLeave = () => {
+    overPin.current = false;
+    onHover(null);
+  };
   const handlers = {
     onPointerMove: (e) => {
       e.stopPropagation();
-      onHover(resolve(e));
+      if (!overPin.current) onHover(resolve(e));
     },
-    onPointerLeave: () => onHover(null),
+    onPointerLeave: () => {
+      if (!overPin.current) onHover(null);
+    },
     onClick: (e) => {
       e.stopPropagation();
+      if (overPin.current) return;
       const target = resolve(e);
       if (target) onSelect(target);
     },
@@ -392,25 +422,30 @@ function Room({ view, device, freeRect, hover, tourZone, theme, instant, onHover
     <>
       <Lights night={night} />
       <CameraRig view={view} device={device} freeRect={freeRect} instant={instant} />
-      <Fader meshes={meshes} view={view} instant={instant} />
+      <Fader
+        meshes={meshes}
+        view={view}
+        spot={view.zone ? null : hover?.type === "zone" ? hover.id : tourZone || null}
+        instant={instant}
+      />
       <primitive object={scene} {...handlers} />
       {lines.map((m) => (
         <OutlineOn key={m.uuid} mesh={m} color={cobalt} />
       ))}
 
-      {/* Zone tags in the room view, object tags inside a zone. */}
+      {/* Zone pins in the room view, object pins inside a zone. */}
       {ZONE_ORDER.map((slug) => (
-        <Tag
+        <Pin
           key={slug}
           position={zoneTagAnchor(slug)}
+          mark={ZONES[slug].index}
+          label={ZONES[slug].label}
           hidden={!!view.zone}
           active={(hover?.type === "zone" && hover.id === slug) || tourZone === slug}
-          onHover={() => onHover({ type: "zone", id: slug })}
+          onHover={() => pinEnter({ type: "zone", id: slug })}
+          onLeave={pinLeave}
           onClick={() => onSelect({ type: "zone", id: slug })}
-        >
-          <span className="text-cobalt">{ZONES[slug].index}</span>
-          {ZONES[slug].label}
-        </Tag>
+        />
       ))}
       {ZONE_ORDER.flatMap((slug) =>
         ZONES[slug].tagObjectIds.map((id) => {
@@ -420,27 +455,26 @@ function Room({ view, device, freeRect, hover, tourZone, theme, instant, onHover
             (hover?.type === "item" && sameLabel(hover.id)) ||
             sameLabel(view.object);
           return (
-            <Tag
+            <Pin
               key={id}
               position={obj.tag_anchor}
+              label={tagText(obj)}
               hidden={view.zone !== slug || (view.object && !sameLabel(view.object))}
               active={isActive}
-              onHover={() => onHover({ type: "item", id })}
+              onHover={() => pinEnter({ type: "item", id })}
+              onLeave={pinLeave}
               onClick={() => onSelect({ type: "item", id })}
-            >
-              {tagText(obj)}
-            </Tag>
+            />
           );
         }),
       )}
-      <Tag
+      <Pin
         position={EXTRAS.obj_lamp.tag_anchor}
+        label={night ? "Switch to day" : "Switch to night"}
         hidden={!(hover?.type === "extra" && hover.id === "obj_lamp")}
         active
         onClick={() => onSelect({ type: "extra", id: "obj_lamp" })}
-      >
-        {night ? "Switch to day" : "Switch to night"}
-      </Tag>
+      />
     </>
   );
 }

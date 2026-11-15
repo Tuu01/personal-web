@@ -3,11 +3,23 @@ import PageShell from "../components/PageShell";
 import RoomStage from "../room/RoomStage";
 import { Arrow } from "../brand/Arrow";
 
-// Figures confirmed in the handoff. 332+ has no "as of" date yet, so none is shown.
-const stats = [
-  { value: "332+", label: "appointments booked" },
-  { value: "99.8%", label: "proper doubles matches" },
-  { value: "<0.5ms", label: "to score 210 options" },
+// Proof row. 332+ has no "as of" date yet, so none is shown.
+const proof = [
+  {
+    title: "332+ bookings",
+    text: "Booking platform I designed and built for The Nail Fairy, a family nail business. Live at 2 locations.",
+    link: { label: "The Nail Fairy case study", to: "/work/nail-fairy" },
+  },
+  {
+    title: "2 live client sites",
+    text: "Paid work: The Nail Fairy, and Penny Hill Nail & Spa, built on the same platform.",
+    link: { label: "See Penny Hill", to: "/work/nail-fairy#penny-hill" },
+  },
+  {
+    title: "Since 2019",
+    text: "Product design and digital operations for a real small business, from paper booking to online.",
+    link: { label: "About me", to: "/about" },
+  },
 ];
 
 const selected = [
@@ -101,15 +113,18 @@ const Home = () => (
   <PageShell>
     <RoomStage />
 
-    <section aria-label="In numbers" className="shell py-10 md:py-14">
-      <dl className="grid grid-cols-1 gap-x-8 sm:grid-cols-3">
-        {stats.map((s) => (
-          <div key={s.label} className="flex flex-col-reverse gap-1 border-t border-line py-4">
-            <dt className="eyebrow">{s.label}</dt>
-            <dd className="text-4xl font-semibold leading-none tracking-[-0.03em]">{s.value}</dd>
-          </div>
+    <section aria-label="Proof" className="shell py-10 md:py-14">
+      <ul className="grid gap-10 sm:grid-cols-3 sm:gap-8">
+        {proof.map((p, i) => (
+          <li key={p.title} className={`flex flex-col gap-2 border-t-2 pt-5 ${i === 0 ? "border-cobalt" : "border-ink"}`}>
+            <h2 className="text-[32px] font-semibold leading-tight tracking-[-0.02em]">{p.title}</h2>
+            <p className="leading-relaxed text-muted">{p.text}</p>
+            <Link to={p.link.to} className="mt-1 w-fit font-mono text-xs font-medium text-cobalt hover:text-ink">
+              {p.link.label} &rarr;
+            </Link>
+          </li>
         ))}
-      </dl>
+      </ul>
     </section>
 
     <section id="work" aria-labelledby="work-title" className="shell py-10 md:py-16">
