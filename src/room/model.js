@@ -68,11 +68,12 @@ const ZONE_COPY = {
     short: "About",
     blurb: "The corner by the window: background and education, life outside work, and the CV.",
     items: {
-      "About me": "Photo frame and certificate · Background and education",
-      "Outside work": "Rackets and camera · Badminton and photography",
+      "About me": "Frame, certificate, rackets and camera · Background, education, badminton and photography",
       "CV and contact": "CV sheet · Download the CV or get in touch",
     },
-    order: ["About me", "Outside work", "CV and contact"],
+    order: ["About me", "CV and contact"],
+    // One panel row for the whole page; each object still opens its own section.
+    groups: { "About me": ["About me", "Education", "Badminton", "Photography"] },
   },
 };
 
@@ -91,7 +92,8 @@ export const ZONES = Object.fromEntries(
     // One row per kind of work; About has two objects per kind (frame and
     // certificate, rackets and camera), the first one stands for the row.
     const kinds = copy.order.map((label) => {
-      const members = objects.filter((o) => o.label === label);
+      const labels = copy.groups?.[label] || [label];
+      const members = objects.filter((o) => labels.includes(o.label));
       return {
         label,
         description: copy.items[label],
@@ -112,6 +114,8 @@ export const ZONES = Object.fromEntries(
         fadesOut: z.fades_out,
         kinds,
         objectIds: objects.map((o) => o.id),
+        // One tag per distinct object label (the first object with it).
+        tagObjectIds: objects.filter((o, i) => objects.findIndex((x) => x.label === o.label) === i).map((o) => o.id),
       },
     ];
   }),

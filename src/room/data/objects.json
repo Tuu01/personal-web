@@ -76,13 +76,9 @@
     {
      "title": "About me",
      "href": "/about"
-    },
-    {
-     "title": "Education",
-     "href": "/about#education"
     }
    ],
-   "count": 2,
+   "count": 1,
    "href": "/about",
    "click": "open href"
   },
@@ -108,19 +104,15 @@
     0.7862,
     0.3832
    ],
-   "label": "Outside work",
+   "label": "Badminton",
    "zone": "about",
    "projects": [
     {
      "title": "Badminton",
      "href": "/about#badminton"
-    },
-    {
-     "title": "Photography",
-     "href": "/about#photography"
     }
    ],
-   "count": 2,
+   "count": 1,
    "href": "/about#badminton",
    "click": "open href"
   },
@@ -146,19 +138,15 @@
     0.6941,
     0.5549
    ],
-   "label": "Outside work",
+   "label": "Photography",
    "zone": "about",
    "projects": [
-    {
-     "title": "Badminton",
-     "href": "/about#badminton"
-    },
     {
      "title": "Photography",
      "href": "/about#photography"
     }
    ],
-   "count": 2,
+   "count": 1,
    "href": "/about#photography",
    "click": "open href"
   },
@@ -218,19 +206,15 @@
     0.7343,
     0.4045
    ],
-   "label": "About me",
+   "label": "Education",
    "zone": "about",
    "projects": [
-    {
-     "title": "About me",
-     "href": "/about"
-    },
     {
      "title": "Education",
      "href": "/about#education"
     }
    ],
-   "count": 2,
+   "count": 1,
    "href": "/about#education",
    "click": "open href"
   },

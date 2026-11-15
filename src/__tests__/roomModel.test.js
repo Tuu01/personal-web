@@ -57,6 +57,15 @@ describe("room data", () => {
     }
   });
 
+  it("lists About as two rows, but tags and opens each object on its own", () => {
+    expect(ZONES.about.kinds.map((k) => k.label)).toEqual(["About me", "CV and contact"]);
+    expect(ZONES.about.tagObjectIds.map((id) => OBJECTS[id].label).sort()).toEqual(
+      ["About me", "Badminton", "CV and contact", "Education", "Photography"],
+    );
+    expect(OBJECTS.obj_camera.href).toBe("/about#photography");
+    expect(opensDirectly(OBJECTS.obj_degree)).toBe(true);
+  });
+
   it("shows the count on tags only when there is more than one project", () => {
     expect(tagText(OBJECTS.obj_pinboard)).toBe("Brands & visual · 2");
     expect(tagText(OBJECTS.obj_phone)).toBe("Mobile apps");

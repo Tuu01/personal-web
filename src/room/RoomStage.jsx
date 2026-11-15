@@ -123,9 +123,9 @@ function KindRow({ zoneSlug, kind, onSelectObject, onHover }) {
     </>
   );
   const hoverProps = {
-    onMouseEnter: () => onHover({ type: "item", id: kind.objectId }),
+    onMouseEnter: () => onHover({ type: "item", id: kind.objectId, ids: kind.objectIds }),
     onMouseLeave: () => onHover(null),
-    onFocus: () => onHover({ type: "item", id: kind.objectId }),
+    onFocus: () => onHover({ type: "item", id: kind.objectId, ids: kind.objectIds }),
     onBlur: () => onHover(null),
   };
   if (opensDirectly(obj)) {
