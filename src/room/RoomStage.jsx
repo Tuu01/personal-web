@@ -258,7 +258,9 @@ export default function RoomStage() {
   const desktop = useDesktop();
 
   const zoneView = viewFromHash(location.hash);
-  const [objectId, setObjectId] = useState(null);
+  // The open object lives in the history entry, so coming back from a project
+  // page reopens the same list.
+  const objectId = location.state?.object ?? null;
   const view = useMemo(
     () => ({
       zone: zoneView.zone,
@@ -311,22 +313,17 @@ export default function RoomStage() {
   const device = deviceFor(box.free);
 
   /* ---- navigation */
-  const goZone = useCallback(
-    (slug) => {
-      setObjectId(null);
-      navigate({ hash: slug }, { preventScrollReset: true });
-    },
-    [navigate],
+  const setObjectId = useCallback(
+    (id) => navigate({ hash: location.hash }, { replace: true, preventScrollReset: true, state: id ? { object: id } : null }),
+    [navigate, location.hash],
   );
-  const goRoom = useCallback(() => {
-    setObjectId(null);
-    navigate({ hash: "" }, { preventScrollReset: true });
-  }, [navigate]);
+  const goZone = useCallback((slug) => navigate({ hash: slug }, { preventScrollReset: true }), [navigate]);
+  const goRoom = useCallback(() => navigate({ hash: "" }, { preventScrollReset: true }), [navigate]);
   const goBack = useCallback(() => {
     const parent = parentView(view);
     if (parent.zone) setObjectId(null);
     else goRoom();
-  }, [view, goRoom]);
+  }, [view, goRoom, setObjectId]);
 
   const selectObject = useCallback(
     (id) => {
@@ -335,7 +332,7 @@ export default function RoomStage() {
       if (opensDirectly(obj)) navigate(obj.href);
       else setObjectId(id);
     },
-    [navigate],
+    [navigate, setObjectId],
   );
 
   const onSelect = useCallback(
@@ -346,9 +343,6 @@ export default function RoomStage() {
     },
     [goZone, selectObject],
   );
-
-  // A different zone from the URL clears the object.
-  useEffect(() => setObjectId(null), [zoneView.zone]);
 
   useEffect(() => {
     if (!view.zone) return;

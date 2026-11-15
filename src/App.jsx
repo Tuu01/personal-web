@@ -1,4 +1,5 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { useMemo } from "react";
+import { Navigate, Route, Routes, useLocation, useNavigationType } from "react-router-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
@@ -13,6 +14,7 @@ import Game2D from "./pages/Game2D";
 import Clicker from "./pages/Clicker";
 import { NotFound } from "./pages/Placeholder";
 import { LEGACY_REDIRECTS } from "./routes";
+import { record } from "./lib/trail";
 
 export const AppRoutes = ({ location }) => (
   <Routes location={location}>
@@ -35,6 +37,10 @@ export const AppRoutes = ({ location }) => (
 
 const App = () => {
   const location = useLocation();
+  const navType = useNavigationType();
+  // Before the page renders, so its back link knows where it came from.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useMemo(() => record(location, navType), [location.key]);
   const reduceMotion = useReducedMotion();
   // Deliberately short: this sits in front of every navigation.
   const duration = reduceMotion ? 0 : 0.18;

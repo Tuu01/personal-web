@@ -20,7 +20,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt
   return (
     <PageShell title={title}>
       <div className="shell">
-        <header className="grid items-end gap-8 pt-10 pb-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pt-16 md:pb-10">
+        <header className="grid items-end gap-8 pt-4 pb-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pt-8 md:pb-10">
           <div>
             <motion.p {...enter(8)} className="eyebrow">
               <Link to="/#work" className="hover:text-cobalt">

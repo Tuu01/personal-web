@@ -4,7 +4,7 @@ import { Arrow } from "../brand/Arrow";
 
 // A page that exists in the room but has no confirmed content yet, and the 404.
 const Placeholder = ({ eyebrow, title, text, back = { to: "/", label: "Back to the room" } }) => (
-  <PageShell title={title}>
+  <PageShell title={title} back={false}>
     <div className="shell flex min-h-[50vh] flex-col justify-center gap-5 py-20">
       <p className="eyebrow">{eyebrow}</p>
       <h1 className="max-w-[18ch] text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl">{title}</h1>

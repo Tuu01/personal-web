@@ -110,7 +110,7 @@ function Card({ item, wide }) {
 }
 
 const Home = () => (
-  <PageShell>
+  <PageShell back={false}>
     <RoomStage />
 
     <section aria-label="Proof" className="shell py-10 md:py-14">
