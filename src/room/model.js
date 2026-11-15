@@ -43,11 +43,11 @@ const ZONE_COPY = {
     index: "02",
     short: "Design",
     blurb:
-      "Brand and product design: a salon brand, the interface for a club app, research for an AI video platform, and visual work. Click an object to open its projects.",
+      "Brand and product design: three brand identities, the interface for a club app and a salon brand, and research for an AI video platform. Click an object to open its projects.",
     items: {
-      "Brands & visual": "Pinboard · The Nail Fairy brand identity, and visual work",
+      "Brands & visual": "Pinboard · Brand identities: Nail Fairy, Hollywood Nails, and my own [tuu]¹⁰|1024",
       "UI / product design":
-        "Laptop · Badminton Queue: the post-launch UX audit and the four changes that followed",
+        "Laptop · Badminton Queue: the post-launch UX audit and the four changes that followed; The Nail Fairy brand",
       Research:
         "Notebook · AI video platform with Splento: interviews, personas and usability evaluation",
     },

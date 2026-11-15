@@ -19,7 +19,7 @@ import {
 const ROUTES = {
   "/about": ["background", "education", "how-i-work", "outside-work", "badminton", "photography"],
   "/contact": [],
-  "/visual": [],
+  "/visual": ["nail-fairy", "tuu", "hollywood-nails"],
   "/work/badminton-queue": ["design", "engineering"],
   "/work/nail-fairy": ["engineering", "penny-hill", "design", "brand"],
   "/work/splento": [],
@@ -67,7 +67,7 @@ describe("room data", () => {
   });
 
   it("shows the count on tags only when there is more than one project", () => {
-    expect(tagText(OBJECTS.obj_pinboard)).toBe("Brands & visual · 2");
+    expect(tagText(OBJECTS.obj_pinboard)).toBe("Brands & visual · 3");
     expect(tagText(OBJECTS.obj_phone)).toBe("Mobile apps");
   });
 

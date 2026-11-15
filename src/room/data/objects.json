@@ -246,11 +246,15 @@
     {
      "title": "Badminton Queue",
      "href": "/work/badminton-queue#design"
+    },
+    {
+     "title": "The Nail Fairy brand",
+     "href": "/work/nail-fairy#brand"
     }
    ],
-   "count": 1,
-   "href": "/work/badminton-queue#design",
-   "click": "open href"
+   "count": 2,
+   "href": "",
+   "click": "list projects in the panel"
   },
   {
    "id": "obj_notebook",
@@ -312,15 +316,19 @@
    "zone": "design",
    "projects": [
     {
-     "title": "The Nail Fairy brand",
-     "href": "/work/nail-fairy#brand"
+     "title": "Nail Fairy",
+     "href": "/visual#nail-fairy"
     },
     {
-     "title": "Visual work",
-     "href": "/visual"
+     "title": "Hollywood Nails",
+     "href": "/visual#hollywood-nails"
+    },
+    {
+     "title": "My own brand",
+     "href": "/visual#tuu"
     }
    ],
-   "count": 2,
+   "count": 3,
    "href": "",
    "click": "list projects in the panel"
   },
