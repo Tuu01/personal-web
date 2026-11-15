@@ -48,7 +48,7 @@ const Visual = () => (
           text="A family-run nail stall in Bradford, open since 2004. Logo, loyalty card and stickers."
         >
           <Link
-            to="/work/nail-fairy#design"
+            to="/work/nail-fairy#brand"
             className="font-mono text-xs uppercase tracking-[0.08em] text-muted hover:text-cobalt"
           >
             Images coming soon

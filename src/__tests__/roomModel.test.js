@@ -21,7 +21,7 @@ const ROUTES = {
   "/contact": [],
   "/visual": [],
   "/work/badminton-queue": ["design", "engineering"],
-  "/work/nail-fairy": ["engineering", "penny-hill", "design"],
+  "/work/nail-fairy": ["engineering", "penny-hill", "design", "brand"],
   "/work/splento": [],
   "/work/nsms": [],
   "/work/2d-game": [],

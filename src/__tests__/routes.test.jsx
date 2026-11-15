@@ -42,7 +42,7 @@ describe("routes", () => {
 
   it("gives the Nail Fairy page its engineering, Penny Hill and brand anchors", () => {
     const { container } = renderAt("/work/nail-fairy");
-    for (const id of ["engineering", "penny-hill", "design"]) {
+    for (const id of ["engineering", "penny-hill", "design", "brand"]) {
       expect(container.querySelector(`#${id}`), id).not.toBeNull();
     }
   });

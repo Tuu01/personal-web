@@ -34,7 +34,7 @@ const selected = [
     tags: ["React", "Node", "MongoDB"],
     links: [
       { label: "Engineering", to: "/work/nail-fairy#engineering" },
-      { label: "Brand", to: "/work/nail-fairy#design" },
+      { label: "Brand", to: "/work/nail-fairy#brand" },
     ],
   },
   {

@@ -86,8 +86,12 @@ export const PartSwitch = ({ parts }) => {
 
   useEffect(() => {
     const els = parts.map((p) => document.getElementById(p.id)).filter(Boolean);
+    const inView = new Set();
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? inView.add(e.target.id) : inView.delete(e.target.id)));
+        setActive(parts.find((p) => inView.has(p.id))?.id ?? null);
+      },
       { rootMargin: "-40% 0px -55% 0px" },
     );
     els.forEach((el) => io.observe(el));

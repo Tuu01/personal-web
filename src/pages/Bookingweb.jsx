@@ -76,7 +76,7 @@ const BookingWebsite = () => (
     <Part
       id="engineering"
       label="Engineering"
-      intro="How the platform is built, where it runs, and how it became a second business's booking site."
+      intro="How the platform is built and where it runs."
     >
       <Chapter
         index="02"
@@ -109,65 +109,50 @@ const BookingWebsite = () => (
         </Prose>
       </Chapter>
 
-      <Chapter id="penny-hill" index="03" title="One platform, a second business">
-        <Prose>
-          <p>
-            Penny Hill Nail &amp; Spa in Hunslet, Leeds runs on a separate build of the same platform: its own
-            services, look and location, with the same three-step booking flow (service, date and time,
-            confirm). Live at{" "}
-            <a
-              href="https://pennyhillbooking.tuuhyped.co.uk"
-              target="_blank"
-              rel="noreferrer"
-              className="text-cobalt underline underline-offset-4"
-            >
-              pennyhillbooking.tuuhyped.co.uk
-            </a>
-            .
-          </p>
-        </Prose>
-        <TwoUp
-          items={[
-            {
-              src: "/assets/projects/PennyHill/ph-home.webp",
-              alt: "Penny Hill Nail & Spa booking site, home page",
-              caption: "Penny Hill: home",
-            },
-            {
-              src: "/assets/projects/PennyHill/ph-booking.webp",
-              alt: "Penny Hill booking flow, step 1 of 3: choose your services",
-              caption: "Booking, step 1 of 3",
-            },
-          ]}
-        />
-        <div className="mx-auto grid max-w-[560px] grid-cols-2 gap-3">
-          <FullImage src="/assets/projects/PennyHill/ph-phone-home.webp" alt="Penny Hill home page on a phone" caption="Phone: home" />
-          <FullImage
-            src="/assets/projects/PennyHill/ph-phone-services.webp"
-            alt="Penny Hill services list on a phone"
-            caption="Phone: services"
+      {/* Another business on the same platform: kept to an aside so the page
+          stays about one website. */}
+      <aside
+        id="penny-hill"
+        className="scroll-mt-[136px] grid items-center gap-6 rounded-xl border border-line p-5 md:grid-cols-[1fr_1.4fr] md:p-6"
+      >
+        <a
+          href="https://pennyhillbooking.tuuhyped.co.uk"
+          target="_blank"
+          rel="noreferrer"
+          className="block overflow-hidden rounded-lg border border-line"
+        >
+          <img
+            src="/assets/projects/PennyHill/ph-home.webp"
+            alt="Penny Hill Nail & Spa booking site, home page"
+            loading="lazy"
+            className="block h-auto w-full"
           />
+        </a>
+        <div className="flex flex-col gap-2">
+          <p className="eyebrow">Reused for a second business</p>
+          <h3 className="text-xl font-semibold">Penny Hill Nail &amp; Spa</h3>
+          <p className="leading-relaxed text-muted">
+            A salon in Hunslet, Leeds runs on a separate build of this platform, with its own services, look and
+            location, and the same three-step booking flow.
+          </p>
+          <a
+            href="https://pennyhillbooking.tuuhyped.co.uk"
+            target="_blank"
+            rel="noreferrer"
+            className="w-fit font-semibold text-cobalt underline underline-offset-4 hover:text-ink"
+          >
+            pennyhillbooking.tuuhyped.co.uk
+          </a>
         </div>
-      </Chapter>
+      </aside>
     </Part>
 
     <Part
       id="design"
       label="Design"
-      intro="The brand for the stall, and the booking flow customers use on their phones."
+      intro="The booking flow customers use on their phones, and the brand for the stall."
     >
-      <Chapter index="04" title="The Nail Fairy brand">
-        <Prose>
-          <p>
-            The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
-            first logo in 2024, then the full identity, finished in 2026. Nothing has been printed yet; the next
-            Nail Fairy build will use it.
-          </p>
-          <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Brand case study coming soon</p>
-        </Prose>
-      </Chapter>
-
-      <Chapter index="05" title="A short, guided sequence">
+      <Chapter index="03" title="A short, guided sequence">
         <Prose>
           <p>
             Service, staff (optional), date/time, contact, confirm. The
@@ -178,7 +163,7 @@ const BookingWebsite = () => (
       </Chapter>
 
       <Chapter
-        index="06"
+        index="04"
         title="Moments that make it feel effortless"
       >
         <TwoUp
@@ -204,10 +189,21 @@ const BookingWebsite = () => (
           </p>
         </Prose>
       </Chapter>
+
+      <Chapter id="brand" index="05" title="The Nail Fairy brand">
+        <Prose>
+          <p>
+            The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
+            first logo in 2024, then the full identity, finished in 2026. Nothing has been printed yet; the next
+            Nail Fairy build will use it.
+          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Brand case study coming soon</p>
+        </Prose>
+      </Chapter>
     </Part>
 
     <Chapter
-      index="07"
+      index="06"
       title="Faster bookings, fewer interruptions"
     >
       <Prose>
@@ -230,7 +226,7 @@ const BookingWebsite = () => (
       </Reveal>
     </Chapter>
 
-    <Chapter index="08" title="Selected screens">
+    <Chapter index="07" title="Selected screens">
       <Gallery images={galleryImages} />
     </Chapter>
 
