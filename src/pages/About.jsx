@@ -30,13 +30,15 @@ const About = () => (
     <div className="shell py-12 md:py-20">
       <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-16">
         <Reveal>
-          <div
-            className="flex aspect-[4/5] w-full items-center justify-center rounded-xl border border-line bg-surface font-mono text-xs uppercase tracking-[0.08em] text-muted"
-            role="img"
-            aria-label="Portrait coming soon"
-          >
-            Portrait coming soon
-          </div>
+          <img
+            src="/assets/about/portrait.webp"
+            srcSet="/assets/about/portrait.webp 1x, /assets/about/portrait@2x.webp 2x"
+            width="800"
+            height="1000"
+            alt="Tuu in a white shirt, smiling, on a London street at sunset"
+            fetchPriority="high"
+            className="aspect-[4/5] h-auto w-full rounded-xl border border-line bg-surface object-cover"
+          />
           <dl className="mt-6 flex flex-col">
             {facts.map(([k, v]) => (
               <div key={k} className="border-t border-line py-3">
