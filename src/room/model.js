@@ -31,9 +31,10 @@ const ZONE_COPY = {
     blurb:
       "Software built and shipped. Each object holds one kind of work; click it to open its projects.",
     items: {
-      "Web apps": "Monitors · The Nail Fairy (332+ appointments across 2 locations) and Penny Hill",
+      "Web apps":
+        "Monitors · The Nail Fairy: React, Node and MongoDB booking platform, live across 2 locations, 332+ appointments",
       "Mobile apps":
-        "Phone · Badminton Queue: club match-running app, scores 210 options in under 0.5 ms",
+        "Phone · Badminton Queue: Next.js and Firestore; scores all 210 possible games in under 0.5 ms",
       "Earlier work": "File holder · NSMS: desktop salon management system (C#, SQL Server)",
     },
     order: ["Web apps", "Mobile apps", "Earlier work"],
@@ -45,7 +46,8 @@ const ZONE_COPY = {
       "Brand and product design: a salon brand, the interface for a club app, research for an AI video platform, and visual work. Click an object to open its projects.",
     items: {
       "Brands & visual": "Pinboard · The Nail Fairy brand identity, and visual work",
-      "UI / product design": "Laptop · Badminton Queue: the interface for a club match-running app",
+      "UI / product design":
+        "Laptop · Badminton Queue: the post-launch UX audit and the four changes that followed",
       Research:
         "Notebook · AI video platform with Splento: interviews, personas and usability evaluation",
     },

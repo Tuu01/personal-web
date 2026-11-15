@@ -18,19 +18,28 @@ export default function ScrollToTop({ children }) {
     const samePage = lastPath.current === pathname;
     lastPath.current = pathname;
 
-    let el = null;
-    if (hash) {
+    const find = () => {
       try {
-        el = document.getElementById(decodeURIComponent(hash.slice(1)));
+        return hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
       } catch {
-        el = null;
+        return null;
       }
-    }
-    if (el) {
-      el.scrollIntoView({ behavior: samePage ? "smooth" : "auto", block: "start" });
-      return;
-    }
+    };
+
     if (!samePage) window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    if (!hash) return;
+
+    // The page transition mounts the new page only after the old one has
+    // faded out, so its #section may not exist yet: keep looking briefly.
+    let tries = 0;
+    let timer;
+    const go = () => {
+      const el = find();
+      if (el) el.scrollIntoView({ behavior: samePage ? "smooth" : "auto", block: "start" });
+      else if (tries++ < 20) timer = setTimeout(go, 50);
+    };
+    go();
+    return () => clearTimeout(timer);
   }, [pathname, hash]);
 
   return children;

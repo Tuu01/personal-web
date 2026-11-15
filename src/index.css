@@ -95,9 +95,12 @@ body {
   }
 }
 
-/* Anchored sections land below the sticky header. */
-[id] {
-  scroll-margin-top: 88px;
+/* Anchored sections land below the sticky header (base layer, so a page can
+   ask for more with scroll-mt-*). */
+@layer base {
+  [id] {
+    scroll-margin-top: 88px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

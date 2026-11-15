@@ -402,15 +402,11 @@
     {
      "title": "The Nail Fairy",
      "href": "/work/nail-fairy#engineering"
-    },
-    {
-     "title": "Penny Hill",
-     "href": "/work/nail-fairy#penny-hill"
     }
    ],
-   "count": 2,
-   "href": "",
-   "click": "list projects in the panel"
+   "count": 1,
+   "href": "/work/nail-fairy#engineering",
+   "click": "open href"
   },
   {
    "id": "obj_phone",

@@ -40,7 +40,7 @@ export const Lead = ({ children, className = "" }) => (
    column. The old tag-left / heading-right split is the templated-editorial
    tell and is not used here. */
 export const Chapter = ({ id, index, title, children }) => (
-  <section id={id} className="border-t border-black/10 pt-8 md:pt-10">
+  <section id={id} className="scroll-mt-[136px] border-t border-black/10 pt-8 md:pt-10">
     <Reveal>
       {index && (
         <span className="font-amiamie-round text-gold text-sm tracking-[0.3em]">
@@ -64,6 +64,56 @@ export const Prose = ({ children, className = "" }) => (
     {children}
   </div>
 );
+
+/* One half of a case study that two zones of the room share (Badminton Queue,
+   The Nail Fairy). The room links straight to #engineering or #design. */
+export const Part = ({ id, label, intro, children }) => (
+  <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-[136px] space-y-12 md:space-y-16">
+    <header className="rounded-xl border border-line bg-surface px-6 py-7 md:px-10 md:py-9">
+      <p className="eyebrow">Part</p>
+      <h2 id={`${id}-title`} className="mt-2 text-3xl font-semibold tracking-[-0.02em] md:text-4xl">
+        {label}
+      </h2>
+      {intro && <p className="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted">{intro}</p>}
+    </header>
+    {children}
+  </section>
+);
+
+/* Sticky switch between the parts; the one in view is marked. */
+export const PartSwitch = ({ parts }) => {
+  const [active, setActive] = useState(null);
+
+  useEffect(() => {
+    const els = parts.map((p) => document.getElementById(p.id)).filter(Boolean);
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, [parts]);
+
+  return (
+    <nav
+      aria-label="Parts of this case study"
+      className="sticky top-16 z-30 -mx-4 flex gap-1 border-b border-line bg-paper/92 px-4 py-2 backdrop-blur-md sm:-mx-8 sm:px-8 md:top-[72px] lg:-mx-12 lg:px-12"
+    >
+      {parts.map((p) => (
+        <Link
+          key={p.id}
+          to={`#${p.id}`}
+          aria-current={active === p.id ? "true" : undefined}
+          className={`rounded-md px-3 py-1.5 text-sm font-semibold transition-colors ${
+            active === p.id ? "bg-ink text-paper" : "text-muted hover:text-ink"
+          }`}
+        >
+          {p.label}
+        </Link>
+      ))}
+    </nav>
+  );
+};
 
 /* Single framed image, natural height (no crop) */
 export const FullImage = ({ src, alt, caption }) => (

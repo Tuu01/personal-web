@@ -58,14 +58,14 @@ describe("room data", () => {
   });
 
   it("shows the count on tags only when there is more than one project", () => {
-    expect(tagText(OBJECTS.obj_monitors)).toBe("Web apps · 2");
+    expect(tagText(OBJECTS.obj_pinboard)).toBe("Brands & visual · 2");
     expect(tagText(OBJECTS.obj_phone)).toBe("Mobile apps");
   });
 
-  it("opens single-project objects directly and lists the rest", () => {
+  it("opens single-project objects directly (monitors: only The Nail Fairy) and lists the rest", () => {
     expect(opensDirectly(OBJECTS.obj_phone)).toBe(true);
     expect(opensDirectly(OBJECTS.obj_pinboard)).toBe(false);
-    expect(opensDirectly(OBJECTS.obj_monitors)).toBe(false);
+    expect(opensDirectly(OBJECTS.obj_monitors)).toBe(true);
   });
 });
 

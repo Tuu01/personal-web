@@ -9,7 +9,14 @@ import {
   Gallery,
   RelatedProject,
   Reveal,
+  Part,
+  PartSwitch,
 } from "../components/CaseStudy";
+
+const PARTS = [
+  { id: "engineering", label: "Engineering" },
+  { id: "design", label: "Design" },
+];
 
 const galleryImages = [
   { src: "/assets/projects/NFBooking/N1.webp", alt: "Booking: home" },
@@ -40,6 +47,8 @@ const BookingWebsite = () => (
       tools: "React, Tailwind, Node/Express, MongoDB, Vite, Vercel/Render",
     }}
   >
+    <PartSwitch parts={PARTS} />
+
     <Reveal>
       <a
         href="https://nailfairy.co.uk/"
@@ -52,7 +61,6 @@ const BookingWebsite = () => (
     </Reveal>
 
     <Chapter
-      id="engineering"
       index="01"
       title="Phone bookings were slow and error-prone"
     >
@@ -65,71 +73,141 @@ const BookingWebsite = () => (
       </Prose>
     </Chapter>
 
-    <Chapter index="02" title="A short, guided sequence">
-      <Prose>
-        <p>
-          Service, staff (optional), date/time, contact, confirm. The
-          interface keeps context visible and validates every step, so customers
-          always know where they are and what is left.
-        </p>
-      </Prose>
-    </Chapter>
-
-    <Chapter
-      index="03"
-      title="Moments that make it feel effortless"
+    <Part
+      id="engineering"
+      label="Engineering"
+      intro="How the platform is built, where it runs, and how it became a second business's booking site."
     >
-      <TwoUp
-        items={[
-          {
-            src: "/assets/projects/NFBooking/N3.webp",
-            alt: "Services grid",
-            caption: "Service browsing",
-          },
-          {
-            src: "/assets/projects/NFBooking/N4.webp",
-            alt: "Calendar flow",
-            caption: "Date & time selection",
-          },
-        ]}
-      />
-      <Prose>
-        <p>
-          Clear categories with duration and price per card, a pinned summary
-          that stays visible while choosing, and a calendar that shows only
-          valid slots. Conflicts are blocked server-side with fast fallback
-          suggestions.
-        </p>
-      </Prose>
-    </Chapter>
+      <Chapter
+        index="02"
+        title="Pragmatic tools, built for reliability"
+      >
+        <Reveal>
+          <div className="flex flex-wrap gap-2">
+            {[
+              "React",
+              "Tailwind",
+              "Node/Express",
+              "MongoDB",
+              "Vite",
+              "Vercel",
+            ].map((t) => (
+              <span
+                key={t}
+                className="rounded-full border border-black/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-DarkLava/70"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+        <Prose>
+          <p>
+            It is live across two locations, with 332+ appointments booked through it. Stripe payments are
+            built but switched off for now.
+          </p>
+        </Prose>
+      </Chapter>
 
-    <Chapter
-      index="04"
-      title="Pragmatic tools, built for reliability"
-    >
-      <Reveal>
-        <div className="flex flex-wrap gap-2">
-          {[
-            "React",
-            "Tailwind",
-            "Node/Express",
-            "MongoDB",
-            "Vite",
-            "Vercel",
-          ].map((t) => (
-            <span
-              key={t}
-              className="rounded-full border border-black/10 px-3 py-1 text-xs uppercase tracking-[0.18em] text-DarkLava/70"
+      <Chapter id="penny-hill" index="03" title="One platform, a second business">
+        <Prose>
+          <p>
+            Penny Hill Nail &amp; Spa in Hunslet, Leeds runs on a separate build of the same platform: its own
+            services, look and location, with the same three-step booking flow (service, date and time,
+            confirm). Live at{" "}
+            <a
+              href="https://pennyhillbooking.tuuhyped.co.uk"
+              target="_blank"
+              rel="noreferrer"
+              className="text-cobalt underline underline-offset-4"
             >
-              {t}
-            </span>
-          ))}
+              pennyhillbooking.tuuhyped.co.uk
+            </a>
+            .
+          </p>
+        </Prose>
+        <TwoUp
+          items={[
+            {
+              src: "/assets/projects/PennyHill/ph-home.webp",
+              alt: "Penny Hill Nail & Spa booking site, home page",
+              caption: "Penny Hill: home",
+            },
+            {
+              src: "/assets/projects/PennyHill/ph-booking.webp",
+              alt: "Penny Hill booking flow, step 1 of 3: choose your services",
+              caption: "Booking, step 1 of 3",
+            },
+          ]}
+        />
+        <div className="mx-auto grid max-w-[560px] grid-cols-2 gap-3">
+          <FullImage src="/assets/projects/PennyHill/ph-phone-home.webp" alt="Penny Hill home page on a phone" caption="Phone: home" />
+          <FullImage
+            src="/assets/projects/PennyHill/ph-phone-services.webp"
+            alt="Penny Hill services list on a phone"
+            caption="Phone: services"
+          />
         </div>
-      </Reveal>
-    </Chapter>
+      </Chapter>
+    </Part>
+
+    <Part
+      id="design"
+      label="Design"
+      intro="The brand for the stall, and the booking flow customers use on their phones."
+    >
+      <Chapter index="04" title="The Nail Fairy brand">
+        <Prose>
+          <p>
+            The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
+            first logo in 2024, then the full identity, finished in 2026. Nothing has been printed yet; the next
+            Nail Fairy build will use it.
+          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Brand case study coming soon</p>
+        </Prose>
+      </Chapter>
+
+      <Chapter index="05" title="A short, guided sequence">
+        <Prose>
+          <p>
+            Service, staff (optional), date/time, contact, confirm. The
+            interface keeps context visible and validates every step, so customers
+            always know where they are and what is left.
+          </p>
+        </Prose>
+      </Chapter>
+
+      <Chapter
+        index="06"
+        title="Moments that make it feel effortless"
+      >
+        <TwoUp
+          items={[
+            {
+              src: "/assets/projects/NFBooking/N3.webp",
+              alt: "Services grid",
+              caption: "Service browsing",
+            },
+            {
+              src: "/assets/projects/NFBooking/N4.webp",
+              alt: "Calendar flow",
+              caption: "Date & time selection",
+            },
+          ]}
+        />
+        <Prose>
+          <p>
+            Clear categories with duration and price per card, a pinned summary
+            that stays visible while choosing, and a calendar that shows only
+            valid slots. Conflicts are blocked server-side with fast fallback
+            suggestions.
+          </p>
+        </Prose>
+      </Chapter>
+    </Part>
 
     <Chapter
-      index="05"
+      index="07"
       title="Faster bookings, fewer interruptions"
     >
       <Prose>
@@ -152,37 +230,8 @@ const BookingWebsite = () => (
       </Reveal>
     </Chapter>
 
-    <Chapter index="06" title="Selected screens">
+    <Chapter index="08" title="Selected screens">
       <Gallery images={galleryImages} />
-    </Chapter>
-
-    <Chapter id="penny-hill" index="07" title="Penny Hill: the same platform, a second business">
-      <Prose>
-        <p>
-          Penny Hill Nail &amp; Spa runs on a separate build of the Nail Fairy platform, live at{" "}
-          <a
-            href="https://pennyhillbooking.tuuhyped.co.uk"
-            target="_blank"
-            rel="noreferrer"
-            className="text-cobalt underline underline-offset-4"
-          >
-            pennyhillbooking.tuuhyped.co.uk
-          </a>
-          .
-        </p>
-        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Screenshots and write-up coming soon</p>
-      </Prose>
-    </Chapter>
-
-    <Chapter id="design" index="08" title="The Nail Fairy brand">
-      <Prose>
-        <p>
-          The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
-          first logo in 2024, then the full identity, finished in 2026. Nothing has been printed yet; the next
-          Nail Fairy build will use it.
-        </p>
-        <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted">Brand case study coming soon</p>
-      </Prose>
     </Chapter>
 
     <RelatedProject
