@@ -30,6 +30,7 @@ const Viewer = () => {
   const [face, setFace] = useState("happy");
   return (
     <figure className="flex flex-col gap-3">
+      <p className="eyebrow">Turn it in 3D</p>
       <div
         className="relative h-[420px] w-full overflow-hidden rounded-xl border border-line sm:h-[520px]"
         style={{ background: "radial-gradient(ellipse 60% 70% at 50% 45%, var(--paper), var(--surface))" }}
@@ -72,6 +73,10 @@ const Clicker = () => (
     index="Lab"
     area="Made by hand"
     title="Shuttlecock Clicker"
+    heroImage="/clicker/three-faces.webp"
+    heroSrcSet="/clicker/three-faces.webp 1x, /clicker/three-faces@2x.webp 2x"
+    heroAlt="Three clickers in a row with angry, sad and happy faces on the same white shuttlecock body"
+    heroCaption="Render from the CAD files (Blender Cycles), not a photo: angry, sad and happy heads on the same body."
     sponsor="Personal project · working physical prototype (v7)"
     tags={["CadQuery", "Python", "3D printing", "Fit testing"]}
     lead="A 3D-printed badminton shuttlecock that works as a clicker. A mechanical keyboard switch sits inside the body; the head is a keycap that pulls off, so the face can be swapped. It hangs off a bag."

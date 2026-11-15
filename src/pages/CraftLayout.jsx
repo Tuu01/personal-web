@@ -6,7 +6,7 @@ import { Reveal } from "../components/CaseStudy";
 const EASE = [0.22, 1, 0.36, 1];
 
 // Case-study frame: breadcrumb, title, lead and facts, hero image, chapters.
-const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, area, tags = [], lead, live, children }) => {
+const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt, heroCaption, index, area, tags = [], lead, live, children }) => {
   const reduceMotion = useReducedMotion();
   const enter = (y, delay = 0) =>
     reduceMotion
@@ -85,6 +85,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, are
               {/* LCP element on every case-study page. Never lazy. */}
               <img
                 src={heroImage}
+                srcSet={heroSrcSet}
                 alt={heroAlt || title}
                 loading="eager"
                 fetchPriority="high"
@@ -92,6 +93,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroAlt, index, are
                 className="block h-auto w-full"
               />
             </div>
+            {heroCaption && <p className="mt-2 font-mono text-xs text-muted">{heroCaption}</p>}
           </Reveal>
         )}
 
