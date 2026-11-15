@@ -61,12 +61,51 @@ const Viewer = () => {
           ))}
       </div>
       <figcaption className="font-mono text-xs leading-relaxed text-muted">
-        Interactive 3D model from the CAD files, not a photo. Drag sideways to turn it all the way round; swap the face above. Photos of the
-        printed clicker are coming soon.
+        Interactive 3D model from the CAD files, not a photo. Drag sideways to turn it all the way round; swap the face above.
       </figcaption>
     </figure>
   );
 };
+
+// The real, printed clicker: a photo and a short clip of it clicking.
+const Printed = () => (
+  <section aria-labelledby="printed-title" className="flex max-w-3xl flex-col gap-4">
+    <p id="printed-title" className="eyebrow">
+      The printed one
+    </p>
+    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+      <figure className="flex flex-col gap-2">
+        <img
+          src="/clicker/photo.webp"
+          width="720"
+          height="900"
+          alt="The printed clicker on a desk: white shuttlecock body, angry face, black ring with a keyring chain"
+          loading="lazy"
+          className="aspect-[4/5] w-full rounded-xl border border-line object-cover"
+        />
+        <figcaption className="font-mono text-xs text-muted">Photo of the printed v7.</figcaption>
+      </figure>
+      <figure className="flex flex-col gap-2">
+        {/* Muted so it can autoplay; controls let visitors hear the click. */}
+        <video
+          src="/clicker/clicking.mp4"
+          poster="/clicker/clicking-poster.webp"
+          width="360"
+          height="450"
+          autoPlay
+          muted
+          loop
+          playsInline
+          controls
+          preload="metadata"
+          aria-label="A hand presses the clicker's head down and lets it spring back, a few times"
+          className="aspect-[4/5] w-full rounded-xl border border-line bg-surface object-cover"
+        />
+        <figcaption className="font-mono text-xs text-muted">It clicks: the head is the keycap.</figcaption>
+      </figure>
+    </div>
+  </section>
+);
 
 const Clicker = () => (
   <CraftLayout
@@ -87,6 +126,8 @@ const Clicker = () => (
       tools: "Python · CadQuery · trimesh · Blender · Bambu Lab A1 (PLA)",
     }}
   >
+    <Printed />
+
     <Viewer />
 
     <Chapter index="01" title="Where it came from">
