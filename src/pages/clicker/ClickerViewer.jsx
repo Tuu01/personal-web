@@ -68,6 +68,11 @@ function Framing({ controls, sway }) {
   }, [controls]);
 
   useFrame(() => {
+    const el = controls.current?.domElement;
+    // Horizontal drags turn the clicker; vertical swipes still scroll the page.
+    // OrbitControls sets touch-action: none when it attaches, which would trap
+    // the page on phones, so put pan-y back.
+    if (el && el.style.touchAction !== "pan-y") el.style.touchAction = "pan-y";
     if (!sway || touched.current || !controls.current) return;
     const a = Math.sin((performance.now() - t0.current) / 2600) * 0.6;
     const r = Math.hypot(camera.position.x, camera.position.z);
@@ -115,8 +120,11 @@ export default function ClickerViewer({ face, reduced, dark }) {
         ref={controls}
         enablePan={false}
         enableZoom={false}
-        minPolarAngle={Math.PI * 0.18}
-        maxPolarAngle={Math.PI * 0.55}
+        // Turn only around the vertical axis, a full 360°, at a fixed slight
+        // look-down; no tilting to odd angles.
+        minPolarAngle={Math.PI / 2 - ELEVATION}
+        maxPolarAngle={Math.PI / 2 - ELEVATION}
+        rotateSpeed={0.8}
         target={[0, 0, 0]}
       />
       <Framing controls={controls} sway={!reduced} />

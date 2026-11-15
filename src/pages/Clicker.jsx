@@ -60,7 +60,7 @@ const Viewer = () => {
           ))}
       </div>
       <figcaption className="font-mono text-xs leading-relaxed text-muted">
-        Interactive 3D model from the CAD files, not a photo. Drag to turn it; swap the face above. Photos of the
+        Interactive 3D model from the CAD files, not a photo. Drag sideways to turn it all the way round; swap the face above. Photos of the
         printed clicker are coming soon.
       </figcaption>
     </figure>
