@@ -67,8 +67,11 @@ const Viewer = () => {
   );
 };
 
-// The real, printed clicker: a photo and a short clip of it clicking.
-const Printed = () => (
+// The real, printed clicker: a photo and a short clip of it clicking. The
+// clip is silent and loops like a GIF; with reduced motion it waits for play.
+const Printed = () => {
+  const reduced = useReducedMotion();
+  return (
   <section aria-labelledby="printed-title" className="flex max-w-3xl flex-col gap-4">
     <p id="printed-title" className="eyebrow">
       The printed one
@@ -86,17 +89,16 @@ const Printed = () => (
         <figcaption className="font-mono text-xs text-muted">Photo of the printed v7.</figcaption>
       </figure>
       <figure className="flex flex-col gap-2">
-        {/* Muted so it can autoplay; controls let visitors hear the click. */}
         <video
           src="/clicker/clicking.mp4"
           poster="/clicker/clicking-poster.webp"
-          width="360"
-          height="450"
-          autoPlay
+          width="720"
+          height="900"
+          autoPlay={!reduced}
+          controls={!!reduced}
           muted
           loop
           playsInline
-          controls
           preload="metadata"
           aria-label="A hand presses the clicker's head down and lets it spring back, a few times"
           className="aspect-[4/5] w-full rounded-xl border border-line bg-surface object-cover"
@@ -105,7 +107,8 @@ const Printed = () => (
       </figure>
     </div>
   </section>
-);
+  );
+};
 
 const Clicker = () => (
   <CraftLayout
