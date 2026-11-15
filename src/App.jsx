@@ -10,7 +10,8 @@ import NailFairy from "./pages/Bookingweb";
 import Splento from "./pages/Splento";
 import Nsms from "./pages/Nsms";
 import Game2D from "./pages/Game2D";
-import { BadmintonClicker, NotFound } from "./pages/Placeholder";
+import Clicker from "./pages/Clicker";
+import { NotFound } from "./pages/Placeholder";
 import { LEGACY_REDIRECTS } from "./routes";
 
 export const AppRoutes = ({ location }) => (
@@ -24,7 +25,7 @@ export const AppRoutes = ({ location }) => (
     <Route path="/work/splento" element={<Splento />} />
     <Route path="/work/nsms" element={<Nsms />} />
     <Route path="/work/2d-game" element={<Game2D />} />
-    <Route path="/work/badminton-clicker" element={<BadmintonClicker />} />
+    <Route path="/work/shuttlecock-clicker" element={<Clicker />} />
     {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
       <Route key={from} path={from} element={<Navigate to={to} replace />} />
     ))}

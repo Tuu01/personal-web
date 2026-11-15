@@ -17,15 +17,6 @@ const Placeholder = ({ eyebrow, title, text, back = { to: "/", label: "Back to t
   </PageShell>
 );
 
-export const BadmintonClicker = () => (
-  <Placeholder
-    eyebrow="Work / Lab / Made by hand"
-    title="Badminton clicker"
-    text="A 3D-printed piece from the Lab. Photos and the write-up are coming soon."
-    back={{ to: "/#lab", label: "Back to the Lab" }}
-  />
-);
-
 export const NotFound = () => (
   <Placeholder eyebrow="404" title="Nothing on this shelf." text="The page you were looking for isn’t here." />
 );

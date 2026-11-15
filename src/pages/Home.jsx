@@ -63,7 +63,7 @@ const selected = [
 const more = [
   { to: "/work/nsms", title: "NSMS", meta: "Earlier work · Desktop salon management · 2024" },
   { to: "/work/2d-game", title: "2D game", meta: "Lab · Java platformer · 2022" },
-  { to: "/work/badminton-clicker", title: "Badminton clicker", meta: "Lab · Made by hand · coming soon" },
+  { to: "/work/shuttlecock-clicker", title: "Shuttlecock Clicker", meta: "Lab · Made by hand · 2026" },
 ];
 
 function Card({ item, wide }) {

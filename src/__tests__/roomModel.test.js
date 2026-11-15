@@ -25,7 +25,7 @@ const ROUTES = {
   "/work/splento": [],
   "/work/nsms": [],
   "/work/2d-game": [],
-  "/work/badminton-clicker": [],
+  "/work/shuttlecock-clicker": [],
 };
 
 describe("room data", () => {

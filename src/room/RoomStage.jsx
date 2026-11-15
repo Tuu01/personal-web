@@ -37,7 +37,7 @@ const STILL_EDGE = {
   WebkitMaskImage: `${EDGE}, ${EDGE.replace("to right", "to bottom")}`,
   WebkitMaskComposite: "source-in",
 };
-const SOON = new Set(["/work/badminton-clicker"]);
+const SOON = new Set();
 
 function webglAvailable() {
   try {

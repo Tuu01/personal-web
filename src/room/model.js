@@ -56,10 +56,10 @@ const ZONE_COPY = {
   lab: {
     index: "03",
     short: "Lab",
-    blurb: "Things made for fun on the shelf above the desk. Click an object to open it.",
+    blurb: "Things made for fun on the shelf above the desk: a game and a 3D-printed clicker. Click an object to open it.",
     items: {
       Games: "Controller · 2D game: a Java platformer built without an external engine",
-      "Made by hand": "3D printer · Badminton clicker (write-up coming soon)",
+      "Made by hand": "3D printer · Shuttlecock Clicker: a printed shuttlecock with a real keyboard switch inside",
     },
     order: ["Games", "Made by hand"],
   },

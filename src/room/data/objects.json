@@ -486,12 +486,12 @@
    "zone": "lab",
    "projects": [
     {
-     "title": "Badminton clicker",
-     "href": "/work/badminton-clicker"
+     "title": "Shuttlecock Clicker",
+     "href": "/work/shuttlecock-clicker"
     }
    ],
    "count": 1,
-   "href": "/work/badminton-clicker",
+   "href": "/work/shuttlecock-clicker",
    "click": "open href"
   }
  ],
