@@ -35,6 +35,8 @@ const BadmintonQueue = () => (
     area="Product Design · Full-stack"
     title="A fair game, every Saturday"
     sponsor="Live product, a badminton club of ~30 players"
+    live="https://vlong.tuuhyped.co.uk"
+    liveLabel="Try the live demo"
     tags={["Product Design", "UX Audit", "Algorithm Design", "Next.js"]}
     lead="A match-running app for a Saturday badminton club: it decides who plays next, builds even teams, and settles the argument that used to happen every week."
     heroImage="/assets/projects/BadmintonQueue/bq0.webp"
@@ -46,6 +48,25 @@ const BadmintonQueue = () => (
       tools: "Next.js · TypeScript · Firestore · TrueSkill",
     }}
   >
+    {/* The 24 s product film from the project repo; made to be watched with
+        sound, so it waits for play rather than autoplaying muted. */}
+    <figure className="flex flex-col gap-2">
+      <video
+        src="/assets/projects/BadmintonQueue/bq-film.mp4"
+        poster="/assets/projects/BadmintonQueue/bq-film-poster.webp"
+        width="1920"
+        height="1080"
+        controls
+        playsInline
+        preload="none"
+        aria-label="24-second film: the problem, the app suggesting the next court and explaining why, and a player's mixing stats"
+        className="aspect-video w-full rounded-xl border border-line bg-surface"
+      />
+      <figcaption className="font-mono text-xs text-muted">
+        The 24-second film, best with sound. The live demo runs on a seeded club; every name in it is fictional.
+      </figcaption>
+    </figure>
+
     <PartSwitch parts={PARTS} />
 
     {/* 01 Context */}

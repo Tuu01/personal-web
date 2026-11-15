@@ -6,7 +6,7 @@ import { Reveal } from "../components/CaseStudy";
 const EASE = [0.22, 1, 0.36, 1];
 
 // Case-study frame: breadcrumb, title, lead and facts, hero image, chapters.
-const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt, heroCaption, index, area, tags = [], lead, live, children }) => {
+const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt, heroCaption, index, area, tags = [], lead, live, liveLabel = "Visit the live site", children }) => {
   const reduceMotion = useReducedMotion();
   const enter = (y, delay = 0) =>
     reduceMotion
@@ -56,7 +56,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt
                 rel="noreferrer"
                 className="mt-5 inline-flex h-11 items-center gap-2 rounded-lg bg-ink px-5 text-[15px] font-semibold text-paper transition-colors hover:bg-cobalt hover:text-on-cobalt"
               >
-                Visit the live site
+                {liveLabel}
                 <span className="font-mono text-xs font-medium opacity-70">{new URL(live).hostname.replace(/^www\./, "")}</span>
                 <span aria-hidden="true">↗</span>
               </a>
