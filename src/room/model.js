@@ -75,6 +75,10 @@ const ZONE_COPY = {
   },
 };
 
+// About me covers the frame, certificate, rackets and camera; its pin sits on
+// the certificate.
+const PIN_ON = { "About me": "obj_degree" };
+
 export const ZONE_ORDER = camerasData.motion.intro_tour.order; // engineering, design, lab, about
 
 const objectList = objectsData.objects;
@@ -111,8 +115,11 @@ export const ZONES = Object.fromEntries(
         fadesOut: z.fades_out,
         kinds,
         objectIds: objects.map((o) => o.id),
-        // One tag per distinct object label (the first object with it).
-        tagObjectIds: objects.filter((o, i) => objects.findIndex((x) => x.label === o.label) === i).map((o) => o.id),
+        // One pin per distinct object label: on the object PIN_ON names, else
+        // the first object with that label.
+        tagObjectIds: [...new Set(objects.map((o) => o.label))].map(
+          (label) => PIN_ON[label] || objects.find((o) => o.label === label).id,
+        ),
       },
     ];
   }),
