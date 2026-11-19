@@ -11,7 +11,6 @@ import {
   RelatedProject,
   Reveal,
   Part,
-  PartSwitch,
 } from "../components/CaseStudy";
 
 const PARTS = [
@@ -32,6 +31,7 @@ const galleryImages = [
 const BadmintonQueue = () => (
   <CraftLayout
     index="Engineering · Design"
+    parts={PARTS}
     area="Product Design · Full-stack"
     title="A fair game, every Saturday"
     sponsor="Live product, a badminton club of ~30 players"
@@ -66,8 +66,6 @@ const BadmintonQueue = () => (
         The 24-second film, best with sound. The live demo runs on a seeded club; every name in it is fictional.
       </figcaption>
     </figure>
-
-    <PartSwitch parts={PARTS} />
 
     {/* 01 Context */}
     <Chapter index="01" title="Twenty-two people, three courts, one argument">
@@ -172,7 +170,7 @@ const BadmintonQueue = () => (
       intro="What happened after launch: an audit of all 16 screens, and the redesign it led to."
     >
       {/* 04 The problem behind the brief */}
-      <Chapter index="04" title="I shipped it. Then they told me they didn’t get it.">
+      <Chapter index="03" title="I shipped it. Then they told me they didn’t get it.">
         <Prose>
           <p>
             Version one worked: it ran real sessions, picked fair matches, tracked real ratings. But
@@ -205,7 +203,7 @@ const BadmintonQueue = () => (
       />
 
       {/* 05 Design decisions */}
-      <Chapter index="05" title="Four changes that did most of the lifting">
+      <Chapter index="04" title="Four changes that did most of the lifting">
         <Prose>
           <p>
             The single most misleading control was a two-mode switch labelled <em>Assign / Record</em>.
@@ -243,7 +241,7 @@ const BadmintonQueue = () => (
     </Part>
 
     {/* 06 Outcome */}
-    <Chapter index="06" title="Shipped, and still running">
+    <Chapter index={{ engineering: "04", design: "05" }} title="Shipped, and still running">
       <Prose>
         <p>
           The app runs the club&rsquo;s Saturday sessions. The redesign shipped as roughly twenty small,
@@ -267,7 +265,7 @@ const BadmintonQueue = () => (
     </Chapter>
 
     {/* 07 Gallery */}
-    <Chapter index="07" title="Selected screens">
+    <Chapter index={{ engineering: "05", design: "06" }} title="Selected screens">
       <Prose>
         <p className="text-SageGray">
           Captured from the running app against a seeded demo club. All names are fictional; real

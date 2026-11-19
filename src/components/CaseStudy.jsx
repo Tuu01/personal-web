@@ -1,7 +1,8 @@
 // src/components/CaseStudy.jsx
 // Editorial case-study primitives, styled with the brand tokens.
-import React, { useEffect, useRef, useState } from "react";
+import React, { createContext, useContext, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const EASE = [0.22, 1, 0.36, 1];
@@ -39,7 +40,11 @@ export const Lead = ({ children, className = "" }) => (
 /* Numbered chapter: the index sits directly above the heading in a single
    column. The old tag-left / heading-right split is the templated-editorial
    tell and is not used here. */
-export const Chapter = ({ id, index, title, children }) => (
+export const Chapter = ({ id, index, title, children }) => {
+  const parts = useContext(PartsContext);
+  // A chapter after the parts is numbered per part: { engineering: "04", design: "05" }.
+  if (index && typeof index === "object") index = index[parts?.active] ?? null;
+  return (
   <section id={id} className="scroll-mt-[136px] border-t border-black/10 pt-8 md:pt-10">
     <Reveal>
       {index && (
@@ -55,7 +60,8 @@ export const Chapter = ({ id, index, title, children }) => (
     </Reveal>
     <div className="mt-5 space-y-5">{children}</div>
   </section>
-);
+  );
+};
 
 export const Prose = ({ children, className = "" }) => (
   <div
@@ -65,57 +71,87 @@ export const Prose = ({ children, className = "" }) => (
   </div>
 );
 
-/* One half of a case study that two zones of the room share (Badminton Queue,
-   The Nail Fairy). The room links straight to #engineering or #design. */
-export const Part = ({ id, label, intro, children }) => (
-  <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-[136px] space-y-12 md:space-y-16">
-    <header className="rounded-xl border border-line bg-surface px-6 py-7 md:px-10 md:py-9">
-      <p className="eyebrow">Part</p>
-      <h2 id={`${id}-title`} className="mt-2 text-3xl font-semibold tracking-[-0.02em] md:text-4xl">
-        {label}
-      </h2>
-      {intro && <p className="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted">{intro}</p>}
-    </header>
-    {children}
-  </section>
-);
+/* Case studies with two halves (Badminton Queue, The Nail Fairy) show one
+   at a time. The hash says which: #engineering or #design, or an anchor
+   inside one (#penny-hill, #brand). With none, the first part is shown. */
+const PartsContext = createContext(null);
 
-/* Sticky switch between the parts; the one in view is marked. */
-export const PartSwitch = ({ parts }) => {
-  const [active, setActive] = useState(null);
+export const PartsProvider = ({ value, children }) => <PartsContext.Provider value={value}>{children}</PartsContext.Provider>;
 
-  useEffect(() => {
-    const els = parts.map((p) => document.getElementById(p.id)).filter(Boolean);
-    const inView = new Set();
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => (e.isIntersecting ? inView.add(e.target.id) : inView.delete(e.target.id)));
-        setActive(parts.find((p) => inView.has(p.id))?.id ?? null);
-      },
-      { rootMargin: "-40% 0px -55% 0px" },
-    );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
-  }, [parts]);
+/* One half. Its section id is part-…, not the bare hash, so arriving on
+   #design opens the page at the top with Design chosen, title in view. */
+export const Part = ({ id, label, intro, children }) => {
+  const parts = useContext(PartsContext);
+  if (parts && parts.active !== id) return null;
+  return (
+    <section id={`part-${id}`} aria-labelledby={`${id}-title`} className="scroll-mt-[136px] space-y-12 md:space-y-16">
+      <header className="rounded-xl border border-line bg-surface px-6 py-7 md:px-10 md:py-9">
+        <p className="eyebrow">Part</p>
+        <h2 id={`${id}-title`} className="mt-2 text-3xl font-semibold tracking-[-0.02em] md:text-4xl">
+          {label}
+        </h2>
+        {intro && <p className="mt-3 max-w-[60ch] text-lg leading-relaxed text-muted">{intro}</p>}
+      </header>
+      {children}
+    </section>
+  );
+};
+
+/* The toggle, under the case-study header and sticky below the navbar.
+   Switching keeps the reader where they are, unless they had scrolled past
+   the toggle: then the new part starts from its top. */
+export const PartSwitch = () => {
+  const parts = useContext(PartsContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const mark = useRef(null);
+  if (!parts) return null;
+
+  const choose = (id) => {
+    if (id === parts.active) return;
+    // Scrolled past the toggle: open the new part at its top, under the toggle.
+    const past = (mark.current?.getBoundingClientRect().top ?? 0) < 0;
+    navigate({ hash: `#${id}` }, { replace: true, preventScrollReset: true, state: location.state });
+    if (!past) return;
+    // The new part renders after the hash change; wait for it.
+    let tries = 0;
+    const go = () => {
+      const el = document.getElementById(`part-${id}`);
+      if (!el) return tries++ < 30 && requestAnimationFrame(go);
+      const bar = mark.current?.nextElementSibling?.getBoundingClientRect().bottom ?? 120;
+      window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - bar - 24, behavior: "auto" });
+    };
+    requestAnimationFrame(go);
+  };
 
   return (
-    <nav
-      aria-label="Parts of this case study"
-      className="sticky top-16 z-30 -mx-4 flex gap-1 border-b border-line bg-paper/92 px-4 py-2 backdrop-blur-md sm:-mx-8 sm:px-8 md:top-[72px] lg:-mx-12 lg:px-12"
-    >
-      {parts.map((p) => (
-        <Link
-          key={p.id}
-          to={`#${p.id}`}
-          aria-current={active === p.id ? "true" : undefined}
-          className={`rounded-md px-3 py-1.5 text-sm font-semibold transition-colors ${
-            active === p.id ? "bg-ink text-paper" : "text-muted hover:text-ink"
-          }`}
-        >
-          {p.label}
-        </Link>
-      ))}
-    </nav>
+    <>
+      <div ref={mark} aria-hidden="true" />
+      <div className="sticky top-16 z-30 -mx-4 flex items-center gap-3 mt-2 border-b border-line bg-paper/92 px-4 py-2.5 backdrop-blur-md sm:-mx-8 sm:px-8 md:top-[72px] lg:-mx-12 lg:px-12">
+        <span id="part-switch-label" className="eyebrow">
+          Read the
+        </span>
+        <div role="group" aria-labelledby="part-switch-label" className="inline-flex rounded-lg border border-line bg-surface p-1">
+          {parts.parts.map((p) => {
+            const on = parts.active === p.id;
+            return (
+              <button
+                key={p.id}
+                type="button"
+                aria-pressed={on}
+                onClick={() => choose(p.id)}
+                className={`min-h-9 rounded-md px-4 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cobalt ${
+                  on ? "bg-ink text-paper" : "text-muted hover:text-ink"
+                }`}
+              >
+                {p.label}
+              </button>
+            );
+          })}
+        </div>
+        <span className="eyebrow hidden sm:inline">side</span>
+      </div>
+    </>
   );
 };
 

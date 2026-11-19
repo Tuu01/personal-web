@@ -10,12 +10,11 @@ import {
   RelatedProject,
   Reveal,
   Part,
-  PartSwitch,
 } from "../components/CaseStudy";
 
 const PARTS = [
-  { id: "engineering", label: "Engineering" },
-  { id: "design", label: "Design" },
+  { id: "engineering", label: "Engineering", anchors: ["penny-hill"] },
+  { id: "design", label: "Design", anchors: ["brand"] },
 ];
 
 const galleryImages = [
@@ -33,6 +32,7 @@ const galleryImages = [
 const BookingWebsite = () => (
   <CraftLayout
     index="Engineering · Design"
+    parts={PARTS}
     area="Full-Stack · UX"
     title="Nail Fairy: Online Booking Website"
     sponsor="Live client project"
@@ -48,8 +48,6 @@ const BookingWebsite = () => (
       tools: "React, Tailwind, Node/Express, MongoDB, Vite, Vercel/Render",
     }}
   >
-    <PartSwitch parts={PARTS} />
-
     <Chapter
       index="01"
       title="Phone bookings were slow and error-prone"
@@ -142,7 +140,7 @@ const BookingWebsite = () => (
       label="Design"
       intro="The booking flow customers use on their phones, and the brand for the stall."
     >
-      <Chapter index="03" title="A short, guided sequence">
+      <Chapter index="02" title="A short, guided sequence">
         <Prose>
           <p>
             Service, staff (optional), date/time, contact, confirm. The
@@ -153,7 +151,7 @@ const BookingWebsite = () => (
       </Chapter>
 
       <Chapter
-        index="04"
+        index="03"
         title="Moments that make it feel effortless"
       >
         <TwoUp
@@ -180,7 +178,7 @@ const BookingWebsite = () => (
         </Prose>
       </Chapter>
 
-      <Chapter id="brand" index="05" title="The Nail Fairy brand">
+      <Chapter id="brand" index="04" title="The Nail Fairy brand">
         <Prose>
           <p>
             The Nail Fairy is a walk-in nail stall on Darley Street Market, Bradford, open since 2004. I made its
@@ -193,7 +191,7 @@ const BookingWebsite = () => (
     </Part>
 
     <Chapter
-      index="06"
+      index={{ engineering: "03", design: "05" }}
       title="Faster bookings, fewer interruptions"
     >
       <Prose>
@@ -216,7 +214,7 @@ const BookingWebsite = () => (
       </Reveal>
     </Chapter>
 
-    <Chapter index="07" title="Selected screens">
+    <Chapter index={{ engineering: "04", design: "06" }} title="Selected screens">
       <Gallery images={galleryImages} />
     </Chapter>
 

@@ -1,13 +1,23 @@
 import { motion, useReducedMotion } from "framer-motion";
-import { Link } from "react-router-dom";
 import PageShell from "../components/PageShell";
-import { Reveal } from "../components/CaseStudy";
+import { Link, useLocation } from "react-router-dom";
+import { PartSwitch, PartsProvider, Reveal } from "../components/CaseStudy";
 
 const EASE = [0.22, 1, 0.36, 1];
 
+// Which half of a two-part case study is shown (see Part in CaseStudy.jsx).
+const usePartState = (parts) => {
+  const { hash } = useLocation();
+  if (!parts) return null;
+  const slug = hash.replace(/^#/, "");
+  const hit = parts.find((p) => p.id === slug || p.anchors?.includes(slug));
+  return { parts, active: (hit ?? parts[0]).id };
+};
+
 // Case-study frame: breadcrumb, title, lead and facts, hero image, chapters.
-const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt, heroCaption, index, area, tags = [], lead, live, liveLabel = "Visit the live site", children }) => {
+const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt, heroCaption, index, area, tags = [], lead, live, liveLabel = "Visit the live site", parts, children }) => {
   const reduceMotion = useReducedMotion();
+  const partState = usePartState(parts);
   const enter = (y, delay = 0) =>
     reduceMotion
       ? {}
@@ -19,7 +29,9 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt
 
   return (
     <PageShell title={title}>
+      <PartsProvider value={partState}>
       <div className="shell">
+        <PartSwitch />
         <header className="grid items-end gap-8 pt-4 pb-8 md:grid-cols-[1.1fr_1fr] md:gap-12 md:pt-8 md:pb-10">
           <div>
             <motion.p {...enter(8)} className="eyebrow">
@@ -99,6 +111,7 @@ const CraftLayout = ({ title, sponsor, meta = {}, heroImage, heroSrcSet, heroAlt
 
         <div className="space-y-12 py-12 md:space-y-16 md:py-16">{children}</div>
       </div>
+      </PartsProvider>
     </PageShell>
   );
 };
