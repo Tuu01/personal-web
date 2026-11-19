@@ -29,4 +29,10 @@ describe("trail (back link)", () => {
     record(loc("b", "/visual"), "POP");
     expect(placeName(previous())).toBe("home");
   });
+
+  it("names a brand page", () => {
+    record(loc("a", "/visual/hollywood-nails"), "POP");
+    record(loc("b", "/work/nail-fairy"), "PUSH");
+    expect(placeName(previous())).toBe("Hollywood Nails");
+  });
 });

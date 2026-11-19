@@ -19,7 +19,10 @@ import {
 const ROUTES = {
   "/about": ["background", "education", "how-i-work", "outside-work", "badminton", "photography"],
   "/contact": [],
-  "/visual": ["nail-fairy", "tuu", "hollywood-nails"],
+  "/visual": [],
+  "/visual/nail-fairy": [],
+  "/visual/hollywood-nails": [],
+  "/visual/tuu": [],
   "/work/badminton-queue": ["design", "engineering"],
   "/work/nail-fairy": ["engineering", "penny-hill", "design", "brand"],
   "/work/splento": [],

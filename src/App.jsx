@@ -5,7 +5,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import Visual from "./pages/Visual";
+import { VisualBrand, VisualIndex } from "./pages/Visual";
 import BadmintonQueue from "./pages/BadmintonQueue";
 import NailFairy from "./pages/Bookingweb";
 import Splento from "./pages/Splento";
@@ -21,7 +21,8 @@ export const AppRoutes = ({ location }) => (
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<About />} />
     <Route path="/contact" element={<Contact />} />
-    <Route path="/visual" element={<Visual />} />
+    <Route path="/visual" element={<VisualIndex />} />
+    <Route path="/visual/:brand" element={<VisualBrand />} />
     <Route path="/work/badminton-queue" element={<BadmintonQueue />} />
     <Route path="/work/nail-fairy" element={<NailFairy />} />
     <Route path="/work/splento" element={<Splento />} />

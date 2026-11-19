@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { useReducedMotion } from "framer-motion";
 import PageShell from "../components/PageShell";
 import { useTheme } from "../lib/theme";
+import { NotFound } from "./Placeholder";
 
 // Brand decks: each slide rendered from the showcase deck to a 1920 × 1080
 // still (NN.webp) and a 960 px grid copy (NN-960.webp). Captions and alt text
@@ -107,29 +108,8 @@ const Tile = ({ items, i, label, onOpen, eager, sizes, className = "" }) => {
   );
 };
 
-const SectionHead = ({ id, title, meta, children }) => (
-  <header className="grid gap-4 md:grid-cols-[1fr_1.4fr] md:gap-12">
-    <div className="flex flex-col gap-2">
-      <h2 id={id} className="text-[28px] font-semibold leading-tight tracking-[-0.02em] md:text-4xl">
-        {title}
-      </h2>
-      <p className="eyebrow">{meta}</p>
-    </div>
-    <div className="flex flex-col gap-3 leading-relaxed text-muted">{children}</div>
-  </header>
-);
-
-const Deck = ({ deck, onOpen }) => (
-  <section id={deck.id} aria-labelledby={`${deck.id}-title`} className="flex scroll-mt-24 flex-col gap-6 border-t border-line pt-10">
-    <SectionHead id={`${deck.id}-title`} title={deck.title} meta={deck.meta}>
-      <p>{deck.text}</p>
-      {deck.note && <p className="font-mono text-xs">{deck.note}</p>}
-      {deck.link && (
-        <Link to={deck.link.to} className="w-fit font-mono text-xs font-medium text-cobalt hover:text-ink">
-          {deck.link.label} &rarr;
-        </Link>
-      )}
-    </SectionHead>
+const DeckBody = ({ deck, onOpen }) => (
+  <>
     <Tile items={deck.items} i={0} label={`${deck.name} brand deck`} onOpen={onOpen} eager sizes="(min-width: 1280px) 1200px, 100vw" />
     <ul className="grid gap-x-4 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
       {deck.items.slice(1).map((it, k) => (
@@ -141,7 +121,7 @@ const Deck = ({ deck, onOpen }) => (
         </li>
       ))}
     </ul>
-  </section>
+  </>
 );
 
 // The animated logo with its sound logo. Plays muted on a loop; the button
@@ -199,27 +179,20 @@ const LogoFilm = ({ theme }) => {
   );
 };
 
-const OwnBrand = ({ onOpen, theme }) => {
+const OwnBody = ({ onOpen, theme }) => {
   // Viewer order follows the page: summary, avatar, icons, share image, pattern, covers.
   const order = ["summary", "avatar", "icons", "og", "slab", "linkedin", "github"];
   const items = ownItems(theme).sort((a, b) => order.indexOf(a.key) - order.indexOf(b.key));
   const label = "[tuu]¹⁰|1024 brand";
   const at = (key) => items.findIndex((x) => x.key === key);
-  const Cap = ({ k }) => <span className="text-sm leading-snug text-muted">{items[at(k)].caption}</span>;
   const Piece = ({ k, sizes, className }) => (
     <div className="flex flex-col gap-2">
       <Tile items={items} i={at(k)} label={label} onOpen={onOpen} sizes={sizes} className={className} />
-      <Cap k={k} />
+      <span className="text-sm leading-snug text-muted">{items[at(k)].caption}</span>
     </div>
   );
   return (
-    <section id="tuu" aria-labelledby="tuu-title" className="flex scroll-mt-24 flex-col gap-6 border-t border-line pt-10">
-      <SectionHead id="tuu-title" title="[tuu]¹⁰|1024 · my own brand" meta="Logo, motion, sound, colour, type, patterns and social · 2026">
-        <p>
-          The mark reads &ldquo;tuu to the power of 10&rdquo;; 2¹⁰ is 1024. Lowercase JetBrains Mono, a cobalt
-          superscript, and cobalt as the single accent against ink and paper. This site is built on it.
-        </p>
-      </SectionHead>
+    <>
       <LogoFilm theme={theme} />
       <div className="grid gap-x-4 gap-y-6 md:grid-cols-2">
         <Piece k="summary" sizes="(min-width: 768px) 600px, 100vw" />
@@ -234,9 +207,23 @@ const OwnBrand = ({ onOpen, theme }) => {
       </div>
       <Piece k="linkedin" sizes="(min-width: 1280px) 1200px, 100vw" />
       <Piece k="github" sizes="(min-width: 1280px) 1200px, 100vw" />
-    </section>
+    </>
   );
 };
+
+// The three brands, in pinboard order. Each has its own page at /visual/:id.
+const BRANDS = [
+  ...decks.map((d) => ({ ...d, cover: () => d.items[0].thumb, Body: (props) => <DeckBody deck={d} {...props} /> })),
+  {
+    id: "tuu",
+    name: "[tuu]¹⁰|1024",
+    title: "[tuu]¹⁰|1024 · my own brand",
+    meta: "Logo, motion, sound, colour, type, patterns and social · 2026",
+    text: "The mark reads “tuu to the power of 10”; 2¹⁰ is 1024. Lowercase JetBrains Mono, a cobalt superscript, and cobalt as the single accent against ink and paper. This site is built on it.",
+    cover: (t) => `${TB}/og-${t}-1200.webp`,
+    Body: OwnBody,
+  },
+];
 
 // Full-size viewer: arrows or swipe to step through, Esc to close.
 const Viewer = ({ open, onClose, onStep }) => {
@@ -307,8 +294,7 @@ const Viewer = ({ open, onClose, onStep }) => {
   );
 };
 
-const Visual = () => {
-  const theme = useTheme();
+const useViewer = () => {
   const [open, setOpen] = useState(null);
   const onOpen = useCallback((items, i, label) => setOpen({ items, i, label }), []);
   const onClose = useCallback(() => setOpen(null), []);
@@ -316,15 +302,24 @@ const Visual = () => {
     (d) => setOpen((o) => (o ? { ...o, i: Math.max(0, Math.min(o.items.length - 1, o.i + d)) } : o)),
     [],
   );
+  return { open, onOpen, onClose, onStep };
+};
+
+const h1 = "text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[56px]";
+
+// /visual: the three brands as cards. Old /visual#brand links go to the page.
+export const VisualIndex = () => {
+  const theme = useTheme() === "dark" ? "dark" : "light";
+  const { hash } = useLocation();
+  const old = BRANDS.find((b) => `#${b.id}` === hash);
+  if (old) return <Navigate to={`/visual/${old.id}`} replace />;
 
   return (
     <PageShell title="Visual work">
       <div className="shell pt-6 pb-12 md:pt-10 md:pb-20">
         <header className="flex max-w-[60ch] flex-col gap-4">
           <p className="eyebrow">Visual work</p>
-          <h1 className="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl lg:text-[56px]">
-            Brand, print and graphic work
-          </h1>
+          <h1 className={h1}>Brand, print and graphic work</h1>
           <p className="text-lg leading-relaxed text-muted">
             Three identities in full: two salons, from first logo to signs and social, and my own. The product case
             studies are under{" "}
@@ -335,16 +330,80 @@ const Visual = () => {
           </p>
         </header>
 
-        <div className="mt-12 flex flex-col gap-16 md:gap-20">
-          {decks.map((deck) => (
-            <Deck key={deck.id} deck={deck} onOpen={onOpen} />
+        <ul className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+          {BRANDS.map((b) => (
+            <li key={b.id}>
+              <Link
+                to={`/visual/${b.id}`}
+                className="group flex flex-col gap-3 focus:outline-none focus-visible:[&>div]:ring-2 focus-visible:[&>div]:ring-cobalt"
+              >
+                <div className="overflow-hidden rounded-xl border border-line bg-surface">
+                  <img
+                    src={b.cover(theme)}
+                    alt=""
+                    width="960"
+                    height="540"
+                    className="aspect-video w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.015]"
+                  />
+                </div>
+                <h2 className="text-xl font-semibold leading-tight tracking-[-0.01em] group-hover:text-cobalt">{b.title}</h2>
+                <p className="eyebrow">{b.meta}</p>
+                <span className="font-mono text-xs font-medium text-cobalt">View the brand &rarr;</span>
+              </Link>
+            </li>
           ))}
-          <OwnBrand onOpen={onOpen} theme={theme} />
-        </div>
+        </ul>
       </div>
-      <Viewer open={open} onClose={onClose} onStep={onStep} />
     </PageShell>
   );
 };
 
-export default Visual;
+// /visual/:brand: one identity in full, then a link on to the next.
+export const VisualBrand = () => {
+  const theme = useTheme();
+  const { brand } = useParams();
+  const viewer = useViewer();
+  const at = BRANDS.findIndex((b) => b.id === brand);
+  if (at < 0) return <NotFound />;
+  const b = BRANDS[at];
+  const next = BRANDS[(at + 1) % BRANDS.length];
+
+  return (
+    <PageShell title={`${b.name} brand`}>
+      <div className="shell pt-6 pb-12 md:pt-10 md:pb-20">
+        <header className="grid gap-6 md:grid-cols-[1fr_1.2fr] md:items-end md:gap-12">
+          <div className="flex flex-col gap-4">
+            <p className="eyebrow">
+              <Link to="/visual" className="hover:text-cobalt">Visual work</Link> · {at + 1} of {BRANDS.length}
+            </p>
+            <h1 className={h1}>{b.title}</h1>
+            <p className="eyebrow">{b.meta}</p>
+          </div>
+          <div className="flex flex-col gap-3 leading-relaxed text-muted">
+            <p className="text-lg">{b.text}</p>
+            {b.note && <p className="font-mono text-xs">{b.note}</p>}
+            {b.link && (
+              <Link to={b.link.to} className="w-fit font-mono text-xs font-medium text-cobalt hover:text-ink">
+                {b.link.label} &rarr;
+              </Link>
+            )}
+          </div>
+        </header>
+
+        <div className="mt-10 flex flex-col gap-6 md:mt-14">
+          <b.Body onOpen={viewer.onOpen} theme={theme} />
+        </div>
+
+        <nav aria-label="Next brand" className="mt-16 border-t border-line pt-8">
+          <Link to={`/visual/${next.id}`} className="group flex flex-col gap-1">
+            <span className="eyebrow">Next brand</span>
+            <span className="text-2xl font-semibold tracking-[-0.02em] group-hover:text-cobalt md:text-3xl">
+              {next.title} &rarr;
+            </span>
+          </Link>
+        </nav>
+      </div>
+      <Viewer open={viewer.open} onClose={viewer.onClose} onStep={viewer.onStep} />
+    </PageShell>
+  );
+};

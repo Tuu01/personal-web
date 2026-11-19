@@ -20,6 +20,8 @@ export function record(location, type) {
 /** Where "back" goes: the previous in-site location, or null. */
 export const previous = () => (stack.length > 1 ? stack[stack.length - 2] : null);
 
+const BRAND_NAMES = { "nail-fairy": "Nail Fairy", "hollywood-nails": "Hollywood Nails", tuu: "my brand" };
+
 const ZONE_NAMES = { engineering: "Engineering", design: "Design", lab: "the Lab", about: "About" };
 
 /** Words for a location, as in "Back to …". */
@@ -31,6 +33,8 @@ export function placeName(entry) {
     return ZONE_NAMES[slug] ? `the room · ${ZONE_NAMES[slug]}` : "home";
   }
   if (entry.pathname === "/visual") return "Visual work";
+  const brand = BRAND_NAMES[entry.pathname.replace(/^\/visual\//, "")];
+  if (brand && entry.pathname.startsWith("/visual/")) return brand;
   if (entry.pathname === "/about") return "About";
   if (entry.pathname === "/contact") return "Contact";
   return "the previous page";
